@@ -5,6 +5,8 @@
   height: 55px;
   padding: 9px 15px;
   box-shadow: 1px 1px 3px #9eb61a;
+  background: #f8fff8;
+  z-index: 500;
 }
 
 .logo-wrapper {
@@ -52,6 +54,13 @@
 
 .login {
   margin-top: 10px;
+  color: #9eb61a;
+  transition: color 1s;
+  cursor: pointer;
+}
+
+.login:hover {
+  color: #637210;
 }
 
 .login span {
@@ -60,12 +69,5 @@
 
 .login i {
   font-size: 20px;
-  cursor: pointer;
-  color: #9eb61a;
-  transition: color 1s;
   margin-right: 5px;
-}
-
-.login:hover i {
-  color: #637210;
 }

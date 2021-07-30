@@ -1,0 +1,24 @@
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  border: 1px solid #e0e0e0;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.form-wrapper {
+  margin: 0 auto;
+}
+
+.form-wrapper.login-form {
+  width: 295px;
+}
+
+.form-row {
+  margin-bottom: 6px;
+}
+
+.login-form label {
+  width: 100px;
+  display: inline-block;
+}

@@ -20,6 +20,7 @@ button.primary {
   box-shadow: 0 0 2px #1c2000;
   cursor: pointer;
   transition: box-shadow 1s;
+  margin-top: 8px;
 }
 
 button.primary:hover {
@@ -28,7 +29,7 @@ button.primary:hover {
 
 .popup-center {
   width: 500px;
-  height: 400px;
+  max-height: 400px;
   border: 1px solid #9eb61a;
   border-radius: 8px;
   background: #fff;
@@ -96,4 +97,13 @@ a:hover {
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.full-width {
+  display: inline-block;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
