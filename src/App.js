@@ -3,8 +3,9 @@ import { Provider } from "react-redux";
 import store from "./appStore/store";
 import { BrowserRouter as Router } from "react-router-dom";
 
-// import logo from "./logo.svg";
-import SampleComponent from "./components/sampleComponent";
+import AppHeader from "./components/appHeader/appHeader";
+import Reoutes from "./components/common/routes";
+
 import "./App.css";
 
 function App() {
@@ -12,8 +13,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <h1>Hello world!!!</h1>
-          <SampleComponent />
+          <AppHeader />
+          <div className="container">
+            <Reoutes />
+          </div>
         </div>
       </Router>
     </Provider>

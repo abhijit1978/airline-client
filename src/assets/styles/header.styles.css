@@ -1,0 +1,71 @@
+.app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 55px;
+  padding: 9px 15px;
+  box-shadow: 1px 1px 3px #9eb61a;
+}
+
+.logo-wrapper {
+  font-size: 32px;
+  font-weight: bold;
+  font-style: italic;
+  background: -webkit-linear-gradient(rgb(240, 229, 72), rgb(2, 78, 21));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.main-nav {
+  list-style: none;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+.main-nav li {
+  float: left;
+}
+
+.main-nav li a {
+  padding: 8px 20px;
+  float: left;
+  position: relative;
+}
+
+.main-nav li a.active::after {
+  width: calc(100% - 15px);
+  height: 3px;
+  background: #9eb61a;
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  right: 0;
+  content: "";
+  margin: 0 auto;
+  border-radius: 0 0 5px 5px;
+}
+
+.header-right-content {
+  float: right;
+}
+
+.login {
+  margin-top: 10px;
+}
+
+.login span {
+  margin-top: 2px;
+}
+
+.login i {
+  font-size: 20px;
+  cursor: pointer;
+  color: #9eb61a;
+  transition: color 1s;
+  margin-right: 5px;
+}
+
+.login:hover i {
+  color: #637210;
+}
