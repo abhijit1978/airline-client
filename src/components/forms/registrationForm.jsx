@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { showLoginForm, setUser } from "../../appStore";
 
-const LoginForm = () => {
+const RegistrationForm = () => {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({ email: "", password: "" });
 
@@ -59,4 +59,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegistrationForm;

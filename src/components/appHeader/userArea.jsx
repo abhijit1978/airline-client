@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
 import Popup from "../common/popup";
 import LoginForm from "./../forms/loginForm";
 
-import { showLoginForm, setUser } from "./../../appStore";
+import { showLoginForm } from "./../../appStore";
+import UserLinks from "./usrLinks";
 
 const UserArea = () => {
   const dispatch = useDispatch();
@@ -40,31 +41,10 @@ const UserArea = () => {
                 {getInitial()}
               </div>
               {showUserLinksList && (
-                <ul className="user-links">
-                  {user.isLoggedIn && (
-                    <li>
-                      <i class="bi bi-file-earmark-bar-graph"></i>
-                      <Link to="/book-ticket">Ticket Booking</Link>
-                    </li>
-                  )}
-                  {user.isLoggedIn && user.userType === "Super Admin" && (
-                    <li>
-                      <i class="bi bi-bounding-box"></i>
-                      <Link to="/admin-panel">Admin Dashboard</Link>
-                    </li>
-                  )}
-                  <hr />
-                  <li>
-                    <i class="bi bi-card-heading"></i> Profile
-                  </li>
-                  <li>
-                    <i class="bi bi-pencil-square"></i>Change Password
-                  </li>
-                  <hr />
-                  <li onClick={() => dispatch(setUser({}))}>
-                    <i class="bi bi-box-arrow-left"></i>Logout
-                  </li>
-                </ul>
+                <UserLinks
+                  toggleUserLinkList={toggleUserLinkList}
+                  user={user}
+                />
               )}
             </div>
           )}

@@ -99,19 +99,20 @@
   position: absolute;
   border: 1px solid #9eb61a;
   list-style: none;
-  width: 177px;
+  width: 200px;
   top: 46px;
   background: #fff;
   padding: 8px 0 8px;
   right: 0;
   border-radius: 4px;
   z-index: 5;
+  transition: opacity 2s;
 }
 
 .user-links li {
   display: inline-block;
   width: 100%;
-  padding: 6px 8px;
+  padding: 8px 8px;
   font-size: 13px;
   vertical-align: middle;
   line-height: 13px;

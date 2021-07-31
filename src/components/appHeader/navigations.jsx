@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
 const Navigations = () => {
-  const user = useSelector((state) => state.user.user);
+  // const user = useSelector((state) => state.user.user);
   return (
     <nav className="inline">
       <ul className="main-nav">

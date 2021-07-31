@@ -117,6 +117,10 @@ a:hover {
   text-align: center;
 }
 
+.mt5 {
+  margin-top: 5px;
+}
+
 .mt15 {
   margin-top: 15px;
 }
@@ -221,4 +225,14 @@ a:hover {
 .circle-green {
   border: 1px solid #97ad16;
   background-image: radial-gradient(rgb(239, 255, 221), rgb(171, 255, 185));
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.login-error-message {
+  color: red;
+  font-size: 13px;
+  position: absolute;
 }

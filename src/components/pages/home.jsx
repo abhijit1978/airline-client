@@ -12,7 +12,7 @@ const HomePage = () => {
         <div className="container">
           <div className="col3">
             <div className="circle-60 circle-saffron inline mr15">
-              <i class="bi bi-file-earmark-text-fill"></i>
+              <i className="bi bi-file-earmark-text-fill"></i>
             </div>
             <div className="inline">
               <p className="bigger-text fcSafron">Ticket Booking</p>
@@ -21,7 +21,7 @@ const HomePage = () => {
           </div>
           <div className="col3">
             <div className="circle-60 circle-blue inline mr15">
-              <i class="bi bi-people-fill"></i>
+              <i className="bi bi-people-fill"></i>
             </div>
             <div className="inline">
               <p className="bigger-text fcBlue">HR Outsourcing </p>
@@ -30,7 +30,7 @@ const HomePage = () => {
           </div>
           <div className="col3">
             <div className="circle-60 circle-green inline mr15">
-              <i class="bi bi-file-image-fill"></i>
+              <i className="bi bi-file-image-fill"></i>
             </div>
             <div className="inline">
               <p className="bigger-text fcLightGreen">Tours & Travel</p>

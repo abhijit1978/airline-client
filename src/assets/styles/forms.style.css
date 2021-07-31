@@ -6,19 +6,41 @@ input[type="password"] {
   border-radius: 5px;
 }
 
-.form-wrapper {
+/* .form-wrapper {
   margin: 0 auto;
+} */
+
+.login-form {
+  width: 280px;
+  float: left;
+  position: relative;
 }
 
-.form-wrapper.login-form {
-  width: 295px;
+.login-form::after {
+  width: 1px;
+  height: calc(100% - 10px);
+  position: absolute;
+  right: 0;
+  background: #9fb61a4b;
+  content: "";
+  top: 5px;
 }
 
 .form-row {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .login-form label {
-  width: 100px;
+  width: 70px;
   display: inline-block;
+  font-size: 14px;
+}
+
+.login-form-right-content {
+  width: 165px;
+  float: right;
+}
+
+.login-form-right-content p {
+  font-size: 12px;
 }
