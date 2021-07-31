@@ -20,6 +20,7 @@ const LoginForm = () => {
       );
       dispatch(showLoginForm());
       dispatch(setUser(response.data.user));
+      sessionStorage.setItem("user", JSON.stringify(response.data.user));
     } catch (error) {
       toggleErrorMessage(!showErrorMessage);
     }

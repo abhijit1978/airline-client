@@ -1,16 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import { setUser } from "./../../appStore";
 
 const UserLinks = ({ toggleUserLinkList, user }) => {
+  console.log("============= user from user links =>", user);
   const dispatch = useDispatch();
 
-  const logoutUser = () => {
-    toggleUserLinkList(false);
-    dispatch(setUser({}));
+  const logoutUser = async () => {
+    try {
+      const response = await axios.put(
+        "http://localhost:5001/api/bfly/users/logout",
+        { id: user.id },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      toggleUserLinkList(false);
+      dispatch(setUser({}));
+      sessionStorage.removeItem("user");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
   return (
     <ul className="user-links">
       {user.isLoggedIn && (

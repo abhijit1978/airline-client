@@ -14,10 +14,7 @@ function App() {
       <Router>
         <div className="App">
           <AppHeader />
-
-          {/* <div className="container"> */}
           <Reoutes />
-          {/* </div> */}
         </div>
       </Router>
     </Provider>
