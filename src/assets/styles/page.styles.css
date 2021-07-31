@@ -1,0 +1,31 @@
+.home-banner {
+  float: left;
+  width: 100%;
+}
+
+.home-banner img {
+  float: left;
+  width: 100%;
+}
+
+.home-heros {
+  height: 90px;
+  box-shadow: 1px 1px 5px #aaa;
+  background: #fff;
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+}
+
+.bigger-text {
+  font-size: 24px;
+  margin-top: 7px;
+  font-weight: bold;
+}
+
+.smaller-text {
+  font-size: 14px;
+  line-height: 14px;
+  margin-top: 3px;
+}

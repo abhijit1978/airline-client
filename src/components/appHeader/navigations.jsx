@@ -14,16 +14,6 @@ const Navigations = () => {
         <li>
           <NavLink to="/our-services">Services</NavLink>
         </li>
-        {user.isLoggedIn && (
-          <li>
-            <NavLink to="/book-ticket">Ticket Booking</NavLink>
-          </li>
-        )}
-        {user.isLoggedIn && user.userType === "Super Admin" && (
-          <li>
-            <NavLink to="/admin-panel">Admin Dashboard</NavLink>
-          </li>
-        )}
         <li>
           <NavLink to="/about-us">About Us</NavLink>
         </li>

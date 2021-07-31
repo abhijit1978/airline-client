@@ -5,7 +5,7 @@
   height: 55px;
   padding: 9px 15px;
   box-shadow: 1px 1px 3px #9eb61a;
-  background: #f8fff8;
+  background: rgb(249 255 248 / 58%);
   z-index: 500;
 }
 
@@ -17,6 +17,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: relative;
+  padding-right: 10px;
 }
 
 .main-nav {
@@ -50,6 +51,7 @@
 
 .header-right-content {
   float: right;
+  position: relative;
 }
 
 .login {
@@ -70,4 +72,59 @@
 .login i {
   font-size: 20px;
   margin-right: 5px;
+}
+
+.user-name {
+  margin-right: 35px;
+}
+
+.user-image {
+  width: 30px;
+  height: 30px;
+  background: #9eb61a;
+  border: 1px solid #637210;
+  border-radius: 100%;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.user-links {
+  position: absolute;
+  border: 1px solid #9eb61a;
+  list-style: none;
+  width: 177px;
+  top: 46px;
+  background: #fff;
+  padding: 8px 0 8px;
+  right: 0;
+  border-radius: 4px;
+  z-index: 5;
+}
+
+.user-links li {
+  display: inline-block;
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  vertical-align: middle;
+  line-height: 13px;
+}
+
+.user-links li i {
+  font-size: 16px;
+  margin-right: 7px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.user-links hr {
+  margin: 8px 0;
+  border-top: 1px solid #9eb61a;
 }

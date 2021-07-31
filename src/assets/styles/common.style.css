@@ -1,14 +1,22 @@
 body {
   background: #f8fff8;
   color: #797979;
-  margin: 70px 0 0 0;
+  margin: 0;
   padding: 0;
 }
 
-body * {
+.App * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-align: left;
+}
+
+.root,
+.App {
+  float: left;
+  width: 100%;
+  text-align: center;
 }
 
 button.primary {
@@ -97,6 +105,7 @@ a:hover {
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+  display: inline-block;
 }
 
 .full-width {
@@ -106,4 +115,110 @@ a:hover {
 
 .text-center {
   text-align: center;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.pt15 {
+  padding-top: 15px;
+}
+
+.fsize13 {
+  font-size: 13px;
+}
+
+.fsize15 {
+  font-size: 15px;
+}
+
+.fsize18 {
+  font-size: 18px;
+}
+
+.fsize22 {
+  font-size: 22px;
+}
+
+.fsize26 {
+  font-size: 26px;
+}
+
+.fsize30 {
+  font-size: 30px;
+}
+
+.fcDeepGreen {
+  color: #66730b;
+}
+
+.fcLightGreen {
+  color: #97ad16;
+}
+
+.fcSafron {
+  color: #f5b904;
+}
+
+.fcBlue {
+  color: rgb(107, 107, 253);
+}
+
+.col6 {
+  width: calc(100% / 2);
+  float: left;
+}
+
+.col5 {
+  width: calc(100% / 5);
+  float: left;
+}
+
+.col4 {
+  width: calc(100% / 4);
+  float: left;
+}
+
+.col3 {
+  width: calc(100% / 3);
+  float: left;
+}
+
+.col2 {
+  width: calc(100% / 6);
+  float: left;
+}
+
+.circle-60 {
+  width: 62px;
+  height: 60px;
+  border-radius: 100%;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 60px;
+  font-size: 30px;
+}
+
+.circle-saffron {
+  border: 1px solid #f4c430;
+  background-image: radial-gradient(rgb(255, 250, 221), rgb(250, 229, 110));
+}
+
+.circle-blue {
+  border: 1px solid blue;
+  background-image: radial-gradient(rgb(205, 202, 252), rgb(175, 190, 253));
+}
+
+.circle-green {
+  border: 1px solid #97ad16;
+  background-image: radial-gradient(rgb(239, 255, 221), rgb(171, 255, 185));
 }
