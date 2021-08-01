@@ -29,3 +29,21 @@
   line-height: 14px;
   margin-top: 3px;
 }
+
+.page-wrapper {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.page-wrapper > aside,
+.booking-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.tool-bar {
+  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+  padding: 8px 0;
+  margin: 10px 0 15px;
+}

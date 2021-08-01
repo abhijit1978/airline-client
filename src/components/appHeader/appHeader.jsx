@@ -12,8 +12,6 @@ const AppHeader = () => {
     const user = sessionStorage.getItem("user");
     if (user) {
       dispatch(setUser(JSON.parse(user)));
-    } else {
-      console.log("user not foud!");
     }
   }, []);
 

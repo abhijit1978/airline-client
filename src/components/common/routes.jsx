@@ -8,16 +8,31 @@ import ServicesPage from "../pages/services";
 import TicketBooking from "../pages/bookTicket";
 import AdminDashboard from "../pages/adminPanel/dashboard";
 
-const Routes = () => {
+const Routes = (props) => {
   return (
     <>
       <Switch>
-        <Route path="/admin-panel" render={() => <AdminDashboard />} />
-        <Route path="/book-ticket" render={() => <TicketBooking />} />
-        <Route path="/contact-us" render={() => <ContactUsPage />} />
-        <Route path="/our-services" exact render={() => <ServicesPage />} />
-        <Route path="/about-us" render={() => <AboutUspage />} />
-        <Route path="/" exact render={() => <HomePage />} />
+        <Route
+          path="/admin-panel"
+          render={(props) => <AdminDashboard {...props} />}
+        />
+        <Route
+          path="/book-ticket"
+          render={(props) => <TicketBooking {...props} />}
+        />
+        <Route
+          path="/contact-us"
+          render={(props) => <ContactUsPage {...props} />}
+        />
+        <Route
+          path="/our-services"
+          render={(props) => <ServicesPage {...props} />}
+        />
+        <Route
+          path="/about-us"
+          render={(props) => <AboutUspage {...props} />}
+        />
+        <Route path="/" exact render={(props) => <HomePage {...props} />} />
       </Switch>
     </>
   );

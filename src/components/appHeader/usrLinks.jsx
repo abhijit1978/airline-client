@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { setUser } from "./../../appStore";
 
 const UserLinks = ({ toggleUserLinkList, user }) => {
-  console.log("============= user from user links =>", user);
   const dispatch = useDispatch();
 
   const logoutUser = async () => {
@@ -31,7 +30,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
     <ul className="user-links">
       {user.isLoggedIn && (
         <li>
-          <i class="bi bi-file-earmark-text"></i>
+          <i className="bi bi-file-earmark-text"></i>
           <Link to="/book-ticket">Ticket Booking</Link>
         </li>
       )}
@@ -43,7 +42,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
       )}
       <hr />
       <li>
-        <i class="bi bi-file-earmark-richtext"></i> Profile
+        <i className="bi bi-file-earmark-richtext"></i> Profile
       </li>
       <li>
         <i className="bi bi-pencil-square"></i>Change Password
