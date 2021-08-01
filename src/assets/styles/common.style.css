@@ -188,6 +188,11 @@ a:hover {
   float: left;
 }
 
+.col4_5 {
+  width: calc((100% / 5) * 4);
+  float: left;
+}
+
 .col4 {
   width: calc(100% / 4);
   float: left;

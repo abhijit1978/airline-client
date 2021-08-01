@@ -5,10 +5,15 @@ import "react-datetime/css/react-datetime.css";
 // import { useSelector, useDispatch } from "react-redux";
 
 import LocationsList from "../common/locationsList";
+import AirlinesList from "../common/airlinesList";
 
 const TicketBooking = () => {
   const getLocation = (location) => {
     console.log("New location", location);
+  };
+
+  const getAirline = (airline) => {
+    console.log("New Airline", airline);
   };
 
   return (
@@ -17,6 +22,7 @@ const TicketBooking = () => {
         <p>Book Tickets</p>
         <div className="tool-bar full-width">
           <LocationsList getLocation={getLocation} />
+          <AirlinesList getAirline={getAirline} />
           <div className="travel-date">
             <label htmlFor="">Travel Date: </label>{" "}
             <Datetime

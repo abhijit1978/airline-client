@@ -9,7 +9,9 @@ const Navigations = () => {
     <nav className="inline">
       <ul className="main-nav">
         <li>
-          <NavLink to="/">Home</NavLink>
+          <NavLink exact to="/">
+            Home
+          </NavLink>
         </li>
         <li>
           <NavLink to="/our-services">Services</NavLink>
