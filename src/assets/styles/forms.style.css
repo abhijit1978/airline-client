@@ -1,9 +1,19 @@
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="time"],
+input[type="number"] {
   border: 1px solid #e0e0e0;
   padding: 6px;
   border-radius: 5px;
+  max-width: 100%;
+}
+
+select {
+  min-width: 190px;
+  padding: 6px !important;
+  border-radius: 5px;
+  max-width: 100%;
 }
 
 /* .form-wrapper {
@@ -43,4 +53,33 @@ input[type="password"] {
 
 .login-form-right-content p {
   font-size: 12px;
+}
+
+.purchase-form ul {
+  list-style: none;
+}
+
+.purchase-form ul li {
+  margin-bottom: 15px;
+}
+
+.purchase-form ul li label {
+  width: 100px;
+  display: inline-block;
+  font-size: 13px;
+}
+
+.rdt {
+  display: inline-block;
+}
+
+.form-heading {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.purchase-form {
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
 }

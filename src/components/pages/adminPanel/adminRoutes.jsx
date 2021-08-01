@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 
 import TicketPurchase from "./ticketPurchase";
 import UsersList from "./usersList";
+import TicketsList from "./ticketsList";
 
 const AdminRoutes = (props) => {
   return (
@@ -14,6 +15,10 @@ const AdminRoutes = (props) => {
       <Route
         path="/admin-panel/users-list"
         render={(props) => <UsersList {...props} />}
+      />
+      <Route
+        path="/admin-panel/tickets-list"
+        render={(props) => <TicketsList {...props} />}
       />
     </Switch>
   );

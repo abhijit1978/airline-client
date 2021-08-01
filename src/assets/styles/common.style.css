@@ -134,6 +134,10 @@ a:hover {
   margin-right: 15px;
 }
 
+.pr-15 {
+  padding-right: 15px;
+}
+
 .pt15 {
   padding-top: 15px;
 }
@@ -172,6 +176,10 @@ a:hover {
 
 .fcSafron {
   color: #f5b904;
+}
+
+.fcRed {
+  color: red;
 }
 
 .fcBlue {
@@ -246,4 +254,23 @@ a:hover {
   color: red;
   font-size: 13px;
   position: absolute;
+}
+
+table {
+  width: 100%;
+}
+
+table th,
+table td {
+  font-size: 13px;
+  padding: 8px 3px !important;
+}
+
+table.colored tbody tr:nth-child(even),
+table.colored thead th {
+  background: #eeeeee;
+}
+
+table.colored {
+  border: 1px solid #eeeeee;
 }

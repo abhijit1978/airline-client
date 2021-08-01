@@ -17,7 +17,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
+      console.log(response);
       toggleUserLinkList(false);
       dispatch(setUser({}));
       sessionStorage.removeItem("user");
