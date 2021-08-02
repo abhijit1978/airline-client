@@ -1,18 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { showLoginForm } from "./../../appStore";
 
-const Popup = (props) => {
-  const dispatch = useDispatch();
+const Popup = ({ heading, onTogglePopup, children }) => {
   return (
     <div className="popup-center">
       <header>
-        <span>{props.heading}</span>
-        <div className="close-button" onClick={() => dispatch(showLoginForm())}>
+        <span>{heading}</span>
+        <div className="close-button" onClick={() => onTogglePopup(false)}>
           X
         </div>
       </header>
-      <div className="content-area">{props.children}</div>
+      <div className="content-area">{children}</div>
     </div>
   );
 };

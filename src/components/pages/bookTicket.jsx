@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-// import { useSelector, useDispatch } from "react-redux";
 
 import LocationsList from "../common/locationsList";
 import AirlinesList from "../common/airlinesList";
 
-const TicketBooking = () => {
+const TicketBooking = (props) => {
+  const user = useSelector((state) => state.user.user);
+  useEffect(() => {
+    if (!Object.keys(user).length) {
+      props.history.replace("/");
+    }
+  }, [user]);
   const getLocation = (location) => {
     console.log("New location", location);
   };

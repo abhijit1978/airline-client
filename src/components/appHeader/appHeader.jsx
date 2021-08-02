@@ -8,6 +8,7 @@ import { setUser } from "./../../appStore";
 
 const AppHeader = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const user = sessionStorage.getItem("user");
     if (user) {

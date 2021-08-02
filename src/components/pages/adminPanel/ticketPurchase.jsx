@@ -33,6 +33,7 @@ const TicketPurchase = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
+      console.log(response);
       toggleErrorMessage({ ...message, success: true });
     } catch (error) {
       toggleErrorMessage({ ...message, error: true });

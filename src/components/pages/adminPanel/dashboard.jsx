@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminRoutes from "./adminRoutes";
 
-const AdminDashboard = () => {
+const AdminDashboard = (props) => {
+  const user = useSelector((state) => state.user.user);
+  useEffect(() => {
+    if (!Object.keys(user).length) {
+      props.history.replace("/");
+    }
+  }, [user]);
+
   return (
     <div className="page-wrapper full-width">
       <aside className="col5">

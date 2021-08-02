@@ -263,11 +263,16 @@ table {
 table th,
 table td {
   font-size: 13px;
-  padding: 8px 3px !important;
+  padding: 10px 3px !important;
 }
 
-table.colored tbody tr:nth-child(even),
 table.colored thead th {
+  background: #97ad16;
+  color: white;
+  text-align: center;
+}
+
+table.colored tbody tr:nth-child(even) {
   background: #eeeeee;
 }
 

@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Popup from "../common/popup";
 import LoginForm from "./../forms/loginForm";
-
-import { showLoginForm } from "./../../appStore";
 import UserLinks from "./usrLinks";
 
 const UserArea = () => {
-  const dispatch = useDispatch();
-
-  const showPopup = useSelector((state) => state.popup.showPopup);
+  const [showPopup, togglePopup] = useState(false);
   const user = useSelector((state) => state.user.user);
 
   const getInitial = () => {
@@ -25,7 +21,7 @@ const UserArea = () => {
       <div className="header-right-content">
         <div className="login">
           {!Object.keys(user).length ? (
-            <span onClick={() => dispatch(showLoginForm())}>
+            <span onClick={() => togglePopup(true)}>
               <i className="bi bi-box-arrow-in-right"></i>
               <span className="inline">Login</span>
             </span>
@@ -51,8 +47,8 @@ const UserArea = () => {
         </div>
       </div>
       {showPopup && (
-        <Popup heading="User Login">
-          <LoginForm />
+        <Popup heading="User Login" onTogglePopup={togglePopup}>
+          <LoginForm onTogglePopup={togglePopup} />
         </Popup>
       )}
     </>

@@ -40,8 +40,15 @@ select {
   margin-bottom: 8px;
 }
 
-.login-form label {
+.login-form label,
+.role-change-form label {
   width: 70px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.role-change-form label {
+  width: 100px;
   display: inline-block;
   font-size: 14px;
 }

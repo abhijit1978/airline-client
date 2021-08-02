@@ -2,28 +2,35 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
-import { showLoginForm, setUser } from "./../../appStore";
+import { setUser } from "./../../appStore";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const dispatch = useDispatch();
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
-  const [showErrorMessage, toggleErrorMessage] = useState(false);
 
-  const submitLogin = async () => {
-    try {
-      const response = await axios.put(
-        "http://localhost:5001/api/bfly/users/login/",
-        formValues,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      dispatch(showLoginForm());
-      dispatch(setUser(response.data.user));
-      sessionStorage.setItem("user", JSON.stringify(response.data.user));
-    } catch (error) {
-      toggleErrorMessage(!showErrorMessage);
-    }
+  const [formValues, setFormValues] = useState({ email: "", password: "" });
+  const [errorMessage, toggleErrorMessage] = useState({
+    status: false,
+    message: "",
+  });
+
+  const submitLogin = () => {
+    const url = "http://localhost:5001/api/bfly/users/login/";
+    const headers = { "Content-Type": "application/json" };
+    axios
+      .put(url, formValues, { headers })
+      .then((response) => {
+        props.onTogglePopup(false);
+        dispatch(setUser(response.data.user));
+        sessionStorage.setItem("user", JSON.stringify(response.data.user));
+      })
+      .catch((err) => {
+        console.log();
+        toggleErrorMessage({
+          ...toggleErrorMessage,
+          status: true,
+          message: err.response.data,
+        });
+      });
   };
 
   return (
@@ -54,12 +61,12 @@ const LoginForm = () => {
               placeholder="Please enter password"
             />
           </div>
-          {showErrorMessage && (
-            <p className="login-error-message">
-              Email or Passord did no match! Please try again.
+          {errorMessage && (
+            <p className="login-error-message text-center">
+              {errorMessage.message}
             </p>
           )}
-          <div className="full-width text-center mt15">
+          <div className="full-width text-center mt30">
             <button className="primary" onClick={submitLogin}>
               Submit
             </button>
