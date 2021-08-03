@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { setUser } from "./../../appStore";
 
-const LoginForm = (props) => {
+const LoginForm = ({ onTogglePopup, openSignup }) => {
   const dispatch = useDispatch();
 
   const [formValues, setFormValues] = useState({ email: "", password: "" });
@@ -19,8 +19,10 @@ const LoginForm = (props) => {
     axios
       .put(url, formValues, { headers })
       .then((response) => {
-        props.onTogglePopup(false);
+        onTogglePopup(false);
+        //Set user data in Redux Store
         dispatch(setUser(response.data.user));
+        //Set user data in Sesstion Storage
         sessionStorage.setItem("user", JSON.stringify(response.data.user));
       })
       .catch((err) => {
@@ -75,7 +77,7 @@ const LoginForm = (props) => {
         <div className="login-form-right-content">
           <div className="full-width">
             <p>Not registered yet? Click</p>
-            <p className="fcLightGreen pointer mt5">
+            <p className="fcLightGreen pointer mt5" onClick={openSignup}>
               Register to become a partner
             </p>
           </div>
