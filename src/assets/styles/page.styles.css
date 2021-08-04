@@ -47,3 +47,34 @@
   padding: 8px 0;
   margin: 10px 0 15px;
 }
+
+.ticket-list-headig .tool-wrapper {
+  float: right;
+}
+
+.ticket-list-headig label {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.ticket-list-headig select,
+.ticket-list-headig input[type="date"] {
+  margin-right: 10px;
+}
+
+.ticket-list-headig {
+  margin-bottom: 15px;
+}
+
+.ticket-list-headig p {
+  margin-top: 10px;
+}
+
+.resetDate {
+  position: absolute;
+  border: none;
+  font-size: 15px;
+  right: 45px;
+  top: 9px;
+  background: transparent;
+}

@@ -1,3 +1,3 @@
 export * from "./sample/actions";
-export * from "./popup/actions";
 export * from "./user/actions";
+export * from "./commom/actions";

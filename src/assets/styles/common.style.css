@@ -118,6 +118,10 @@ a:hover {
   text-align: center;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .mt5 {
   margin-top: 5px;
 }
@@ -286,4 +290,8 @@ table.colored tbody tr:nth-child(even) {
 
 table.colored {
   border: 1px solid #eeeeee;
+}
+
+.relaive {
+  position: relative;
 }

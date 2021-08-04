@@ -1,15 +1,55 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import AdminRoutes from "./adminRoutes";
 
+import { setLocations, setAirlines } from "./../../../appStore";
+
 const AdminDashboard = (props) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+
+  // Redirect to home page if not logged in
   useEffect(() => {
     if (!Object.keys(user).length) {
       props.history.replace("/");
     }
   }, [user]);
+
+  const getLocations = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5001/api/bfly/locations",
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      dispatch(setLocations(response.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getAirlines = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:5001/api/bfly/airlines",
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      dispatch(setAirlines(response.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getLocations();
+    getAirlines();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="page-wrapper full-width">

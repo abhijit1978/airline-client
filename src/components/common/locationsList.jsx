@@ -1,26 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useSelector } from "react-redux";
 
 const LocationsList = ({ getLocation }) => {
-  const [locations, setLocations] = useState([]);
-  const getLocations = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5001/api/bfly/locations",
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      setLocations(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getLocations();
-  }, []);
-
+  const locations = useSelector((state) => state.common.locations);
   return (
     <div className="source-dest">
       <label htmlFor="">Location</label>

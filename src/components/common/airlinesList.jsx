@@ -1,25 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 const AirlinesList = ({ getAirline }) => {
-  const [airlines, setAirlines] = useState([]);
-  const getAirlines = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5001/api/bfly/airlines",
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      setAirlines(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getAirlines();
-  }, []);
+  const airlines = useSelector((state) => state.common.airlines);
 
   return (
     <div className="airlines-list">

@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import sampleReducer from "./sample/reducer";
-import popupReducer from "./popup/reducer";
+import commonReducer from "./commom/reducer";
 import userReducer from "./user/reducer";
 
 const rootReducer = combineReducers({
   sample: sampleReducer,
-  popup: popupReducer,
+  common: commonReducer,
   user: userReducer,
 });
 
