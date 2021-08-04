@@ -42,7 +42,17 @@ const TicketPurchase = () => {
 
   return (
     <>
-      <p className="form-heading">Purchase Ticket</p>
+      <div className="form-heading relative full-width">
+        Purchase Ticket
+        <div className="float-right">
+          <span className="inline fcLightGreen pointer fsize13 mr15 mt5 ">
+            <strong> Create Location</strong>
+          </span>
+          <span className="inline fcLightGreen pointer fsize13 mt5 ">
+            <strong>Create Airline</strong>
+          </span>
+        </div>
+      </div>
       <div className="purchase-form">
         <ul>
           <li className="full-width">
