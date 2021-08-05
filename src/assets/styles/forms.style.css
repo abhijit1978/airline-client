@@ -26,10 +26,6 @@ select {
   background: transparent;
 }
 
-/* .form-wrapper {
-  margin: 0 auto;
-} */
-
 .login-form {
   width: 280px;
   float: left;
@@ -107,4 +103,17 @@ select {
 
 .registration-form input[type="password"] {
   width: 100%;
+}
+
+.allow-to-sale label {
+  width: 25%;
+  margin-right: 3%;
+  font-size: 14px;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+.allow-to-sale input {
+  width: 69%;
+  float: right;
 }

@@ -65,7 +65,7 @@ const AdminDashboard = (props) => {
 
             <tr>
               <td>
-                <Link to="/admin-panel/tickets-list">Tickets</Link>
+                <Link to="/admin-panel/tickets-list">Purchased Tickets</Link>
               </td>
             </tr>
             <tr>

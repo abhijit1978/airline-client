@@ -3,10 +3,15 @@ import axios from "axios";
 import moment from "moment";
 import LocationsList from "../../common/locationsList";
 import AirlinesList from "../../common/airlinesList";
+import AllowToSale from "../../forms/allowToSale";
+import Popup from "./../../common/popup";
 
 const TicketsList = () => {
   const [tickets, setTickets] = useState([]);
-
+  const [showPopup, togglePopup] = useState({
+    state: false,
+    selectedTicket: {},
+  });
   const [searchParams, setSearchParams] = useState({ travelDate: "" });
   const getTickets = async () => {
     const apiURL = "http://localhost:5001/api/bfly/tickets";
@@ -103,11 +108,30 @@ const TicketsList = () => {
               <td className="text-center">
                 {moment(ticket.datePurchased).format("DD MMM, YYYY")}
               </td>
-              <td className="fcLightGreen pointer">Allow Sale</td>
+              <td
+                className="fcLightGreen pointer"
+                onClick={() =>
+                  togglePopup({
+                    ...showPopup,
+                    state: true,
+                    selectedTicket: ticket,
+                  })
+                }
+              >
+                Allow Sale
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {showPopup && (
+        <Popup heading="Allow to sale" onTogglePopup={togglePopup}>
+          <AllowToSale
+            onTogglePopup={togglePopup}
+            ticket={showPopup.selectedTicket}
+          />
+        </Popup>
+      )}
     </>
   );
 };
