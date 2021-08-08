@@ -11,10 +11,22 @@ import { useSelector } from "react-redux";
 const TicketPurchase = () => {
   const user = useSelector((state) => state.user.user);
 
-  const [formValues, setFormValues] = useState({ userId: user.id });
+  const [formValues, setFormValues] = useState({
+    userId: user.id,
+    airlineName: "",
+    flightNumber: "",
+    location: "",
+    travelDate: "",
+    departureTime: "",
+    arrivalTime: "",
+    pnr: "",
+    purchasePrice: "",
+    ticketsQty: "",
+  });
   const [message, toggleErrorMessage] = useState({
     success: false,
     error: false,
+    errMessage: "",
   });
   const getLocation = (location) => {
     setFormValues({ ...formValues, location });
@@ -25,25 +37,56 @@ const TicketPurchase = () => {
   };
 
   const submitPurchase = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5001/api/bfly/tickets/purchase",
-        formValues,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(response);
-      toggleErrorMessage({ ...message, success: true });
-    } catch (error) {
-      toggleErrorMessage({ ...message, error: true });
+    let validate = 0;
+    for (let key in formValues) {
+      if (!formValues[key]) {
+        validate += 1;
+      }
     }
+    if (!validate) {
+      try {
+        const response = await axios.post(
+          "http://localhost:5001/api/bfly/tickets/purchase",
+          formValues,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        console.log(response);
+        toggleErrorMessage({
+          ...message,
+          success: true,
+          error: false,
+          message: "",
+        });
+      } catch (error) {
+        toggleErrorMessage({
+          ...message,
+          success: false,
+          error: true,
+          message: error.response.data,
+        });
+      }
+    } else {
+      toggleErrorMessage({
+        ...message,
+        success: false,
+        error: true,
+        message: "",
+      });
+    }
+  };
+
+  const getFormStyle = () => {
+    let formStyle = {};
+    if (message.success) formStyle = { background: "#dcffdc" };
+    if (message.error) formStyle = { background: "#ffeaea" };
+    return formStyle;
   };
 
   return (
     <>
       <div className="form-heading relative full-width">
-        Purchase Ticket
         <div className="float-right">
           <span className="inline fcLightGreen pointer fsize13 mr15 mt5 ">
             <strong> Create Location</strong>
@@ -53,13 +96,14 @@ const TicketPurchase = () => {
           </span>
         </div>
       </div>
-      <div className="purchase-form">
+      <div className="purchase-form" style={getFormStyle()}>
         <ul>
           <li className="full-width">
             <div className="flight-number col3 ">
               <label htmlFor="FlightNumber">FlightNumber</label>
               <input
                 type="text"
+                autoComplete="false"
                 name="flightNumber"
                 id="FlightNumber"
                 placeholder="Alpha-Num, Limit 3-50 Chars"
@@ -72,6 +116,7 @@ const TicketPurchase = () => {
             <div className="flight-number col3">
               <label htmlFor="PNR">PNR</label>
               <input
+                autoComplete="false"
                 type="text"
                 name="pnr"
                 id="PNR"
@@ -176,7 +221,13 @@ const TicketPurchase = () => {
             )}
             {message.error && (
               <p className="fcRed">
-                All fields are mendetory. Please fill all fields &#128549;
+                {!message.message ? (
+                  <span>
+                    All fields are mendetory. Please fill all fields &#128549;
+                  </span>
+                ) : (
+                  message.message
+                )}
               </p>
             )}
           </li>

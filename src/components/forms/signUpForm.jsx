@@ -40,6 +40,7 @@ const SignUpForm = () => {
       <div className="full-width form-row">
         <div className="col3">
           <input
+            autoComplete="false"
             type="text"
             name="firstName"
             placeholder="First Name *"
@@ -53,6 +54,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3 pl8 pr8">
           <input
+            autoComplete="false"
             type="text"
             name="middleName"
             placeholder="Middle Name"
@@ -65,6 +67,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3">
           <input
+            autoComplete="false"
             type="text"
             name="lastName"
             placeholder="Last Name *"
@@ -81,6 +84,7 @@ const SignUpForm = () => {
       <div className="full-width form-row">
         <div className="col3">
           <input
+            autoComplete="false"
             type="email"
             name="Email"
             placeholder="Email *"
@@ -94,6 +98,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3 pl8 pr8">
           <input
+            autoComplete="false"
             type="number"
             name="contactNo"
             placeholder="Mobile *"
@@ -107,6 +112,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3">
           <input
+            autoComplete="false"
             type="number"
             name="alternateNo"
             minLength="0"
@@ -122,6 +128,7 @@ const SignUpForm = () => {
       <div className="full-width form-row">
         <div className="col3">
           <input
+            autoComplete="false"
             type="text"
             name="houseNoStreeetName"
             placeholder="House, Street Name *"
@@ -138,6 +145,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3 pl8 pr8">
           <input
+            autoComplete="false"
             type="text"
             name="cityTownVillage"
             placeholder="City / Town / Village *"
@@ -151,6 +159,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3">
           <input
+            autoComplete="false"
             type="text"
             name="policeStation"
             placeholder="Police Stations *"
@@ -167,6 +176,7 @@ const SignUpForm = () => {
       <div className="full-width form-row">
         <div className="col3">
           <input
+            autoComplete="false"
             type="text"
             name="postOffice"
             placeholder="Post Office *"
@@ -180,6 +190,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3 pl8 pr8">
           <input
+            autoComplete="false"
             type="text"
             name="number"
             placeholder="Pin No. *"
@@ -193,6 +204,7 @@ const SignUpForm = () => {
         </div>
         <div className="col3">
           <input
+            autoComplete="false"
             type="text"
             name="state"
             placeholder="State *"
@@ -211,6 +223,7 @@ const SignUpForm = () => {
       <div className="full-width form-row">
         <div className="col4 pr8">
           <input
+            autoComplete="false"
             type="text"
             name="aadharNo"
             placeholder="Aadhar No. *"
@@ -230,6 +243,7 @@ const SignUpForm = () => {
       <div className="full-width form-row">
         <div className="col4 pr8">
           <input
+            autoComplete="false"
             type="text"
             name="pan"
             placeholder="PAN *"
@@ -251,6 +265,7 @@ const SignUpForm = () => {
       <div className="full-width form-row password-row">
         <div className="col6 pr8">
           <input
+            autoComplete="false"
             type="password"
             name="password"
             placeholder="Password *"
@@ -264,6 +279,7 @@ const SignUpForm = () => {
         </div>
         <div className="col6">
           <input
+            autoComplete="false"
             type="password"
             name="confirmPassword"
             placeholder="Re-enter Password *"

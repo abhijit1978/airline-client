@@ -54,7 +54,6 @@ const UsersList = () => {
 
   return (
     <>
-      <p className="form-heading">List of users</p>
       <table className="colored">
         <thead>
           <tr>

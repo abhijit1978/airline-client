@@ -42,7 +42,6 @@ const TicketsList = () => {
   return (
     <>
       <div className="full-width ticket-list-headig">
-        <p className="inline fsize18 ">Tickts List</p>
         <div className="tool-wrapper">
           <div className="inline relaive">
             <label>Travel Date</label>
@@ -84,7 +83,7 @@ const TicketsList = () => {
             <th>Dep Time</th>
             <th>Arr Time</th>
             <th>Qty</th>
-            <th>Purchase Price</th>
+            <th>Pur Price</th>
             <th>Agent Code</th>
             <th>Entry Date</th>
             <th>Action</th>
@@ -124,7 +123,7 @@ const TicketsList = () => {
           ))}
         </tbody>
       </table>
-      {showPopup && (
+      {showPopup.state && (
         <Popup heading="Allow to sale" onTogglePopup={togglePopup}>
           <AllowToSale
             onTogglePopup={togglePopup}
