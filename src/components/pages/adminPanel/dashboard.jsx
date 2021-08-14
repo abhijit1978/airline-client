@@ -64,6 +64,12 @@ const AdminDashboard = (props) => {
           <li>
             <NavLink to="/admin-panel/users-list">Users</NavLink>
           </li>
+          <li>
+            <NavLink to="/admin-panel/locations">Locations</NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin-panel/airlines">Airlines</NavLink>
+          </li>
         </ul>
       </nav>
       <section className="full-width pr-15 pl15">
