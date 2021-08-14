@@ -6,15 +6,16 @@ import AdminRoutes from "./adminRoutes";
 
 import { setLocations, setAirlines } from "./../../../appStore";
 
-const AdminDashboard = (props) => {
+const AdminDashboard = ({ history }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
   // Redirect to home page if not logged in
   useEffect(() => {
     if (!Object.keys(user).length) {
-      props.history.replace("/");
+      history.replace("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const getLocations = async () => {

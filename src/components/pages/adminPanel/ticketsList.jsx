@@ -60,7 +60,7 @@ const TicketsList = () => {
                 setSearchParams({ ...searchParams, travelDate: "" })
               }
             >
-              <i class="bi bi-x-square"></i>
+              <i className="bi bi-x-square"></i>
             </button>
           </div>
           <div className="inline">

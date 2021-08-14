@@ -14,6 +14,7 @@ const AppHeader = () => {
     if (user) {
       dispatch(setUser(JSON.parse(user)));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

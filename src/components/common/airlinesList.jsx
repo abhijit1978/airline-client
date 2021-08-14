@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const AirlinesList = ({ getAirline }) => {
   const airlines = useSelector((state) => state.common.airlines);

@@ -30,14 +30,14 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
           <label className="inline">From</label>
           <input className="inline" type="date" name="fromDate" id="FromDate" />
           <button className="resetDate">
-            <i class="bi bi-x-square"></i>
+            <i className="bi bi-x-square"></i>
           </button>
         </div>
         <div className="col6 relaive pl5">
           <label className="inline">To</label>
           <input className="inline" type="date" name="toDate" id="ToDate" />
           <button className="resetDate">
-            <i class="bi bi-x-square"></i>
+            <i className="bi bi-x-square"></i>
           </button>
         </div>
       </div>

@@ -7,12 +7,13 @@ import "react-datetime/css/react-datetime.css";
 import LocationsList from "../common/locationsList";
 import AirlinesList from "../common/airlinesList";
 
-const TicketBooking = (props) => {
+const TicketBooking = ({ history }) => {
   const user = useSelector((state) => state.user.user);
   useEffect(() => {
     if (!Object.keys(user).length) {
-      props.history.replace("/");
+      history.replace("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
   const getLocation = (location) => {
     console.log("New location", location);

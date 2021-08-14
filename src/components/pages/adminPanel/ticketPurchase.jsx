@@ -99,29 +99,7 @@ const TicketPurchase = () => {
 
   return (
     <>
-      <div className="form-heading relative full-width">
-        <div className="float-right">
-          <span className="inline fcLightGreen pointer fsize13 mr15 mt5 ">
-            <strong
-              onClick={() =>
-                setShowPopup({ ...showPopup, state: true, popType: "location" })
-              }
-            >
-              Create Location
-            </strong>
-          </span>
-          <span className="inline fcLightGreen pointer fsize13 mt5 ">
-            <strong
-              onClick={() =>
-                setShowPopup({ ...showPopup, state: true, popType: "airline" })
-              }
-            >
-              Create Airline
-            </strong>
-          </span>
-        </div>
-      </div>
-      <div className="purchase-form" style={getFormStyle()}>
+      <div className="purchase-form col4_5" style={getFormStyle()}>
         <ul>
           <li className="full-width">
             <div className="flight-number col3 ">
@@ -257,6 +235,30 @@ const TicketPurchase = () => {
             )}
           </li>
         </ul>
+      </div>
+      <div className="col5">
+        <div className="full-width text-center">
+          <button
+            className="primary text-center"
+            style={{ width: "150px" }}
+            onClick={() =>
+              setShowPopup({ ...showPopup, state: true, popType: "location" })
+            }
+          >
+            Create Location
+          </button>
+        </div>
+        <div className="full-width text-center mt15">
+          <button
+            className="primary text-center"
+            style={{ width: "150px" }}
+            onClick={() =>
+              setShowPopup({ ...showPopup, state: true, popType: "airline" })
+            }
+          >
+            Create Airline
+          </button>
+        </div>
       </div>
       {showPopup.state && (
         <Popup heading="Allow to sale" onTogglePopup={togglePopup}>
