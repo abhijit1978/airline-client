@@ -3,13 +3,14 @@ import Datetime from "react-datetime";
 import moment from "moment";
 import axios from "axios";
 
-import "react-datetime/css/react-datetime.css";
 import AirlinesList from "./../../common/airlinesList";
 import LocationsList from "./../../common/locationsList";
 import { useSelector } from "react-redux";
 import CreateAirline from "../../forms/createAirline";
 import Popup from "../../common/popup";
 import CreateLocation from "../../forms/createLocation";
+
+import "react-datetime/css/react-datetime.css";
 
 const TicketPurchase = () => {
   const user = useSelector((state) => state.user.user);
@@ -260,10 +261,10 @@ const TicketPurchase = () => {
       {showPopup.state && (
         <Popup heading="Allow to sale" onTogglePopup={togglePopup}>
           {showPopup.popType === "airline" && (
-            <CreateAirline onTogglePopup={togglePopup} />
+            <CreateAirline onTogglePopup={togglePopup} action="create" />
           )}
           {showPopup.popType === "location" && (
-            <CreateLocation onTogglePopup={togglePopup} />
+            <CreateLocation onTogglePopup={togglePopup} action="create" />
           )}
         </Popup>
       )}

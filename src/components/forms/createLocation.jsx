@@ -4,13 +4,13 @@ import axios from "axios";
 
 import { setLocations } from "../../appStore";
 
-const CreateLocation = ({ onTogglePopup }) => {
+const CreateLocation = ({ onTogglePopup, action, data }) => {
   const dispatch = useDispatch();
   const locations = useSelector((state) => state.common.locations);
 
   const [formValues, setFormValues] = useState({
-    locationName: "",
-    locationCode: "",
+    locationName: data && data.locationName ? data.locationName : "",
+    locationCode: data && data.locationCode ? data.locationCode : "",
   });
 
   const [errorMessage, toggleErrorMessage] = useState({
@@ -18,25 +18,51 @@ const CreateLocation = ({ onTogglePopup }) => {
     message: "",
   });
 
-  const submitLogin = () => {
+  const create = () => {
     const url = "http://localhost:5001/api/bfly/locations/";
     const headers = { "Content-Type": "application/json" };
     axios
       .post(url, formValues, { headers })
       .then((response) => {
-        console.log(response);
         onTogglePopup(false);
-        //Add new Airline in Redux Store
         dispatch(setLocations([...locations, response.data]));
       })
       .catch((err) => {
-        console.log();
         toggleErrorMessage({
           ...toggleErrorMessage,
           status: true,
           message: err.response.data,
         });
       });
+  };
+
+  const update = () => {
+    const finalData = Object.assign(data, formValues);
+    const url = "http://localhost:5001/api/bfly/locations/";
+    const headers = { "Content-Type": "application/json" };
+    axios
+      .put(url, finalData, { headers })
+      .then((response) => {
+        onTogglePopup({ state: false, locationData: {} });
+
+        const updatedList = locations.map((item) => {
+          if (item._id === response.data._id) return response.data;
+          else return item;
+        });
+        dispatch(setLocations(updatedList));
+      })
+      .catch((err) => {
+        toggleErrorMessage({
+          ...toggleErrorMessage,
+          status: true,
+          message: err.response.data,
+        });
+      });
+  };
+
+  const submitForm = () => {
+    if (action === "create") create();
+    if (action === "edit") update();
   };
 
   return (
@@ -74,7 +100,7 @@ const CreateLocation = ({ onTogglePopup }) => {
             </p>
           )}
           <div className="full-width text-center mt30">
-            <button className="primary" onClick={submitLogin}>
+            <button className="primary" onClick={submitForm}>
               Submit
             </button>
           </div>

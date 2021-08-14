@@ -5,6 +5,18 @@ const AirlinesTable = () => {
   const airlines = useSelector((state) => state.common.airlines);
   return (
     <>
+      <div className="form-heading relative full-width">
+        <div className="float-right">
+          <button
+            className="primary"
+            // onClick={() =>
+            //   setShowPopup({ ...showPopup, state: true, popType: "airline" })
+            // }
+          >
+            Create New Airline
+          </button>
+        </div>
+      </div>
       <table className="colored">
         <thead>
           <tr>
