@@ -1,10 +1,31 @@
 import React from "react";
+import moment from "moment";
 
 const AllowToSale = ({ onTogglePopup, ticket }) => {
-  console.log({ ticket });
   return (
     <div className="allow-to-sale">
-      <div className="full-width form-row">
+      <p className="fsize13 full-width">
+        <span className="col3 mb10">
+          Locaion: <i className="pl5 fcLightGreen">{ticket.location}</i>
+        </span>
+        <span className="col3 mb10">
+          Airline: <i className="pl5 fcLightGreen">{ticket.airlineName}</i>
+        </span>
+        <span className="col3 mb10">
+          PNR: <i className="pl5 fcLightGreen">{ticket.pnr}</i>
+        </span>
+        <span className="col3 mb10">
+          Flight#: <i className="pl5 fcLightGreen">{ticket.flightNumber}</i>
+        </span>
+        <span className="col3 mb10">
+          Travel Date:
+          <i className="pl5 fcLightGreen">
+            {moment(ticket.travelDate).format("DD MMM, YYYY")}
+          </i>
+        </span>
+      </p>
+      <hr />
+      <div className="full-width form-row mt15">
         <div className="col6 relaive pr5">
           <label className="inline">From</label>
           <input className="inline" type="date" name="fromDate" id="FromDate" />

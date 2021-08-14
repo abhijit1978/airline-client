@@ -7,9 +7,17 @@ import "react-datetime/css/react-datetime.css";
 import AirlinesList from "./../../common/airlinesList";
 import LocationsList from "./../../common/locationsList";
 import { useSelector } from "react-redux";
+import CreateAirline from "../../forms/createAirline";
+import Popup from "../../common/popup";
+import CreateLocation from "../../forms/createLocation";
 
 const TicketPurchase = () => {
   const user = useSelector((state) => state.user.user);
+
+  const [showPopup, setShowPopup] = useState({
+    state: false,
+    popType: "",
+  });
 
   const [formValues, setFormValues] = useState({
     userId: user.id,
@@ -84,15 +92,31 @@ const TicketPurchase = () => {
     return formStyle;
   };
 
+  const togglePopup = () => {
+    setShowPopup({ ...showPopup, state: false, popType: "" });
+  };
+
   return (
     <>
       <div className="form-heading relative full-width">
         <div className="float-right">
           <span className="inline fcLightGreen pointer fsize13 mr15 mt5 ">
-            <strong> Create Location</strong>
+            <strong
+              onClick={() =>
+                setShowPopup({ ...showPopup, state: true, popType: "location" })
+              }
+            >
+              Create Location
+            </strong>
           </span>
           <span className="inline fcLightGreen pointer fsize13 mt5 ">
-            <strong>Create Airline</strong>
+            <strong
+              onClick={() =>
+                setShowPopup({ ...showPopup, state: true, popType: "airline" })
+              }
+            >
+              Create Airline
+            </strong>
           </span>
         </div>
       </div>
@@ -233,6 +257,16 @@ const TicketPurchase = () => {
           </li>
         </ul>
       </div>
+      {showPopup.state && (
+        <Popup heading="Allow to sale" onTogglePopup={togglePopup}>
+          {showPopup.popType === "airline" && (
+            <CreateAirline onTogglePopup={togglePopup} />
+          )}
+          {showPopup.popType === "location" && (
+            <CreateLocation onTogglePopup={togglePopup} />
+          )}
+        </Popup>
+      )}
     </>
   );
 };

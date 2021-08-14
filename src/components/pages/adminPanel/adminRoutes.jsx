@@ -9,7 +9,7 @@ const AdminRoutes = (props) => {
   return (
     <Switch>
       <Route
-        path="/admin-panel/ticket-purchase"
+        path="/admin-panel/purchase-entry"
         render={(props) => <TicketPurchase {...props} />}
       />
       <Route

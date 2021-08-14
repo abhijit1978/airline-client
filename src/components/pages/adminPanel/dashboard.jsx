@@ -56,7 +56,7 @@ const AdminDashboard = (props) => {
       <nav className="dashboard-navs pl15">
         <ul>
           <li>
-            <NavLink to="/admin-panel/ticket-purchase">Ticket Purchase</NavLink>
+            <NavLink to="/admin-panel/purchase-entry">Purchase Entry</NavLink>
           </li>
           <li>
             <NavLink to="/admin-panel/tickets-list">Purchased Tickets</NavLink>
@@ -66,7 +66,6 @@ const AdminDashboard = (props) => {
           </li>
         </ul>
       </nav>
-
       <section className="full-width pr-15 pl15">
         <AdminRoutes />
       </section>

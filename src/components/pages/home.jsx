@@ -1,4 +1,5 @@
 import React from "react";
+import FloatingContactUs from "../common/floatingContactUs";
 import homeBanner from "./../../assets/images/banner-runway.jpg";
 
 const HomePage = () => {
@@ -16,7 +17,9 @@ const HomePage = () => {
             </div>
             <div className="inline">
               <p className="bigger-text fcSafron">Ticket Booking</p>
-              <p className="smaller-text">Small descriptions will come.</p>
+              <p className="smaller-text">
+                Book Filght tickes all over the globe.
+              </p>
             </div>
           </div>
           <div className="col3">
@@ -34,7 +37,7 @@ const HomePage = () => {
             </div>
             <div className="inline">
               <p className="bigger-text fcLightGreen">Tours & Travel</p>
-              <p className="smaller-text">Small descriptions will come.</p>
+              <p className="smaller-text">Travel with us all over India.</p>
             </div>
           </div>
         </div>
@@ -68,6 +71,8 @@ const HomePage = () => {
           page content. This is home page content. This is home page content.
         </p>
       </div>
+
+      <FloatingContactUs />
     </>
   );
 };

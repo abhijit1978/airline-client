@@ -90,15 +90,62 @@
 .dashboard-navs ul li:first-child a {
   border-left: 1px solid #97ad16;
 }
+.dashboard-navs ul li:first-child a {
+  border-radius: 4px 0 0 4px;
+}
+.dashboard-navs ul li:last-child a {
+  border-radius: 0 4px 4px 0;
+}
 .dashboard-navs ul li a {
-  padding: 5px 20px;
-  border-top: 1px solid #97ad16;
-  border-right: 1px solid #97ad16;
-  border-bottom: 1px solid #97ad16;
+  padding: 10px 0;
+  border-right: 1px solid #b6ce29;
   font-size: 13px;
+  background: rgb(179, 203, 64);
+  background: linear-gradient(
+    0deg,
+    rgba(179, 203, 64, 1) 0%,
+    rgba(151, 174, 38, 1) 100%
+  );
+  color: #fff;
+  width: 160px;
+  display: inline-block;
+  text-align: center;
 }
 
 .dashboard-navs ul li a.active {
-  border-bottom: 1px solid transparent;
   font-weight: bold;
+  background: rgb(179, 203, 64);
+  background: linear-gradient(
+    0deg,
+    rgba(151, 174, 38, 1) 0%,
+    rgba(179, 203, 64, 1) 100%
+  );
+}
+
+.contact-us-floating {
+  width: 100px;
+  height: 35px;
+  background: rgb(179, 203, 64);
+  background: linear-gradient(
+    0deg,
+    rgba(151, 174, 38, 1) 0%,
+    rgba(179, 203, 64, 1) 100%
+  );
+  border-radius: 0 0 4px 4px;
+  position: fixed;
+  top: 300px;
+  right: -32px;
+  transform: rotate(90deg);
+  text-align: center;
+  line-height: 30px;
+  vertical-align: middle;
+  color: #fff;
+  box-shadow: 0 0 3px #000;
+  cursor: pointer;
+  transition: background 1s ease-out;
+  background-size: 1px 200px;
+}
+
+.contact-us-floating:hover {
+  background-position: 100px;
 }
