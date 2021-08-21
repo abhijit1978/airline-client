@@ -54,7 +54,7 @@ const AdminDashboard = ({ history }) => {
 
   return (
     <div className="page-wrapper full-width">
-      <nav className="dashboard-navs pl15">
+      <nav className="dashboard-navs pl15 pr15">
         <ul>
           <li>
             <NavLink to="/admin-panel/purchase-entry">Purchase Entry</NavLink>

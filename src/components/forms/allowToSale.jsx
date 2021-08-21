@@ -23,6 +23,10 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
             {moment(ticket.travelDate).format("DD MMM, YYYY")}
           </i>
         </span>
+        <span className="col3 mb10">
+          Pur Price:
+          <i className="pl5 fcLightGreen">{ticket.purchasePrice}</i>
+        </span>
       </p>
       <hr />
       <div className="full-width form-row mt15">

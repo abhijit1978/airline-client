@@ -82,20 +82,23 @@
 .dashboard-navs ul {
   list-style: none;
   margin: 0 0 10px 0;
+  display: flex;
 }
 .dashboard-navs ul li {
   display: inline-block;
   padding: 5px 0;
+  flex-grow: 1;
 }
+
 .dashboard-navs ul li:first-child a {
   border-left: 1px solid #97ad16;
-}
-.dashboard-navs ul li:first-child a {
   border-radius: 4px 0 0 4px;
 }
+
 .dashboard-navs ul li:last-child a {
   border-radius: 0 4px 4px 0;
 }
+
 .dashboard-navs ul li a {
   padding: 10px 0;
   border-right: 1px solid #b6ce29;
@@ -107,7 +110,7 @@
     rgba(151, 174, 38, 1) 100%
   );
   color: #fff;
-  width: 160px;
+  width: 100%;
   display: inline-block;
   text-align: center;
 }

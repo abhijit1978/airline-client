@@ -8,24 +8,18 @@ const LocationsTable = () => {
   const [showPopup, setShowPopup] = useState({
     state: false,
     locationData: {},
+    action: "",
   });
 
   const locations = useSelector((state) => state.common.locations);
+
+  const getPopupHeading = () => {
+    return showPopup.action === "create" ? "Create Location" : "Edit Location";
+  };
+
   return (
     <>
-      <div className="form-heading relative full-width">
-        <div className="float-right">
-          <button
-            className="primary"
-            // onClick={() =>
-            //   setShowPopup({ ...showPopup, state: true, popType: "location" })
-            // }
-          >
-            Create New Location
-          </button>
-        </div>
-      </div>
-      <table className="colored">
+      <table className="colored col4_5">
         <thead>
           <tr>
             <th>Sr</th>
@@ -47,6 +41,7 @@ const LocationsTable = () => {
                     ...showPopup,
                     state: true,
                     locationData: location,
+                    action: "edit",
                   })
                 }
               >
@@ -59,11 +54,21 @@ const LocationsTable = () => {
           ))}
         </tbody>
       </table>
+      <div className="col5 text-center">
+        <button
+          className="primary"
+          onClick={() =>
+            setShowPopup({ ...showPopup, state: true, action: "create" })
+          }
+        >
+          Create New Location
+        </button>
+      </div>
       {showPopup.state && (
-        <Popup heading="Allow to sale" onTogglePopup={setShowPopup}>
+        <Popup heading={getPopupHeading()} onTogglePopup={setShowPopup}>
           <CreateLocation
             onTogglePopup={setShowPopup}
-            action="edit"
+            action={showPopup.action}
             data={showPopup.locationData}
           />
         </Popup>

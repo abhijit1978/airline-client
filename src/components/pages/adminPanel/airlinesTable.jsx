@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
+import Popup from "../../common/popup";
+import CreateAirline from "../../forms/createAirline";
+
 const AirlinesTable = () => {
+  const [showPopup, setShowPopup] = useState({
+    state: false,
+    airlineData: {},
+    action: "",
+  });
   const airlines = useSelector((state) => state.common.airlines);
+
+  const getPopupHeading = () => {
+    return showPopup.action === "create" ? "Create Airline" : "Edit Airline";
+  };
+
   return (
     <>
-      <div className="form-heading relative full-width">
-        <div className="float-right">
-          <button
-            className="primary"
-            // onClick={() =>
-            //   setShowPopup({ ...showPopup, state: true, popType: "airline" })
-            // }
-          >
-            Create New Airline
-          </button>
-        </div>
-      </div>
-      <table className="colored">
+      <table className="colored col4_5">
         <thead>
           <tr>
             <th>Sr</th>
@@ -34,12 +35,45 @@ const AirlinesTable = () => {
               <td className="text-center">{airline.airlineName}</td>
               <td className="text-center">{airline.airlineCode}</td>
               <td className="text-center">{airline.alias}</td>
-              <td className="text-center">Edit</td>
-              <td className="text-center">Delete</td>
+              <td
+                className="text-center fcLightGreen pointer"
+                onClick={() =>
+                  setShowPopup({
+                    ...showPopup,
+                    state: true,
+                    airlineData: airline,
+                    action: "edit",
+                  })
+                }
+              >
+                <strong>Edit</strong>
+              </td>
+              <td className="text-center fcLightGreen pointer">
+                <strong>Delete</strong>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="col5 text-center">
+        <button
+          className="primary"
+          onClick={() =>
+            setShowPopup({ ...showPopup, state: true, action: "create" })
+          }
+        >
+          Create New Airline
+        </button>
+      </div>
+      {showPopup.state && (
+        <Popup heading={getPopupHeading()} onTogglePopup={setShowPopup}>
+          <CreateAirline
+            onTogglePopup={setShowPopup}
+            action={showPopup.action}
+            data={showPopup.airlineData}
+          />
+        </Popup>
+      )}
     </>
   );
 };

@@ -6,40 +6,41 @@ input[type="time"],
 input[type="number"],
 input[type="phone"] {
   border: 1px solid #e0e0e0;
-  padding: 6px;
   border-radius: 5px;
   max-width: 100%;
+  padding: 6px;
 }
 
 input[type="file"] {
   border: 1px solid #e0e0e0;
-  padding: 3px 6px;
   border-radius: 5px;
+  padding: 3px 6px;
   width: 100%;
 }
 
 select {
-  min-width: 190px;
-  padding: 6px !important;
+  background: #fff;
+  border: 1px solid #e0e0e0;
   border-radius: 5px;
+  min-width: 190px;
   max-width: 100%;
-  background: transparent;
+  padding: 6px !important;
 }
 
 .login-form {
-  width: 280px;
   float: left;
   position: relative;
+  width: 280px;
 }
 
 .login-form::after {
-  width: 1px;
+  background: #9fb61a4b;
+  content: "";
   height: calc(100% - 10px);
   position: absolute;
   right: 0;
-  background: #9fb61a4b;
-  content: "";
   top: 5px;
+  width: 1px;
 }
 
 .form-row {
@@ -48,20 +49,14 @@ select {
 
 .login-form label,
 .role-change-form label {
+  display: inline-block;
+  font-size: 14px;
   width: 70px;
-  display: inline-block;
-  font-size: 14px;
-}
-
-.role-change-form label {
-  width: 100px;
-  display: inline-block;
-  font-size: 14px;
 }
 
 .login-form-right-content {
-  width: 165px;
   float: right;
+  width: 165px;
 }
 
 .login-form-right-content p {
@@ -77,9 +72,9 @@ select {
 }
 
 .purchase-form ul li label {
-  width: 100px;
   display: inline-block;
   font-size: 13px;
+  width: 100px;
 }
 
 .rdt {
@@ -92,9 +87,9 @@ select {
 }
 
 .purchase-form {
-  padding: 15px;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
+  padding: 15px;
 }
 
 .registration-form hr {
@@ -106,14 +101,14 @@ select {
 }
 
 .allow-to-sale label {
-  width: 25%;
-  margin-right: 3%;
   font-size: 14px;
-  vertical-align: middle;
   line-height: 30px;
+  margin-right: 3%;
+  vertical-align: middle;
+  width: 25%;
 }
 
 .allow-to-sale input {
-  width: 69%;
   float: right;
+  width: 69%;
 }

@@ -7,6 +7,8 @@ import ContactUsPage from "../pages/contactUs";
 import ServicesPage from "../pages/services";
 import TicketBooking from "../pages/bookTicket";
 import AdminDashboard from "../pages/adminPanel/dashboard";
+import EditProfile from "../pages/editProfile";
+import ChangePassword from "../pages/changePassword";
 
 const Routes = (props) => {
   return (
@@ -31,6 +33,14 @@ const Routes = (props) => {
         <Route
           path="/about-us"
           render={(props) => <AboutUspage {...props} />}
+        />
+        <Route
+          path="/user-profile"
+          render={(props) => <EditProfile {...props} />}
+        />
+        <Route
+          path="/change-password"
+          render={(props) => <ChangePassword {...props} />}
         />
         <Route path="/" exact render={(props) => <HomePage {...props} />} />
       </Switch>

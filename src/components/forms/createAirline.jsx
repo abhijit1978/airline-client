@@ -4,14 +4,14 @@ import axios from "axios";
 
 import { setAirlines } from "../../appStore";
 
-const CreateAirline = ({ onTogglePopup }) => {
+const CreateAirline = ({ onTogglePopup, action, data }) => {
   const dispatch = useDispatch();
   const airlines = useSelector((state) => state.common.airlines);
 
   const [formValues, setFormValues] = useState({
-    airlineName: "",
-    airlineCode: "",
-    alias: "",
+    airlineName: (data && data.airlineName) || "",
+    airlineCode: (data && data.airlineCode) || "",
+    alias: (data && data.alias) || "",
   });
 
   const [errorMessage, toggleErrorMessage] = useState({
@@ -19,7 +19,7 @@ const CreateAirline = ({ onTogglePopup }) => {
     message: "",
   });
 
-  const submitLogin = () => {
+  const create = () => {
     const url = "http://localhost:5001/api/bfly/airlines/";
     const headers = { "Content-Type": "application/json" };
     axios
@@ -27,7 +27,6 @@ const CreateAirline = ({ onTogglePopup }) => {
       .then((response) => {
         console.log(response);
         onTogglePopup(false);
-        //Add new Airline in Redux Store
         dispatch(setAirlines([...airlines, response.data]));
       })
       .catch((err) => {
@@ -38,6 +37,35 @@ const CreateAirline = ({ onTogglePopup }) => {
           message: err.response.data,
         });
       });
+  };
+
+  const update = () => {
+    const finalData = Object.assign(data, formValues);
+    const url = "http://localhost:5001/api/bfly/airlines/";
+    const headers = { "Content-Type": "application/json" };
+    axios
+      .put(url, finalData, { headers })
+      .then((response) => {
+        onTogglePopup({ state: false, airlineData: {} });
+        const updatedList = airlines.map((item) => {
+          if (item._id === response.data._id) return response.data;
+          else return item;
+        });
+        dispatch(setAirlines(updatedList));
+      })
+      .catch((err) => {
+        console.log();
+        toggleErrorMessage({
+          ...toggleErrorMessage,
+          status: true,
+          message: err.response.data,
+        });
+      });
+  };
+
+  const submitForm = () => {
+    if (action === "create") create();
+    if (action === "edit") update();
   };
 
   return (
@@ -87,7 +115,7 @@ const CreateAirline = ({ onTogglePopup }) => {
             </p>
           )}
           <div className="full-width text-center mt30">
-            <button className="primary" onClick={submitLogin}>
+            <button className="primary" onClick={submitForm}>
               Submit
             </button>
           </div>

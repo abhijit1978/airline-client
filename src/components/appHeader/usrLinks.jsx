@@ -30,25 +30,29 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
     <ul className="user-links">
       {user.isLoggedIn && (
         <li>
-          <i className="bi bi-file-earmark-text"></i>
-          <Link to="/book-ticket">Ticket Booking</Link>
+          <Link to="/book-ticket">
+            <i className="bi bi-file-earmark-text"></i> Ticket Booking
+          </Link>
         </li>
       )}
       {user.isLoggedIn && user.userType === "Super Admin" && (
         <li>
-          <i className="bi bi-bounding-box"></i>
-          <Link to="/admin-panel">Admin Dashboard</Link>
+          <Link to="/admin-panel">
+            <i className="bi bi-bounding-box"></i> Admin Dashboard
+          </Link>
         </li>
       )}
-      <hr />
       <li>
-        <i className="bi bi-file-earmark-richtext"></i> Profile
+        <Link to="/user-profile">
+          <i className="bi bi-file-earmark-richtext"></i> Profile
+        </Link>
       </li>
       <li>
-        <i className="bi bi-pencil-square"></i>Change Password
+        <Link to="/change-password">
+          <i className="bi bi-pencil-square"></i>Change Password
+        </Link>
       </li>
-      <hr />
-      <li onClick={logoutUser}>
+      <li onClick={logoutUser} className="logout-link">
         <i className="bi bi-box-arrow-left"></i>Logout
       </li>
     </ul>

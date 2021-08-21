@@ -101,8 +101,7 @@
   list-style: none;
   width: 200px;
   top: 46px;
-  background: #fff;
-  padding: 8px 0 8px;
+  background: rgba(255, 255, 255, 0.9);
   right: 0;
   border-radius: 4px;
   z-index: 5;
@@ -111,10 +110,12 @@
 .user-links li {
   display: inline-block;
   width: 100%;
-  padding: 8px 8px;
-  font-size: 13px;
   vertical-align: middle;
-  line-height: 13px;
+  border-bottom: 1px solid rgba(158, 182, 26, 0.3);
+}
+
+.user-links li:last-child {
+  border-bottom: none;
 }
 
 .user-links li i {
@@ -123,8 +124,24 @@
   display: inline-block;
   vertical-align: top;
 }
+.user-links li a,
+.user-links li.logout-link {
+  display: inline-block;
+  padding: 10px 8px;
+  width: 100%;
+  font-size: 13px;
+}
+
+.user-links li:hover {
+  background: rgb(239, 255, 150);
+  background: linear-gradient(
+    180deg,
+    rgba(239, 255, 150, 0.7315301120448179) 0%,
+    rgba(229, 249, 119, 1) 35%,
+    rgba(176, 203, 29, 1) 100%
+  );
+}
 
 .user-links hr {
-  margin: 8px 0;
   border-top: 1px solid #9eb61a;
 }
