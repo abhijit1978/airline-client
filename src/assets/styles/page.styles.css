@@ -52,9 +52,14 @@
   float: right;
 }
 
-.ticket-list-headig label {
+.ticket-list-headig label,
+.ticket-search label {
   font-size: 14px;
   margin-right: 5px;
+}
+
+.ticket-search .book-ticket-btn i {
+  margin-right: 15px;
 }
 
 .ticket-list-headig select,
@@ -151,4 +156,13 @@
 
 .contact-us-floating:hover {
   background-position: 100px;
+}
+
+.ticket-booking-list td img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.ticket-booking-list td .airline-name {
+  margin-top: 10px;
 }

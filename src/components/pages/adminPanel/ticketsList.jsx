@@ -84,8 +84,7 @@ const TicketsList = () => {
             <th>Arr Time</th>
             <th>Qty</th>
             <th>Pur Price</th>
-            <th>Agent Code</th>
-            <th>Entry Date</th>
+            <th>Pur Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -103,7 +102,6 @@ const TicketsList = () => {
               <td className="text-center">{ticket.arrivalTime}</td>
               <td className="text-center">{ticket.ticketsQty}</td>
               <td className="text-center">{ticket.purchasePrice}</td>
-              <td className="text-center">{ticket.userId}</td>
               <td className="text-center">
                 {moment(ticket.datePurchased).format("DD MMM, YYYY")}
               </td>

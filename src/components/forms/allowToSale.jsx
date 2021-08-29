@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 import moment from "moment";
 
 const AllowToSale = ({ onTogglePopup, ticket }) => {
+  const locations = useSelector((state) => state.common.locations);
+  const [formValues, setFormValues] = useState({
+    startDate: "",
+    endDate: "",
+    salePrice: "",
+    qty: "",
+  });
+
+  const submitForm = () => {
+    const finalData = { ...ticket, ...formValues };
+    finalData.locationCode = finalData.location;
+    const locName = locations.find(
+      (loc) => loc.locationCode === ticket.location
+    );
+    finalData.locationName = locName.locationName;
+
+    const url = "http://localhost:5001/api/bfly/tickets/salable";
+    const headers = { "Content-Type": "application/json" };
+    axios
+      .post(url, finalData, { headers })
+      .then((response) => {
+        console.log("response", response);
+        onTogglePopup(false);
+      })
+      .catch((err) => {
+        console.log("Some error .....", err);
+      });
+  };
+
   return (
     <div className="allow-to-sale">
       <p className="fsize13 full-width">
@@ -32,14 +63,30 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
       <div className="full-width form-row mt15">
         <div className="col6 relaive pr5">
           <label className="inline">From</label>
-          <input className="inline" type="date" name="fromDate" id="FromDate" />
+          <input
+            className="inline"
+            type="date"
+            name="fromDate"
+            id="FromDate"
+            onChange={(e) =>
+              setFormValues({ ...formValues, startDate: e.target.value })
+            }
+          />
           <button className="resetDate">
             <i className="bi bi-x-square"></i>
           </button>
         </div>
         <div className="col6 relaive pl5">
           <label className="inline">To</label>
-          <input className="inline" type="date" name="toDate" id="ToDate" />
+          <input
+            className="inline"
+            type="date"
+            name="toDate"
+            id="ToDate"
+            onChange={(e) =>
+              setFormValues({ ...formValues, endDate: e.target.value })
+            }
+          />
           <button className="resetDate">
             <i className="bi bi-x-square"></i>
           </button>
@@ -53,20 +100,28 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
             type="number"
             name="salePrice"
             id="SalePrice"
+            onChange={(e) =>
+              setFormValues({ ...formValues, salePrice: e.target.value })
+            }
           />
         </div>
         <div className="col6 relaive pl5">
-          <label className="inline">Min Qty</label>
+          <label className="inline">Quantity</label>
           <input
             className="inline"
             type="number"
             name="minQuantity"
             id="MinQuantity"
+            onChange={(e) =>
+              setFormValues({ ...formValues, qty: e.target.value })
+            }
           />
         </div>
       </div>
       <div className="full-width text-center mt30">
-        <button className="primary">Submit</button>
+        <button className="primary" onClick={submitForm}>
+          Submit
+        </button>
       </div>
     </div>
   );

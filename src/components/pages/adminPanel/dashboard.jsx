@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import AdminRoutes from "./adminRoutes";
@@ -17,40 +16,6 @@ const AdminDashboard = ({ history }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
-
-  const getLocations = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5001/api/bfly/locations",
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      dispatch(setLocations(response.data));
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const getAirlines = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5001/api/bfly/airlines",
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      dispatch(setAirlines(response.data));
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getLocations();
-    getAirlines();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="page-wrapper full-width">
