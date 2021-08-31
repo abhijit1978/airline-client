@@ -44,7 +44,7 @@
 .tool-bar {
   border-bottom: 1px solid #e0e0e0;
   border-top: 1px solid #e0e0e0;
-  padding: 8px 0;
+  padding: 20px 0;
   margin: 10px 0 15px;
 }
 
@@ -165,4 +165,23 @@
 
 .ticket-booking-list td .airline-name {
   margin-top: 10px;
+}
+
+.qty-error-msg {
+  position: absolute;
+  color: red;
+  bottom: 0px;
+  left: 5px;
+  width: 300px;
+}
+
+.search-error-msg {
+  position: absolute;
+  color: red;
+  top: 3px;
+  width: 300px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  font-size: 13px;
 }

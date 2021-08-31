@@ -29,10 +29,23 @@ button.primary {
   cursor: pointer;
   transition: box-shadow 1s;
   margin-top: 8px;
+  font-weight: bold;
 }
 
 button.primary:hover {
   box-shadow: 0 0 3px #1c2000;
+}
+
+button.primary.disabled {
+  background: #aaa;
+  color: rgb(102, 102, 102);
+  box-shadow: 0 0 2px #aaa;
+  cursor: not-allowed;
+  font-weight: normal;
+}
+
+button.primary.disabled:hover {
+  box-shadow: 0 0 3px #000;
 }
 
 .popup-center {
@@ -174,8 +187,20 @@ a:hover {
   padding-right: 8px;
 }
 
+.pb15 {
+  padding-bottom: 15px;
+}
+
 .mb10 {
   margin-bottom: 10px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
 }
 
 .fsize13 {

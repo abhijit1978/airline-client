@@ -5,9 +5,9 @@ import moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 
-import LocationsList from "../common/locationsList";
+import LocationsList from "../../common/locationsList";
 
-const TicketBooking = ({ history }) => {
+const TicketSearch = ({ history }) => {
   const user = useSelector((state) => state.user.user);
   const airlines = useSelector((state) => state.common.airlines);
 
@@ -17,6 +17,7 @@ const TicketBooking = ({ history }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
   const [tickets, setTickets] = useState([]);
   const [formValues, setFormValues] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
@@ -29,6 +30,7 @@ const TicketBooking = ({ history }) => {
     if (!formValues.locationCode) {
       setErrorMsg("Loation is Mandetory.");
     } else {
+      setErrorMsg("");
       try {
         const response = await axios.post(
           "http://localhost:5001/api/bfly/tickets/getsalable",
@@ -37,7 +39,10 @@ const TicketBooking = ({ history }) => {
             headers: { "Content-Type": "application/json" },
           }
         );
-        setTickets(response.data);
+        const data = response.data.map((item) => {
+          return { ...item, bookQty: 1 };
+        });
+        setTickets(data);
       } catch (error) {
         console.log(error);
       }
@@ -49,11 +54,32 @@ const TicketBooking = ({ history }) => {
     return `../../../logo-${airline.alias}.png`;
   };
 
+  const handleBookQtyChange = (qty, index) => {
+    const data = tickets.map((item, indx) => {
+      if (indx === index) {
+        return { ...item, bookQty: qty };
+      } else return item;
+    });
+
+    setTickets(data);
+  };
+
+  const handleBook = (ticket, index) => {
+    if (ticket.bookQty > ticket.salable.qty) {
+      return;
+    } else {
+      history.push({
+        pathname: "/book-ticket",
+        state: ticket,
+      });
+    }
+  };
+
   return (
     <div className="page-wrapper full-width">
       <section className="full-width booking-container">
         <p>Book Tickets</p>
-        <div className="ticket-search tool-bar full-width text-center">
+        <div className="ticket-search tool-bar full-width text-center relaive">
           <div className="inline mr15">
             <LocationsList getLocation={getLocation} />
           </div>
@@ -89,28 +115,67 @@ const TicketBooking = ({ history }) => {
                 <th>Arrival</th>
                 <th>Qty Avl</th>
                 <th>Price</th>
-                <th></th>
+                <th colSpan="2">Book Ticket</th>
               </tr>
             </thead>
             <tbody>
               {tickets.length ? (
-                tickets.map((ticket) => (
+                tickets.map((ticket, index) => (
                   <tr key={ticket._id}>
                     <td className="text-center">
                       <img src={getIcon(ticket.airlineName)} />
-                      <span className="airline-name inline">
+                      <span className="airline-name inline fsize15">
                         {ticket.airlineName}
                       </span>
                     </td>
                     <td className="text-center">
-                      {moment(ticket.travelDate).format("DD MMM, YYYY")}
+                      <span className="fsize26" style={{ paddingRight: "3px" }}>
+                        {moment(ticket.travelDate).format("DD")}
+                      </span>
+                      <span className="fsize15">
+                        {moment(ticket.travelDate).format("MMM' YYYY")}
+                      </span>
                     </td>
-                    <td className="text-center">{ticket.departureTime}</td>
-                    <td className="text-center">{ticket.arrivalTime}</td>
-                    <td className="text-center">{ticket.salable.qty}</td>
-                    <td className="text-center">{ticket.salable.salePrice}</td>
-                    <td className="text-center">
-                      <button className="primary" style={{ marginTop: "0px" }}>
+                    <td className="text-center fsize15">
+                      {ticket.departureTime}
+                    </td>
+                    <td className="text-center fsize15">
+                      {ticket.arrivalTime}
+                    </td>
+                    <td className="text-center fsize15">
+                      {ticket.salable.qty}
+                    </td>
+                    <td className="text-center fsize15">
+                      {ticket.salable.salePrice}
+                    </td>
+                    <td className="text-center relaive">
+                      <input
+                        name="bookQty"
+                        style={{ width: "50px" }}
+                        type="number"
+                        min="1"
+                        max={ticket.salable.qty}
+                        value={ticket.bookQty}
+                        onChange={(e) =>
+                          handleBookQtyChange(e.target.value, index)
+                        }
+                      />
+                      {ticket.bookQty > ticket.salable.qty && (
+                        <div className="qty-error-msg">
+                          Can not book more than available stock
+                        </div>
+                      )}
+                    </td>
+                    <td className="text-center relaive">
+                      <button
+                        className={
+                          ticket.bookQty > ticket.salable.qty
+                            ? "primary disabled"
+                            : "primary"
+                        }
+                        style={{ marginTop: "0px" }}
+                        onClick={() => handleBook(ticket, index)}
+                      >
                         Book Now
                       </button>
                     </td>
@@ -131,4 +196,4 @@ const TicketBooking = ({ history }) => {
   );
 };
 
-export default TicketBooking;
+export default TicketSearch;

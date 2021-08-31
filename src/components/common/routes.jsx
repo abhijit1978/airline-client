@@ -5,10 +5,11 @@ import HomePage from "./../pages/home";
 import AboutUspage from "./../pages/aboutUs";
 import ContactUsPage from "../pages/contactUs";
 import ServicesPage from "../pages/services";
-import TicketBooking from "../pages/bookTicket";
+import TicketSearch from "../pages/agentArea/ticketSearch";
 import AdminDashboard from "../pages/adminPanel/dashboard";
 import EditProfile from "../pages/editProfile";
 import ChangePassword from "../pages/changePassword";
+import BookTicket from "../pages/agentArea/bookTicket";
 
 const Routes = (props) => {
   return (
@@ -19,8 +20,12 @@ const Routes = (props) => {
           render={(props) => <AdminDashboard {...props} />}
         />
         <Route
+          path="/search-ticket"
+          render={(props) => <TicketSearch {...props} />}
+        />
+        <Route
           path="/book-ticket"
-          render={(props) => <TicketBooking {...props} />}
+          render={(props) => <BookTicket {...props} />}
         />
         <Route
           path="/contact-us"

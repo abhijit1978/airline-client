@@ -28,7 +28,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
     <ul className="user-links">
       {user.isLoggedIn && (
         <li onClick={() => toggleUserLinkList(false)}>
-          <Link to="/book-ticket">
+          <Link to="/search-ticket">
             <i className="bi bi-file-earmark-text"></i> Ticket Booking
           </Link>
         </li>
