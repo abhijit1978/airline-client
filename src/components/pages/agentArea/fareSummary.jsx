@@ -3,11 +3,13 @@ import React from "react";
 const FareSummary = () => {
   return (
     <div className="fare-summary-wrapper">
-      <table>
+      <table id="fareSummary">
         <tbody>
           <tr>
             <td>No of Tickets</td>
-            <td>4</td>
+            <td>
+              <div className="ticket-qty-wrapper"></div>
+            </td>
           </tr>
           <tr>
             <td>Fare per Ticket</td>

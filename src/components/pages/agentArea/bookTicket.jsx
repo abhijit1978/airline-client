@@ -7,9 +7,20 @@ import PassengerInfo from "./passengerInfo";
 import takeoff from "../../../assets/images/takeoff.png";
 import landing from "../../../assets/images/landing.png";
 
-const BookTicket = (props) => {
+const BookTicket = () => {
   const location = useLocation();
-  console.log("================> ", location.state);
+  console.log(location.state);
+  const { state } = { ...location };
+  const getSource = () => {
+    const loc = state.location.locationName;
+    const sepaIndex = loc.indexOf("-");
+    return loc.substr(0, sepaIndex);
+  };
+  const getDestination = () => {
+    const loc = state.location.locationName;
+    const sepaIndex = loc.indexOf("-");
+    return loc.substr(sepaIndex + 2);
+  };
   return (
     <div className="page-wrapper full-width">
       <div className="container">
@@ -22,8 +33,8 @@ const BookTicket = (props) => {
               </div>
 
               <p className="text-center pb15">
-                <span className="fsize26 fcLightGreen">Kolkata (CCU)</span> at
-                08:55
+                <span className="fsize26 fcLightGreen">{getSource()}</span> at{" "}
+                {state.departureTime}
               </p>
             </div>
             <div className="col6 text-center">
@@ -31,13 +42,14 @@ const BookTicket = (props) => {
                 <img src={landing} />
               </div>
               <p className="text-center pb15">
-                <span className="fsize26 fcLightGreen">Chennai (MAA)</span> at
-                12:30
+                <span className="fsize26 fcLightGreen">{getDestination()}</span>{" "}
+                at {state.arrivalTime}
               </p>
             </div>
             <div className="flight-name">
               <img src="../../../logo-AA.png" alt="" style={{ opacity: "1" }} />
-              <strong>Air Asia</strong> : <span className="fsize13">AA100</span>
+              <strong>{state.airlineName}</strong> :{" "}
+              <span className="fsize13">{state.flightNumber}</span>
             </div>
           </div>
           <h3>Passenger Information</h3>

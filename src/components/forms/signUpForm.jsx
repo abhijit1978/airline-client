@@ -311,7 +311,7 @@ const SignUpForm = () => {
       {regSuccess && (
         <div className="registration-success">
           <div className="fcLightGreen text-center">
-            <i class="bi bi-check2-circle" style={{ fontSize: "80px" }}></i>{" "}
+            <i className="bi bi-check2-circle" style={{ fontSize: "80px" }}></i>{" "}
             <br />
             <p className="text-center fsize30 mt15">Thank You!</p>
             <p className="text-center fsize22 mt15">

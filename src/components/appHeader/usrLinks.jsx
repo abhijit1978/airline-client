@@ -42,7 +42,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
       )}
       <li onClick={() => toggleUserLinkList(false)}>
         <Link to="/user-profile">
-          <i className="bi bi-file-earmark-richtext"></i> Profile
+          <i className="bi bi-person-lines-fill"></i> Profile
         </Link>
       </li>
       <li onClick={() => toggleUserLinkList(false)}>

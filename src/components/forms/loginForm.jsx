@@ -76,14 +76,23 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
         </div>
         <div className="login-form-right-content">
           <div className="full-width">
-            <p>Not registered yet? Click</p>
-            <p className="fcLightGreen pointer mt5" onClick={openSignup}>
-              Register to become a partner
+            <p className="text-center mb10">Not registered yet?</p>
+            <p
+              className="fcLightGreen pointer mt5 text-center"
+              onClick={openSignup}
+            >
+              <span className="fsize18">
+                <i className="bi bi-person-lines-fill pr5"></i> Register
+              </span>
+              <br />
+              to become a partner
             </p>
           </div>
           <div className="full-width mt30">
-            <p>Forgot password? Click</p>
-            <p className="fcLightGreen pointer mt5">Generae new password</p>
+            <p className="text-center">Forgot password?</p>
+            <p className="fcLightGreen pointer mt5 text-center">
+              Generae new password
+            </p>
           </div>
         </div>
       </div>
