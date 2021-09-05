@@ -96,6 +96,7 @@ button.primary.disabled:hover {
   padding: 15px;
   overflow: auto;
   height: calc(100% - 60px);
+  position: relative;
 }
 
 .inline {

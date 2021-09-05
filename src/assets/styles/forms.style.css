@@ -204,3 +204,12 @@ button.primary.book-ticket {
   margin-right: 5px;
   vertical-align: middle;
 }
+
+.registration-success {
+  position: absolute;
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  top: 15px;
+  left: 15px;
+  background: #fff;
+}

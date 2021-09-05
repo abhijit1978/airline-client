@@ -58,9 +58,9 @@ const UsersList = () => {
       <table className="colored">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Code</th>
+            <th>ID</th>
             <th>Name</th>
+            <th>Date</th>
             <th>City</th>
             <th>Pin</th>
             <th>Role</th>
@@ -70,9 +70,9 @@ const UsersList = () => {
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
-              <td>{moment(user.dateAppied).format("DD MMM, YYYY")}</td>
-              <td>{user._id}</td>
+              <td>{user.userID}</td>
               <td>{`${user.name.firstName} ${user.name.lastName}`}</td>
+              <td>{moment(user.dateAppied).format("DD MMM, YYYY")}</td>
               <td>{user.address.cityTownVillage}</td>
               <td>{user.address.pin}</td>
               <td>{user.userType}</td>

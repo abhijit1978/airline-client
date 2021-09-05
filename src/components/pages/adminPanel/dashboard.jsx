@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import AdminRoutes from "./adminRoutes";
 
-import { setLocations, setAirlines } from "./../../../appStore";
-
 const AdminDashboard = ({ history }) => {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
   // Redirect to home page if not logged in

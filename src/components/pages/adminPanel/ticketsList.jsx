@@ -35,8 +35,33 @@ const TicketsList = () => {
   const getLocation = (location) => {
     setSearchParams({ ...searchParams, location });
   };
+
   const getAirline = (airlineName) => {
     setSearchParams({ ...searchParams, airlineName });
+  };
+
+  const allowToSale = (ticket) => {
+    const travelDt = new Date(ticket.travelDate);
+    const today = new Date();
+
+    if (today < travelDt) {
+      return (
+        <span
+          className="pointer fcLightGreen"
+          onClick={() =>
+            togglePopup({
+              ...showPopup,
+              state: true,
+              selectedTicket: ticket,
+            })
+          }
+        >
+          Allow Sale
+        </span>
+      );
+    } else {
+      return <span style={{ cursor: "not-allowed" }}>Ticket Expired</span>;
+    }
   };
 
   return (
@@ -105,18 +130,7 @@ const TicketsList = () => {
               <td className="text-center">
                 {moment(ticket.datePurchased).format("DD MMM, YYYY")}
               </td>
-              <td
-                className="fcLightGreen pointer"
-                onClick={() =>
-                  togglePopup({
-                    ...showPopup,
-                    state: true,
-                    selectedTicket: ticket,
-                  })
-                }
-              >
-                Allow Sale
-              </td>
+              <td>{allowToSale(ticket)}</td>
             </tr>
           ))}
         </tbody>
