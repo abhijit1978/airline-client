@@ -4,10 +4,12 @@ import axios from "axios";
 import moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
-
+import { useDispatch } from "react-redux";
 import LocationsList from "../../common/locationsList";
+import { setBookingTicket } from "./../../../appStore";
 
 const TicketSearch = ({ history }) => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const airlines = useSelector((state) => state.common.airlines);
 
@@ -64,7 +66,7 @@ const TicketSearch = ({ history }) => {
     setTickets(data);
   };
 
-  const handleBook = (ticket, index) => {
+  const handleBook = (ticket) => {
     if (ticket.bookQty > ticket.salable.qty) {
       return;
     } else {
@@ -72,6 +74,7 @@ const TicketSearch = ({ history }) => {
         pathname: "/book-ticket",
         state: ticket,
       });
+      dispatch(setBookingTicket(ticket));
     }
   };
 
@@ -123,7 +126,10 @@ const TicketSearch = ({ history }) => {
                 tickets.map((ticket, index) => (
                   <tr key={ticket._id}>
                     <td className="text-center">
-                      <img src={getIcon(ticket.airlineName)} />
+                      <img
+                        src={getIcon(ticket.airlineName)}
+                        alt={ticket.airlineName}
+                      />
                       <span className="airline-name inline fsize15">
                         {ticket.airlineName}
                       </span>
@@ -174,7 +180,7 @@ const TicketSearch = ({ history }) => {
                             : "primary"
                         }
                         style={{ marginTop: "0px" }}
-                        onClick={() => handleBook(ticket, index)}
+                        onClick={() => handleBook(ticket)}
                       >
                         Book Now
                       </button>

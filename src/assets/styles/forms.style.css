@@ -164,20 +164,26 @@ select {
   min-width: auto;
 }
 
-.fare-summary-wrapper table tr td {
+.fare-summary-wrapper .fare-row {
   border-bottom: 1px solid #e0e0e0;
-  padding: 15px !important;
+  padding: 15px;
 }
 
-.fare-summary-wrapper table tr td:first-child {
-  width: 70%;
-  font-size: 16px;
+.fare-summary-wrapper .fare-row label {
+  margin-top: 3px;
+  display: inline-block;
 }
 
-.fare-summary-wrapper table tr td:last-child {
-  width: 30%;
-  font-size: 16px;
+.fare-summary-wrapper .fare-row .fare-input {
+  width: 70px;
+  float: right;
   text-align: right;
+}
+
+.fare-values {
+  float: right;
+  margin-top: 3px;
+  margin-right: 18px;
 }
 
 button.primary.book-ticket {

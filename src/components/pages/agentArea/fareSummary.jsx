@@ -1,36 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 
-const FareSummary = () => {
+const FareSummary = ({ ticket, onTicketsCountChange }) => {
+  const [data, setData] = useState(ticket);
+
+  const getTotalFare = () => {
+    const otherCharges = data.otherCharges ? data.otherCharges : 0;
+    const infantCharges = data.infantCharges ? data.infantCharges : 0;
+    const totalfare =
+      parseInt(data.bookQty) * parseInt(data.salable.salePrice) +
+      parseInt(otherCharges) +
+      parseInt(infantCharges);
+    return totalfare.toLocaleString();
+  };
+
+  const handleTicketsCountChange = (e) => {
+    setData({ ...data, bookQty: e.target.value });
+    onTicketsCountChange(e.target.value);
+  };
+
   return (
     <div className="fare-summary-wrapper">
-      <table id="fareSummary">
-        <tbody>
-          <tr>
-            <td>No of Tickets</td>
-            <td>
-              <div className="ticket-qty-wrapper"></div>
-            </td>
-          </tr>
-          <tr>
-            <td>Fare per Ticket</td>
-            <td>6780.00</td>
-          </tr>
-          <tr>
-            <td>Other Charges</td>
-            <td>0.00</td>
-          </tr>
-          <tr>
-            <td>Infant</td>
-            <td>0.00</td>
-          </tr>
-          <tr className="total-fare">
-            <td>Total Fare</td>
-            <td className="fcLightGreen">
-              <strong>25693.00</strong>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="fare-row full-width">
+        <label className="fsize15">No of Tickets</label>
+        <input
+          className="fare-input"
+          type="number"
+          value={data.bookQty}
+          onChange={(e) => handleTicketsCountChange(e)}
+          name="ticketQty"
+          min="1"
+          max={data.salable.qty}
+        />
+      </div>
+
+      <div className="fare-row full-width">
+        <label className="fsize15">Fare / ticket</label>
+        <span className="fare-values">
+          {data.salable.salePrice.toLocaleString()}
+        </span>
+      </div>
+      <div className="fare-row full-width">
+        <label className="fsize15">Other Charges</label>
+        <input
+          className="fare-input"
+          type="number"
+          value={data.otherCharges ? data.otherCharges : ""}
+          name="otherCharges"
+          onChange={(e) => setData({ ...data, otherCharges: e.target.value })}
+        />
+      </div>
+      <div className="fare-row full-width">
+        <label className="fsize15">Infant Charges</label>
+        <input
+          className="fare-input"
+          type="number"
+          value={data.infantCharges ? data.infantCharges : ""}
+          name="infanCharges"
+          onChange={(e) => setData({ ...data, infantCharges: e.target.value })}
+        />
+      </div>
+      <div className="fare-row full-width">
+        <label className="fsize18 fcLightGreen">Total Fare</label>
+        <span className="fare-values">
+          <strong className="fsize18 fcLightGreen">{getTotalFare()}</strong>
+        </span>
+      </div>
     </div>
   );
 };

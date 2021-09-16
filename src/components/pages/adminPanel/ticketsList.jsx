@@ -66,34 +66,30 @@ const TicketsList = () => {
 
   return (
     <>
-      <div className="full-width ticket-list-headig">
-        <div className="tool-wrapper">
-          <div className="inline relaive">
-            <label>Travel Date</label>
-            <input
-              type="date"
-              name="searchByTraveDate"
-              id="searchByTraveDate"
-              value={searchParams.travelDate}
-              onChange={(e) =>
-                setSearchParams({ ...searchParams, travelDate: e.target.value })
-              }
-            />
-            <button
-              className="resetDate"
-              onClick={() =>
-                setSearchParams({ ...searchParams, travelDate: "" })
-              }
-            >
-              <i className="bi bi-x-square"></i>
-            </button>
-          </div>
-          <div className="inline">
-            <LocationsList getLocation={getLocation} />
-          </div>
-          <div className="inline">
-            <AirlinesList getAirline={getAirline} />
-          </div>
+      <div className="full-widthtool-wrapper ticket-list-headig">
+        <div className="inline relaive">
+          <label>Travel Date</label>
+          <input
+            type="date"
+            name="searchByTraveDate"
+            id="searchByTraveDate"
+            value={searchParams.travelDate}
+            onChange={(e) =>
+              setSearchParams({ ...searchParams, travelDate: e.target.value })
+            }
+          />
+          <button
+            className="resetDate"
+            onClick={() => setSearchParams({ ...searchParams, travelDate: "" })}
+          >
+            <i className="bi bi-x-square"></i>
+          </button>
+        </div>
+        <div className="inline">
+          <LocationsList getLocation={getLocation} />
+        </div>
+        <div className="inline">
+          <AirlinesList getAirline={getAirline} />
         </div>
       </div>
 
