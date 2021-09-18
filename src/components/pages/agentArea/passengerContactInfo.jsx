@@ -10,10 +10,16 @@ const PassengerContactInfo = () => {
     emailID: "",
   });
 
+  const [error, setError] = useState({
+    phone: false,
+    email: false,
+  });
+
   const updateContactInfo = (e, type) => {
     const value = e.target.value;
     if (type === "phone") {
       if (value.length === 10) {
+        setError({ ...error, phone: false });
         dispatch(
           setPassengerContactInfo({
             ...psgContactInfo,
@@ -21,11 +27,12 @@ const PassengerContactInfo = () => {
           })
         );
       } else {
-        console.log("invalid phone number");
+        setError({ ...error, phone: true });
       }
     } else {
       const validPattern = /^\S+@\S+\.\S+$/;
       if (validPattern.test(String(value).toLowerCase())) {
+        setError({ ...error, email: false });
         dispatch(
           setPassengerContactInfo({
             ...psgContactInfo,
@@ -33,7 +40,7 @@ const PassengerContactInfo = () => {
           })
         );
       } else {
-        console.log("invalid email");
+        setError({ ...error, email: true });
       }
     }
   };
@@ -43,7 +50,7 @@ const PassengerContactInfo = () => {
       <div className="col3 mr15">
         <input
           type="text"
-          placeholder="Contact Number"
+          placeholder="Contact Number, 10 digit"
           className="full-width"
           value={psgContactInfo.contactNumber}
           onChange={(e) =>
@@ -58,16 +65,19 @@ const PassengerContactInfo = () => {
       <div className="col3 mr15">
         <input
           type="text"
-          placeholder="Email ID"
+          placeholder="Email ID i.e sample@gmail.com"
           className="full-width"
           value={psgContactInfo.emailID}
           onChange={(e) =>
             setPsgContactInfo({ ...psgContactInfo, emailID: e.target.value })
           }
           onBlur={(e) => updateContactInfo(e, "email")}
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
         />
       </div>
+      {error.phone && (
+        <p className="psgContactError">Mobile Number must be 10 digit.</p>
+      )}
+      {error.email && <p className="psgContactError">Invalid email.</p>}
     </div>
   );
 };

@@ -186,3 +186,8 @@
   right: 0;
   font-size: 13px;
 }
+
+.psgContactError {
+  font-size: 12px;
+  color: red;
+}
