@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import FareSummary from "./fareSummary";
 import PassengerContactInfo from "./passengerContactInfo";
 import PassengerInfo from "./passengerInfo";
+import utils from "../../../utils/utils";
 
 import takeoff from "../../../assets/images/takeoff.png";
 import landing from "../../../assets/images/landing.png";
@@ -14,6 +15,8 @@ const BookTicket = () => {
   const location = useLocation();
   const { state } = { ...location };
   const [passengers, setPassenters] = useState(state.bookQty);
+  const [bookingError, setBookingError] = useState([]);
+
   const getSource = () => {
     const loc = state.location.locationName;
     const sepaIndex = loc.indexOf("-");
@@ -39,8 +42,14 @@ const BookTicket = () => {
     return passengersList;
   };
 
-  const validateBookingInfo = () => {
-    console.log(bookingInfo);
+  const handleBookTicket = () => {
+    const error = utils.validateBookingInfo(bookingInfo);
+    if (error.length) {
+      setBookingError(error);
+    } else {
+      setBookingError(error);
+      console.log("No booking error :) ");
+    }
   };
 
   return (
@@ -82,6 +91,18 @@ const BookTicket = () => {
               <span className="fsize13">{state.flightNumber}</span>
             </div>
           </div>
+          {bookingError.length ? (
+            <div className="booking-error">
+              <h4 className="text-center fcRed">Validation Error</h4>
+              <ol>
+                {bookingError.map((item, index) => (
+                  <li className="fsize13 mb5" key={index}>
+                    {item}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : null}
           <h3>Passenger Information</h3>
           <div className="passenget-details">{getPassengerInfo()}</div>
           <div className="contact-details">
@@ -91,7 +112,10 @@ const BookTicket = () => {
         <div className="col4 pl15">
           <h3>Fare Summary</h3>
           <FareSummary ticket={state} onTicketsCountChange={setPassenters} />
-          <button className="primary book-ticket hvr-bounce-to-bottom">
+          <button
+            className="primary book-ticket hvr-bounce-to-bottom"
+            onClick={handleBookTicket}
+          >
             Book Ticket
           </button>
         </div>

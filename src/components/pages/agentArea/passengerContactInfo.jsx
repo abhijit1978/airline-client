@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { setPassengerContactInfo } from "../../../appStore";
+import utils from "../../../utils/utils";
 
 const PassengerContactInfo = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const PassengerContactInfo = () => {
   const updateContactInfo = (e, type) => {
     const value = e.target.value;
     if (type === "phone") {
-      if (value.length === 10) {
+      if (utils.validateMobile(value)) {
         setError({ ...error, phone: false });
         dispatch(
           setPassengerContactInfo({
@@ -30,8 +31,7 @@ const PassengerContactInfo = () => {
         setError({ ...error, phone: true });
       }
     } else {
-      const validPattern = /^\S+@\S+\.\S+$/;
-      if (validPattern.test(String(value).toLowerCase())) {
+      if (utils.validateEmail(value)) {
         setError({ ...error, email: false });
         dispatch(
           setPassengerContactInfo({

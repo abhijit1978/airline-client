@@ -1,21 +1,27 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import utils from "../../../utils/utils";
+
+import { setFareInfo } from "../../../appStore";
 
 const FareSummary = ({ ticket, onTicketsCountChange }) => {
+  const dispatch = useDispatch();
   const [data, setData] = useState(ticket);
 
-  const getTotalFare = () => {
-    const otherCharges = data.otherCharges ? data.otherCharges : 0;
-    const infantCharges = data.infantCharges ? data.infantCharges : 0;
-    const totalfare =
-      parseInt(data.bookQty) * parseInt(data.salable.salePrice) +
-      parseInt(otherCharges) +
-      parseInt(infantCharges);
-    return totalfare.toLocaleString();
-  };
-
-  const handleTicketsCountChange = (e) => {
-    setData({ ...data, bookQty: e.target.value });
-    onTicketsCountChange(e.target.value);
+  const handleChange = (e, type) => {
+    if (type === "qty") {
+      setData({ ...data, bookQty: e.target.value });
+      dispatch(setFareInfo({ bookQty: e.target.value }));
+      onTicketsCountChange(e.target.value);
+    }
+    if (type === "oc") {
+      dispatch(setFareInfo({ otherCharges: e.target.value }));
+      setData({ ...data, otherCharges: e.target.value });
+    }
+    if (type === "ic") {
+      dispatch(setFareInfo({ infantCharges: e.target.value }));
+      setData({ ...data, infantCharges: e.target.value });
+    }
   };
 
   return (
@@ -26,7 +32,7 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
           className="fare-input"
           type="number"
           value={data.bookQty}
-          onChange={(e) => handleTicketsCountChange(e)}
+          onChange={(e) => handleChange(e, "qty")}
           name="ticketQty"
           min="1"
           max={data.salable.qty}
@@ -46,7 +52,7 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
           type="number"
           value={data.otherCharges ? data.otherCharges : ""}
           name="otherCharges"
-          onChange={(e) => setData({ ...data, otherCharges: e.target.value })}
+          onChange={(e) => handleChange(e, "oc")}
         />
       </div>
       <div className="fare-row full-width">
@@ -56,13 +62,15 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
           type="number"
           value={data.infantCharges ? data.infantCharges : ""}
           name="infanCharges"
-          onChange={(e) => setData({ ...data, infantCharges: e.target.value })}
+          onChange={(e) => handleChange(e, "ic")}
         />
       </div>
       <div className="fare-row full-width">
         <label className="fsize18 fcLightGreen">Total Fare</label>
         <span className="fare-values">
-          <strong className="fsize18 fcLightGreen">{getTotalFare()}</strong>
+          <strong className="fsize18 fcLightGreen">
+            {utils.getTotalFare(data)}
+          </strong>
         </span>
       </div>
     </div>

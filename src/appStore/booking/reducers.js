@@ -2,6 +2,7 @@ import {
   SET_BOOKING_TICKET,
   SET_PASSENGER_INFO,
   SET_PASSENGER_CONTACT_INFO,
+  SET_FARE_INFO,
 } from "./action.types";
 
 const initialState = {
@@ -9,7 +10,7 @@ const initialState = {
     passengerInfo: [],
     passengerContactInfo: {},
     fareSummary: {
-      ticketsCount: 1,
+      bookQty: 1,
       rate: 0,
       otherCharges: 0,
       infantCharges: 0,
@@ -21,11 +22,19 @@ const initialState = {
 const bookingReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_BOOKING_TICKET:
+      const ticketData = { ...action.payload };
+      ticketData.fareSummary = {
+        bookQty: action.payload.bookQty,
+        rate: action.payload.salable.salePrice,
+        otherCharges: 0,
+        infantCharges: 0,
+        totalFare: 0,
+      };
       return {
         ...state,
         tickets: {
           ...state.tickets,
-          ...action.payload,
+          ...ticketData,
         },
       };
 
@@ -62,7 +71,17 @@ const bookingReducer = (state = initialState, action) => {
           passengerContactInfo: action.payload,
         },
       };
-
+    case SET_FARE_INFO:
+      return {
+        ...state,
+        tickets: {
+          ...state.tickets,
+          fareSummary: {
+            ...state.tickets.fareSummary,
+            ...action.payload,
+          },
+        },
+      };
     default:
       return state;
   }

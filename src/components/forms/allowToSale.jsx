@@ -9,7 +9,7 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
     startDate: "",
     endDate: "",
     salePrice: "",
-    qty: "",
+    qty: 1,
   });
 
   const submitForm = () => {
@@ -24,8 +24,7 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
     const headers = { "Content-Type": "application/json" };
     axios
       .post(url, finalData, { headers })
-      .then((response) => {
-        console.log("response", response);
+      .then(() => {
         onTogglePopup(false);
       })
       .catch((err) => {
@@ -115,6 +114,7 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
             onChange={(e) =>
               setFormValues({ ...formValues, qty: e.target.value })
             }
+            value={formValues.qty}
           />
         </div>
       </div>
