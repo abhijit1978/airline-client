@@ -89,7 +89,7 @@ const TicketSearch = ({ history }) => {
           <div className="travel-date inline">
             <label htmlFor="">Travel Date: </label>{" "}
             <Datetime
-              dateFormat="YYYY-MM-DD"
+              dateFormat="DD-MM-YYYY"
               timeFormat={false}
               onChange={(value) =>
                 setFormValues({
@@ -100,7 +100,7 @@ const TicketSearch = ({ history }) => {
             />
           </div>
           <button
-            className="primary inline book-ticket-btn"
+            className="primary inline book-ticket-btn hvr-bounce-to-bottom"
             style={{ margin: "0 0 0 15px" }}
             onClick={handleTicketSearch}
           >
@@ -177,7 +177,7 @@ const TicketSearch = ({ history }) => {
                         className={
                           ticket.bookQty > ticket.salable.qty
                             ? "primary disabled"
-                            : "primary"
+                            : "primary hvr-bounce-to-bottom"
                         }
                         style={{ marginTop: "0px" }}
                         onClick={() => handleBook(ticket)}

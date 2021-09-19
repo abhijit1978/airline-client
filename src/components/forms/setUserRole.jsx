@@ -60,7 +60,10 @@ const SetUserRole = ({ popup, onTogglePopup }) => {
           </p>
         )}
         <div className="full-width text-center mt30">
-          <button className="primary" onClick={changeUserRole}>
+          <button
+            className="primary hvr-bounce-to-bottom"
+            onClick={changeUserRole}
+          >
             Change Role
           </button>
         </div>

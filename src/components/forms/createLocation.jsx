@@ -100,7 +100,10 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
             </p>
           )}
           <div className="full-width text-center mt30">
-            <button className="primary" onClick={submitForm}>
+            <button
+              className="primary hvr-bounce-to-bottom"
+              onClick={submitForm}
+            >
               Submit
             </button>
           </div>

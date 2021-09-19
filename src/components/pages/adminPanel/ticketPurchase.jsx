@@ -212,7 +212,10 @@ const TicketPurchase = () => {
           </li>
           <li>
             <div className="purchase-price col3"> &nbsp; </div>
-            <button className="primary" onClick={submitPurchase}>
+            <button
+              className="primary hvr-bounce-to-bottom"
+              onClick={submitPurchase}
+            >
               Submit Purchase
             </button>
           </li>
@@ -239,7 +242,7 @@ const TicketPurchase = () => {
       <div className="col5">
         <div className="full-width text-center">
           <button
-            className="primary text-center"
+            className="primary text-center hvr-bounce-to-bottom"
             style={{ width: "150px" }}
             onClick={() =>
               setShowPopup({ ...showPopup, state: true, popType: "location" })
@@ -250,7 +253,7 @@ const TicketPurchase = () => {
         </div>
         <div className="full-width text-center mt15">
           <button
-            className="primary text-center"
+            className="primary text-center hvr-bounce-to-bottom"
             style={{ width: "150px" }}
             onClick={() =>
               setShowPopup({ ...showPopup, state: true, popType: "airline" })

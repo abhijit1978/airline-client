@@ -303,7 +303,10 @@ const SignUpForm = () => {
         </div>
 
         <div className="full-width text-center">
-          <button className="primary" onClick={submitRegistration}>
+          <button
+            className="primary hvr-bounce-to-bottom"
+            onClick={submitRegistration}
+          >
             Submit
           </button>
         </div>

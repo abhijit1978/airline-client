@@ -346,3 +346,11 @@ table.colored {
 .relaive {
   position: relative;
 }
+
+.rdt > input.form-control {
+  width: 130px;
+  padding-right: 30px;
+  cursor: pointer;
+  background: #fff url(../images/calendar.jpg) no-repeat 107px;
+  background-size: 18px;
+}

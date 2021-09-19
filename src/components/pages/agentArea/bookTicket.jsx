@@ -10,6 +10,7 @@ import landing from "../../../assets/images/landing.png";
 
 const BookTicket = () => {
   const airlines = useSelector((state) => state.common.airlines);
+  const bookingInfo = useSelector((state) => state.booking.tickets);
   const location = useLocation();
   const { state } = { ...location };
   const [passengers, setPassenters] = useState(state.bookQty);
@@ -36,6 +37,10 @@ const BookTicket = () => {
       passengersList.push(<PassengerInfo key={p} passId={p} />);
     }
     return passengersList;
+  };
+
+  const validateBookingInfo = () => {
+    console.log(bookingInfo);
   };
 
   return (
@@ -86,7 +91,9 @@ const BookTicket = () => {
         <div className="col4 pl15">
           <h3>Fare Summary</h3>
           <FareSummary ticket={state} onTicketsCountChange={setPassenters} />
-          <button className="primary book-ticket">Book Ticket</button>
+          <button className="primary book-ticket hvr-bounce-to-bottom">
+            Book Ticket
+          </button>
         </div>
       </div>
     </div>

@@ -69,7 +69,10 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
             </p>
           )}
           <div className="full-width text-center mt30">
-            <button className="primary" onClick={submitLogin}>
+            <button
+              className="primary hvr-bounce-to-bottom"
+              onClick={submitLogin}
+            >
               Submit
             </button>
           </div>

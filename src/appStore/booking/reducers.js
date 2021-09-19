@@ -9,11 +9,11 @@ const initialState = {
     passengerInfo: [],
     passengerContactInfo: {},
     fareSummary: {
-      ticketsCount: "",
-      rate: "",
-      otherCharges: "",
-      infactCharges: "",
-      totalFare: "",
+      ticketsCount: 1,
+      rate: 0,
+      otherCharges: 0,
+      infantCharges: 0,
+      totalFare: 0,
     },
   },
 };

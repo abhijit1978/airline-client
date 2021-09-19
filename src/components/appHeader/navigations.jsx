@@ -10,7 +10,7 @@ const Navigations = () => {
       <ul className="main-nav">
         <li>
           <NavLink exact to="/">
-            Home
+            <i className="bi bi-house-fill"></i> Home
           </NavLink>
         </li>
         <li>
@@ -20,7 +20,9 @@ const Navigations = () => {
           <NavLink to="/about-us">About Us</NavLink>
         </li>
         <li>
-          <NavLink to="/contact-us">Contact Us</NavLink>
+          <NavLink to="/contact-us">
+            <i className="bi bi-geo-alt-fill"></i> Contact Us
+          </NavLink>
         </li>
       </ul>
     </nav>

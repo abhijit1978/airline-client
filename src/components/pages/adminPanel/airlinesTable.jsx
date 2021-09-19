@@ -57,7 +57,7 @@ const AirlinesTable = () => {
       </table>
       <div className="col5 text-center">
         <button
-          className="primary"
+          className="primary hvr-bounce-to-bottom"
           onClick={() =>
             setShowPopup({ ...showPopup, state: true, action: "create" })
           }
