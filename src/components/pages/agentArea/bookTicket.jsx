@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import FareSummary from "./fareSummary";
 import PassengerContactInfo from "./passengerContactInfo";
 import PassengerInfo from "./passengerInfo";
@@ -8,8 +8,10 @@ import utils from "../../../utils/utils";
 
 import takeoff from "../../../assets/images/takeoff.png";
 import landing from "../../../assets/images/landing.png";
+import { resetAll } from "../../../appStore";
 
 const BookTicket = () => {
+  const dispatch = useDispatch();
   const airlines = useSelector((state) => state.common.airlines);
   const bookingInfo = useSelector((state) => state.booking.tickets);
   const location = useLocation();
@@ -51,6 +53,25 @@ const BookTicket = () => {
       console.log("No booking error :) ");
     }
   };
+
+  useEffect(() => {
+    return () => {
+      console.log("---------- unmount");
+      dispatch(
+        resetAll({
+          passengerInfo: [],
+          passengerContactInfo: {},
+          fareSummary: {
+            bookQty: 1,
+            rate: 0,
+            otherCharges: 0,
+            infantCharges: 0,
+            totalFare: 0,
+          },
+        })
+      );
+    };
+  }, []);
 
   return (
     <div className="page-wrapper full-width">

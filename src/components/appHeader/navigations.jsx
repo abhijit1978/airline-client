@@ -1,5 +1,4 @@
 import React from "react";
-// import { useSelector } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 
@@ -14,10 +13,14 @@ const Navigations = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/our-services">Services</NavLink>
+          <NavLink to="/our-services">
+            <i className="bi bi-snow2"></i> Services
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/about-us">About Us</NavLink>
+          <NavLink to="/about-us">
+            <i className="bi bi-people-fill"></i> About Us
+          </NavLink>
         </li>
         <li>
           <NavLink to="/contact-us">

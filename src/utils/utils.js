@@ -34,6 +34,9 @@ const validateBookingInfo = (data) => {
 
   if (validatePassengerInfo(data)) error.push("Passenger information missing.");
 
+  console.log(data.passengerContactInfo.emailID);
+  console.log(validateEmail(data.passengerContactInfo.emailID));
+
   if (!validateEmail(data.passengerContactInfo.emailID))
     error.push("Invalid Email.");
 
@@ -51,9 +54,8 @@ const validateBookingInfo = (data) => {
 };
 
 const validateEmail = (email) => {
-  const validPattern = /^\S+@\S+\.\S+$/;
   if (!email) return false;
-
+  const validPattern = /^\S+@\S+\.\S+$/;
   return validPattern.test(String(email.trim()).toLowerCase()) ? true : false;
 };
 

@@ -3,6 +3,7 @@ import {
   SET_PASSENGER_INFO,
   SET_PASSENGER_CONTACT_INFO,
   SET_FARE_INFO,
+  RESET_ALL,
 } from "./action.types";
 
 const initialState = {
@@ -71,6 +72,7 @@ const bookingReducer = (state = initialState, action) => {
           passengerContactInfo: action.payload,
         },
       };
+
     case SET_FARE_INFO:
       return {
         ...state,
@@ -81,6 +83,12 @@ const bookingReducer = (state = initialState, action) => {
             ...action.payload,
           },
         },
+      };
+
+    case RESET_ALL:
+      return {
+        ...state,
+        tickets: action.payload,
       };
     default:
       return state;

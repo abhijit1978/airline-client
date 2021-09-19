@@ -26,6 +26,7 @@ const PassengerInfo = ({ passId }) => {
           <option value="Mr">Mr.</option>
           <option value="Ms">Ms.</option>
           <option value="Mrs">Mrs.</option>
+          <option value="Other">Other</option>
         </select>
       </div>
       <div className="col3 mr15">
