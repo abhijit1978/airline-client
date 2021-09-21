@@ -12,7 +12,7 @@ const validatePassengerInfo = (data) => {
   let error = 0;
   if (
     !data.passengerInfo.length ||
-    data.passengerInfo.length !== parseInt(data.bookQty)
+    data.passengerInfo.length !== parseInt(data.fareSummary.bookQty)
   ) {
     error = 1;
   } else {
@@ -33,9 +33,6 @@ const validateBookingInfo = (data) => {
   const error = [];
 
   if (validatePassengerInfo(data)) error.push("Passenger information missing.");
-
-  console.log(data.passengerContactInfo.emailID);
-  console.log(validateEmail(data.passengerContactInfo.emailID));
 
   if (!validateEmail(data.passengerContactInfo.emailID))
     error.push("Invalid Email.");

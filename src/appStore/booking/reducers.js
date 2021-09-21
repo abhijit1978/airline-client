@@ -4,6 +4,7 @@ import {
   SET_PASSENGER_CONTACT_INFO,
   SET_FARE_INFO,
   RESET_ALL,
+  UPDATE_PSG_INFO_ON_QTY_CHANGE,
 } from "./action.types";
 
 const initialState = {
@@ -55,6 +56,13 @@ const bookingReducer = (state = initialState, action) => {
         };
       } else {
         psg.push(action.payload);
+        psg.sort((a, b) =>
+          parseInt(a.psgId) > parseInt(b.psgId)
+            ? 1
+            : parseInt(b.psgId) > parseInt(a.psgId)
+            ? -1
+            : 0
+        );
         return {
           ...state,
           tickets: {
@@ -90,6 +98,16 @@ const bookingReducer = (state = initialState, action) => {
         ...state,
         tickets: action.payload,
       };
+
+    case UPDATE_PSG_INFO_ON_QTY_CHANGE:
+      return {
+        ...state,
+        tickets: {
+          ...state.tickets,
+          passengerInfo: action.payload,
+        },
+      };
+
     default:
       return state;
   }

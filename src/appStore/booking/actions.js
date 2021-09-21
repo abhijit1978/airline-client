@@ -4,6 +4,7 @@ import {
   SET_PASSENGER_CONTACT_INFO,
   SET_FARE_INFO,
   RESET_ALL,
+  UPDATE_PSG_INFO_ON_QTY_CHANGE,
 } from "./action.types";
 
 export const setBookingTicket = (data) => {
@@ -30,6 +31,13 @@ export const setPassengerContactInfo = (data) => {
 export const setFareInfo = (data) => {
   return {
     type: SET_FARE_INFO,
+    payload: data,
+  };
+};
+
+export const updatePsgInfoOnQtyChange = (data) => {
+  return {
+    type: UPDATE_PSG_INFO_ON_QTY_CHANGE,
     payload: data,
   };
 };

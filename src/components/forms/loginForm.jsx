@@ -26,7 +26,6 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
         sessionStorage.setItem("user", JSON.stringify(response.data.user));
       })
       .catch((err) => {
-        console.log();
         toggleErrorMessage({
           ...toggleErrorMessage,
           status: true,

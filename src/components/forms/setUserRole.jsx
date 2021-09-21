@@ -19,8 +19,7 @@ const SetUserRole = ({ popup, onTogglePopup }) => {
     const headers = { "Content-Type": "application/json" };
     axios
       .put(url, formValues, { headers })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
         onTogglePopup({
           ...popup,
           status: false,

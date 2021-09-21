@@ -46,17 +46,23 @@ const BookTicket = () => {
 
   const handleBookTicket = () => {
     const error = utils.validateBookingInfo(bookingInfo);
-    if (error.length) {
-      setBookingError(error);
-    } else {
-      setBookingError(error);
-      console.log("No booking error :) ");
+    setBookingError(error);
+    if (!error.length) {
+      //   const finalBookingObj = {
+      //     passengerInfo: {
+      //       passengers: bookingInfo.,
+      //       cntactInfo: {}
+      //     },
+      //     fareInfo: {},
+      //     travrlInfo: {}
+      //   }
+      // }
+      console.log(bookingInfo);
     }
   };
 
   useEffect(() => {
     return () => {
-      console.log("---------- unmount");
       dispatch(
         resetAll({
           passengerInfo: [],
@@ -72,6 +78,10 @@ const BookTicket = () => {
       );
     };
   }, []);
+
+  const handleTicketsCountChange = (count) => {
+    setPassenters(count);
+  };
 
   return (
     <div className="page-wrapper full-width">
@@ -132,7 +142,10 @@ const BookTicket = () => {
         </div>
         <div className="col4 pl15">
           <h3>Fare Summary</h3>
-          <FareSummary ticket={state} onTicketsCountChange={setPassenters} />
+          <FareSummary
+            ticket={state}
+            onTicketsCountChange={handleTicketsCountChange}
+          />
           <button
             className="primary book-ticket hvr-bounce-to-bottom"
             onClick={handleBookTicket}

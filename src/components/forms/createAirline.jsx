@@ -25,12 +25,10 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
     axios
       .post(url, formValues, { headers })
       .then((response) => {
-        console.log(response);
         onTogglePopup(false);
         dispatch(setAirlines([...airlines, response.data]));
       })
       .catch((err) => {
-        console.log();
         toggleErrorMessage({
           ...toggleErrorMessage,
           status: true,
@@ -54,7 +52,6 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
         dispatch(setAirlines(updatedList));
       })
       .catch((err) => {
-        console.log();
         toggleErrorMessage({
           ...toggleErrorMessage,
           status: true,

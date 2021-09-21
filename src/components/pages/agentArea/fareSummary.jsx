@@ -1,26 +1,33 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import utils from "../../../utils/utils";
 
-import { setFareInfo } from "../../../appStore";
+import { setFareInfo, updatePsgInfoOnQtyChange } from "../../../appStore";
 
 const FareSummary = ({ ticket, onTicketsCountChange }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState(ticket);
-
+  const passengerInfo = useSelector(
+    (state) => state.booking.tickets.passengerInfo
+  );
   const handleChange = (e, type) => {
+    const value = e.target.value;
     if (type === "qty") {
-      setData({ ...data, bookQty: e.target.value });
-      dispatch(setFareInfo({ bookQty: e.target.value }));
-      onTicketsCountChange(e.target.value);
+      setData({ ...data, bookQty: value });
+      dispatch(setFareInfo({ bookQty: value }));
+      if (passengerInfo.length && passengerInfo.length > value) {
+        const psgInfo = passengerInfo.filter((item) => item.psgId <= value);
+        dispatch(updatePsgInfoOnQtyChange(psgInfo));
+      }
+      onTicketsCountChange(value);
     }
     if (type === "oc") {
-      dispatch(setFareInfo({ otherCharges: e.target.value }));
-      setData({ ...data, otherCharges: e.target.value });
+      dispatch(setFareInfo({ otherCharges: value }));
+      setData({ ...data, otherCharges: value });
     }
     if (type === "ic") {
-      dispatch(setFareInfo({ infantCharges: e.target.value }));
-      setData({ ...data, infantCharges: e.target.value });
+      dispatch(setFareInfo({ infantCharges: value }));
+      setData({ ...data, infantCharges: value });
     }
   };
 

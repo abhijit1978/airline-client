@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Navigations from "./navigations";
 import UserArea from "./userArea";
@@ -19,7 +20,9 @@ const AppHeader = () => {
 
   return (
     <header className="app-header">
-      <div className="logo-wrapper inline">Barkat Fly</div>
+      <div className="logo-wrapper inline pointer">
+        <Link to="/">Barkat Fly</Link>
+      </div>
       <Navigations />
       <UserArea />
     </header>

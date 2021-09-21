@@ -34,6 +34,7 @@
   padding: 8px 20px;
   float: left;
   position: relative;
+  font-size: 15px;
 }
 
 .main-nav li a.active::after {
@@ -47,6 +48,11 @@
   content: "";
   margin: 0 auto;
   border-radius: 0 0 5px 5px;
+}
+
+.main-nav li a i {
+  margin-right: 8px;
+  font-size: 18px;
 }
 
 .header-right-content {
