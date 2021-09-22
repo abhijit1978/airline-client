@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import FareSummary from "./fareSummary";
 import PassengerContactInfo from "./passengerContactInfo";
@@ -12,21 +11,21 @@ import { resetAll } from "../../../appStore";
 
 const BookTicket = () => {
   const dispatch = useDispatch();
+  const agentInfo = useSelector((state) => state.user.user);
   const airlines = useSelector((state) => state.common.airlines);
   const bookingInfo = useSelector((state) => state.booking.tickets);
-  const location = useLocation();
-  const { state } = { ...location };
-  const [passengers, setPassenters] = useState(state.bookQty);
+
+  const [passengers, setPassenters] = useState(bookingInfo.bookQty);
   const [bookingError, setBookingError] = useState([]);
 
   const getSource = () => {
-    const loc = state.location.locationName;
+    const loc = bookingInfo.location.locationName;
     const sepaIndex = loc.indexOf("-");
     return loc.substr(0, sepaIndex);
   };
 
   const getDestination = () => {
-    const loc = state.location.locationName;
+    const loc = bookingInfo.location.locationName;
     const sepaIndex = loc.indexOf("-");
     return loc.substr(sepaIndex + 2);
   };
@@ -48,16 +47,33 @@ const BookTicket = () => {
     const error = utils.validateBookingInfo(bookingInfo);
     setBookingError(error);
     if (!error.length) {
-      //   const finalBookingObj = {
-      //     passengerInfo: {
-      //       passengers: bookingInfo.,
-      //       cntactInfo: {}
-      //     },
-      //     fareInfo: {},
-      //     travrlInfo: {}
-      //   }
-      // }
+      const fareInfo = { ...bookingInfo.fareSummary };
+      fareInfo.totalFare = utils.getTotalFare(bookingInfo);
+      const finalBookingObj = {
+        travel: {
+          airlineName: bookingInfo.airlineName,
+          flightNumber: bookingInfo.flightNumber,
+          location: bookingInfo.location,
+          travelDate: bookingInfo.travelDate,
+          departureTime: bookingInfo.departureTime,
+          arrivalTime: bookingInfo.arrivalTime,
+          pnr: bookingInfo.airlineName,
+        },
+        passenger: {
+          passengers: bookingInfo.passengerInfo,
+          contacts: bookingInfo.passengerContactInfo,
+        },
+        fareDetails: fareInfo,
+        agent: {
+          agentName: agentInfo.name,
+          agentID: agentInfo.userID,
+          id: agentInfo.id,
+          email: agentInfo.email,
+          bookingDate: new Date(),
+        },
+      };
       console.log(bookingInfo);
+      console.log(finalBookingObj);
     }
   };
 
@@ -100,7 +116,7 @@ const BookTicket = () => {
 
               <p className="text-center pb15">
                 <span className="fsize26 fcLightGreen">{getSource()}</span> at{" "}
-                {state.departureTime}
+                {bookingInfo.departureTime}
               </p>
             </div>
             <div className="col6 text-center">
@@ -109,17 +125,17 @@ const BookTicket = () => {
               </div>
               <p className="text-center pb15">
                 <span className="fsize26 fcLightGreen">{getDestination()}</span>{" "}
-                at {state.arrivalTime}
+                at {bookingInfo.arrivalTime}
               </p>
             </div>
             <div className="flight-name">
               <img
-                src={getIcon(state.airlineName)}
+                src={getIcon(bookingInfo.airlineName)}
                 alt=""
                 style={{ opacity: "1" }}
               />
-              <strong>{state.airlineName}</strong> :{" "}
-              <span className="fsize13">{state.flightNumber}</span>
+              <strong>{bookingInfo.airlineName}</strong> :{" "}
+              <span className="fsize13">{bookingInfo.flightNumber}</span>
             </div>
           </div>
           {bookingError.length ? (
@@ -142,10 +158,7 @@ const BookTicket = () => {
         </div>
         <div className="col4 pl15">
           <h3>Fare Summary</h3>
-          <FareSummary
-            ticket={state}
-            onTicketsCountChange={handleTicketsCountChange}
-          />
+          <FareSummary onTicketsCountChange={handleTicketsCountChange} />
           <button
             className="primary book-ticket hvr-bounce-to-bottom"
             onClick={handleBookTicket}

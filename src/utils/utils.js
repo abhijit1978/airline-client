@@ -1,8 +1,12 @@
 const getTotalFare = (data) => {
-  const otherCharges = data.otherCharges ? data.otherCharges : 0;
-  const infantCharges = data.infantCharges ? data.infantCharges : 0;
+  const otherCharges = data.fareSummary.otherCharges
+    ? data.fareSummary.otherCharges
+    : 0;
+  const infantCharges = data.fareSummary.infantCharges
+    ? data.fareSummary.infantCharges
+    : 0;
   const totalfare =
-    parseInt(data.bookQty) * parseInt(data.salable.salePrice) +
+    parseInt(data.fareSummary.bookQty) * parseInt(data.salable.salePrice) +
     parseInt(otherCharges) +
     parseInt(infantCharges);
   return totalfare.toLocaleString();

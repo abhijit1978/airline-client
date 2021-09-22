@@ -4,16 +4,14 @@ import utils from "../../../utils/utils";
 
 import { setFareInfo, updatePsgInfoOnQtyChange } from "../../../appStore";
 
-const FareSummary = ({ ticket, onTicketsCountChange }) => {
+const FareSummary = ({ onTicketsCountChange }) => {
   const dispatch = useDispatch();
-  const [data, setData] = useState(ticket);
-  const passengerInfo = useSelector(
-    (state) => state.booking.tickets.passengerInfo
-  );
+  const data = useSelector((state) => state.booking.tickets);
+  const passengerInfo = data.passengerInfo;
+
   const handleChange = (e, type) => {
     const value = e.target.value;
     if (type === "qty") {
-      setData({ ...data, bookQty: value });
       dispatch(setFareInfo({ bookQty: value }));
       if (passengerInfo.length && passengerInfo.length > value) {
         const psgInfo = passengerInfo.filter((item) => item.psgId <= value);
@@ -23,11 +21,9 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
     }
     if (type === "oc") {
       dispatch(setFareInfo({ otherCharges: value }));
-      setData({ ...data, otherCharges: value });
     }
     if (type === "ic") {
       dispatch(setFareInfo({ infantCharges: value }));
-      setData({ ...data, infantCharges: value });
     }
   };
 
@@ -38,7 +34,7 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
         <input
           className="fare-input"
           type="number"
-          value={data.bookQty}
+          value={data.fareSummary.bookQty}
           onChange={(e) => handleChange(e, "qty")}
           name="ticketQty"
           min="1"
@@ -57,7 +53,9 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
         <input
           className="fare-input"
           type="number"
-          value={data.otherCharges ? data.otherCharges : ""}
+          value={
+            data.fareSummary.otherCharges ? data.fareSummary.otherCharges : ""
+          }
           name="otherCharges"
           onChange={(e) => handleChange(e, "oc")}
         />
@@ -67,7 +65,9 @@ const FareSummary = ({ ticket, onTicketsCountChange }) => {
         <input
           className="fare-input"
           type="number"
-          value={data.infantCharges ? data.infantCharges : ""}
+          value={
+            data.fareSummary.infantCharges ? data.fareSummary.infantCharges : ""
+          }
           name="infanCharges"
           onChange={(e) => handleChange(e, "ic")}
         />
