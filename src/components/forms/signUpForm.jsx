@@ -17,16 +17,21 @@ const SignUpForm = () => {
     pin: "",
     state: "",
     aadharNo: "",
+    aadharImage: {},
     pan: "",
     password: "",
     confirmPassword: "",
   });
 
   const submitRegistration = () => {
-    const headers = { "Content-Type": "application/json" };
-
+    const headers = { "Content-Type": "multipart/form-data" };
+    const formData = new FormData();
+    for (let key in formValues) {
+      const value = formValues[key] ? formValues[key] : "n";
+      formData.append(key, value);
+    }
     axios
-      .post("http://localhost:5001/api/bfly/users", formValues, {
+      .post("http://localhost:5001/api/bfly/users", formData, {
         headers,
       })
       .then((response) => {
@@ -35,6 +40,10 @@ const SignUpForm = () => {
       .catch((err) => {
         console.log(err.message);
       });
+  };
+
+  const handleFile = (e) => {
+    console.log(e.target.files[0]);
   };
 
   return (
@@ -242,7 +251,17 @@ const SignUpForm = () => {
             />
           </div>
           <div className="col3_4">
-            <input type="file" name="aadharImgUrl" id="AadharImgUrl" />
+            <input
+              type="file"
+              name="aadharImgUrl"
+              id="AadharImgUrl"
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  aadharImage: e.target.files[0],
+                })
+              }
+            />
           </div>
         </div>
 
@@ -262,7 +281,17 @@ const SignUpForm = () => {
             />
           </div>
           <div className="col3_4">
-            <input type="file" name="panImgUrl" id="PANImgUrl" />
+            <input
+              type="file"
+              name="panImgUrl"
+              id="PANImgUrl"
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  panImage: e.target.files[0],
+                })
+              }
+            />
           </div>
         </div>
 
