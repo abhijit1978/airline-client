@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+
 import FareSummary from "./fareSummary";
 import PassengerContactInfo from "./passengerContactInfo";
 import PassengerInfo from "./passengerInfo";
@@ -7,6 +9,7 @@ import utils from "../../../utils/utils";
 
 import takeoff from "../../../assets/images/takeoff.png";
 import landing from "../../../assets/images/landing.png";
+
 import { resetAll } from "../../../appStore";
 
 const BookTicket = () => {
@@ -43,7 +46,7 @@ const BookTicket = () => {
     return passengersList;
   };
 
-  const handleBookTicket = () => {
+  const handleBookTicket = async () => {
     const error = utils.validateBookingInfo(bookingInfo);
     setBookingError(error);
     if (!error.length) {
@@ -57,7 +60,7 @@ const BookTicket = () => {
           travelDate: bookingInfo.travelDate,
           departureTime: bookingInfo.departureTime,
           arrivalTime: bookingInfo.arrivalTime,
-          pnr: bookingInfo.airlineName,
+          pnr: bookingInfo.pnr,
         },
         passenger: {
           passengers: bookingInfo.passengerInfo,
@@ -72,8 +75,15 @@ const BookTicket = () => {
           bookingDate: new Date(),
         },
       };
-      console.log(bookingInfo);
-      console.log(finalBookingObj);
+      // console.log(bookingInfo);
+      // console.log(finalBookingObj);
+      const headers = { "Content-Type": "application/json" };
+      const response = await axios.post(
+        "http://localhost:5001/api/bfly/ticketsBooking",
+        finalBookingObj,
+        { headers }
+      );
+      console.log(response);
     }
   };
 

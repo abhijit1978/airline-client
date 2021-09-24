@@ -9,7 +9,7 @@ const getTotalFare = (data) => {
     parseInt(data.fareSummary.bookQty) * parseInt(data.salable.salePrice) +
     parseInt(otherCharges) +
     parseInt(infantCharges);
-  return totalfare.toLocaleString();
+  return totalfare;
 };
 
 const validatePassengerInfo = (data) => {
