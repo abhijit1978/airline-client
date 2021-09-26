@@ -202,3 +202,30 @@
 .booking-error ol {
   margin-left: 15px;
 }
+
+.print-container {
+  width: 1024px;
+  margin: 15px auto;
+  padding: 15px;
+}
+
+.print-container * {
+  font-size: 13px;
+  color: #000;
+}
+
+table.print-table td,
+table.print-table th {
+  padding: 10px !important;
+  text-align: left;
+}
+
+.tc {
+  margin-left: 15px;
+}
+
+.tc li {
+  font-size: 11px;
+  padding-left: 6px;
+  margin-bottom: 3px;
+}

@@ -11,8 +11,9 @@ import takeoff from "../../../assets/images/takeoff.png";
 import landing from "../../../assets/images/landing.png";
 
 import { resetAll } from "../../../appStore";
+import InfantInfo from "./infantInfo";
 
-const BookTicket = () => {
+const BookTicket = ({ history }) => {
   const dispatch = useDispatch();
   const agentInfo = useSelector((state) => state.user.user);
   const airlines = useSelector((state) => state.common.airlines);
@@ -83,7 +84,13 @@ const BookTicket = () => {
         finalBookingObj,
         { headers }
       );
-      console.log(response);
+      if (response.error !== "undefined") {
+        history.replace({
+          pathname: "/ticket-print",
+        });
+      } else {
+        console.log("Error");
+      }
     }
   };
 
@@ -113,8 +120,7 @@ const BookTicket = () => {
     <div className="page-wrapper full-width">
       <div className="container">
         <div className="col3_4 pr15">
-          <h3>Travel Information</h3>
-          <div className="travel-details mb30 full-width relaive">
+          <div className="travel-details mb15 full-width relaive">
             <div className="col6 text-center">
               <div className="img-wrapper">
                 <img
@@ -150,7 +156,7 @@ const BookTicket = () => {
           </div>
           {bookingError.length ? (
             <div className="booking-error">
-              <h4 className="text-center fcRed">Validation Error</h4>
+              <p className="text-center fcRed fsize13">Validation Error</p>
               <ol>
                 {bookingError.map((item, index) => (
                   <li className="fsize13 mb5" key={index}>
@@ -160,14 +166,32 @@ const BookTicket = () => {
               </ol>
             </div>
           ) : null}
-          <h3>Passenger Information</h3>
+          <p className="fsize15 fcLightGreen mt15">
+            <i className="bi bi-people-fill fsize22 mr5"></i> Passenger
+            Information
+          </p>
           <div className="passenget-details">{getPassengerInfo()}</div>
-          <div className="contact-details">
+
+          <p className="fsize15 fcLightGreen mt15">
+            <i className="bi bi-people-fill fsize22 mr5"></i> Infant Information
+          </p>
+          <div className="passenget-details">
+            <InfantInfo infantId={1} />
+          </div>
+
+          <p className="fsize15 fcLightGreen mt15">
+            <i className="bi bi-envelope-fill fsize22 mr5"></i> Contact
+            Information
+          </p>
+          <div className="passenget-details">
             <PassengerContactInfo />
           </div>
         </div>
+
         <div className="col4 pl15">
-          <h3>Fare Summary</h3>
+          <p className="fsize15 fcLightGreen">
+            <i className="bi bi-wallet-fill fsize22 mr5"></i> Fare Summary
+          </p>
           <FareSummary onTicketsCountChange={handleTicketsCountChange} />
           <button
             className="primary book-ticket hvr-bounce-to-bottom"

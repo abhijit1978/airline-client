@@ -156,6 +156,14 @@ a:hover {
   margin-right: 15px;
 }
 
+.mr5 {
+  margin-right: 5px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
 .pr-15 {
   padding-right: 15px;
 }

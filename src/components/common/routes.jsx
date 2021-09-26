@@ -10,6 +10,7 @@ import AdminDashboard from "../pages/adminPanel/dashboard";
 import EditProfile from "../pages/editProfile";
 import ChangePassword from "../pages/changePassword";
 import BookTicket from "../pages/agentArea/bookTicket";
+import TicketPrint from "../pages/agentArea/ticketPrint";
 
 const Routes = (props) => {
   return (
@@ -26,6 +27,10 @@ const Routes = (props) => {
         <Route
           path="/book-ticket"
           render={(props) => <BookTicket {...props} />}
+        />
+        <Route
+          path="/ticket-print"
+          render={(props) => <TicketPrint {...props} />}
         />
         <Route
           path="/contact-us"

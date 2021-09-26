@@ -43,13 +43,13 @@ const FareSummary = ({ onTicketsCountChange }) => {
       </div>
 
       <div className="fare-row full-width">
-        <label className="fsize15">Fare / ticket</label>
+        <label className="fsize15">Fare / Ticket</label>
         <span className="fare-values">
           {data.salable.salePrice.toLocaleString()}
         </span>
       </div>
       <div className="fare-row full-width">
-        <label className="fsize15">Other Charges</label>
+        <label className="fsize15">Fee & Surcharge</label>
         <input
           className="fare-input"
           type="number"
@@ -76,7 +76,7 @@ const FareSummary = ({ onTicketsCountChange }) => {
         <label className="fsize18 fcLightGreen">Total Fare</label>
         <span className="fare-values">
           <strong className="fsize18 fcLightGreen">
-            {utils.getTotalFare(data)}
+            {utils.getTotalFare(data).toLocaleString()}
           </strong>
         </span>
       </div>

@@ -22,7 +22,7 @@ const validatePassengerInfo = (data) => {
   } else {
     let count = 0;
     data.passengerInfo.forEach((element) => {
-      if (!element.firstName.trim() || !element.lastName.trim()) {
+      if (!element.firstName || !element.lastName) {
         count = 1;
       }
     });
