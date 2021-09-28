@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { setPassengerContactInfo } from "../../../appStore";
-import utils from "../../../utils/utils";
+import { setPassengerContactInfo } from "../../../../appStore";
+import utils from "../../../../utils/utils";
 
 const PassengerContactInfo = () => {
   const dispatch = useDispatch();

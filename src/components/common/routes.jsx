@@ -9,8 +9,8 @@ import TicketSearch from "../pages/agentArea/ticketSearch";
 import AdminDashboard from "../pages/adminPanel/dashboard";
 import EditProfile from "../pages/editProfile";
 import ChangePassword from "../pages/changePassword";
-import BookTicket from "../pages/agentArea/bookTicket";
-import TicketPrint from "../pages/agentArea/ticketPrint";
+import BookTicket from "../pages/agentArea/ticketBooking";
+import TicketPrint from "../pages/agentArea/printTicket";
 
 const Routes = (props) => {
   return (

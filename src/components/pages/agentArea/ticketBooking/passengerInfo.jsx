@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { setPassengerInfo } from "../../../appStore";
+import { setPassengerInfo } from "../../../../appStore";
 
 const PassengerInfo = ({ passId }) => {
   const dispatch = useDispatch();

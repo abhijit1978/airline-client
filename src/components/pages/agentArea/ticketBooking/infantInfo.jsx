@@ -4,7 +4,7 @@ import moment from "moment";
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 
-import { setPassengerInfo } from "../../../appStore";
+import { setInfantsInfo } from "../../../../appStore";
 
 const InfantInfo = ({ infantId }) => {
   const dispatch = useDispatch();
@@ -14,6 +14,16 @@ const InfantInfo = ({ infantId }) => {
     name: "",
     dob: "",
   });
+
+  const onDOBChange = (date) => {
+    setInfantInfo({
+      ...infantInfo,
+      dob: moment(date).format("YYYY-MM-DD"),
+    });
+    dispatch(
+      setInfantsInfo({ ...infantInfo, dob: moment(date).format("YYYY-MM-DD") })
+    );
+  };
 
   return (
     <div className="passenger-info full-width">
@@ -25,7 +35,7 @@ const InfantInfo = ({ infantId }) => {
             setInfantInfo({ ...infantInfo, sex: e.target.value })
           }
           onBlur={(e) =>
-            dispatch(setPassengerInfo({ ...infantInfo, sex: e.target.value }))
+            dispatch(setInfantsInfo({ ...infantInfo, sex: e.target.value }))
           }
         >
           <option value="Male">Male</option>
@@ -43,7 +53,7 @@ const InfantInfo = ({ infantId }) => {
             setInfantInfo({ ...infantInfo, name: e.target.value })
           }
           onBlur={(e) =>
-            dispatch(setPassengerInfo({ ...infantInfo, name: e.target.value }))
+            dispatch(setInfantsInfo({ ...infantInfo, name: e.target.value }))
           }
         />
       </div>
@@ -51,12 +61,7 @@ const InfantInfo = ({ infantId }) => {
         <Datetime
           dateFormat="DD-MM-YYYY"
           timeFormat={false}
-          onChange={(value) =>
-            setInfantInfo({
-              ...infantInfo,
-              dob: moment(value).format("YYYY-MM-DD"),
-            })
-          }
+          onChange={(value) => onDOBChange(value)}
         />
       </div>
     </div>

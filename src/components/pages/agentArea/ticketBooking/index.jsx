@@ -5,12 +5,12 @@ import axios from "axios";
 import FareSummary from "./fareSummary";
 import PassengerContactInfo from "./passengerContactInfo";
 import PassengerInfo from "./passengerInfo";
-import utils from "../../../utils/utils";
+import utils from "../../../../utils/utils";
 
-import takeoff from "../../../assets/images/takeoff.png";
-import landing from "../../../assets/images/landing.png";
+import takeoff from "../../../../assets/images/takeoff.png";
+import landing from "../../../../assets/images/landing.png";
 
-import { resetAll } from "../../../appStore";
+import { resetAll, setBookedTicketInfo } from "../../../../appStore";
 import InfantInfo from "./infantInfo";
 
 const BookTicket = ({ history }) => {
@@ -65,6 +65,7 @@ const BookTicket = ({ history }) => {
         },
         passenger: {
           passengers: bookingInfo.passengerInfo,
+          infants: bookingInfo.infantInfo,
           contacts: bookingInfo.passengerContactInfo,
         },
         fareDetails: fareInfo,
@@ -85,6 +86,7 @@ const BookTicket = ({ history }) => {
         { headers }
       );
       if (response.error !== "undefined") {
+        dispatch(setBookedTicketInfo(response.data));
         history.replace({
           pathname: "/ticket-print",
         });

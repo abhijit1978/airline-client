@@ -1,15 +1,18 @@
 import {
   SET_BOOKING_TICKET,
   SET_PASSENGER_INFO,
+  SET_INFANT_INFO,
   SET_PASSENGER_CONTACT_INFO,
   SET_FARE_INFO,
   RESET_ALL,
   UPDATE_PSG_INFO_ON_QTY_CHANGE,
+  SET_BOOKED_TICKET_INFO,
 } from "./action.types";
 
 const initialState = {
   tickets: {
     passengerInfo: [],
+    infantInfo: [],
     passengerContactInfo: {},
     fareSummary: {
       bookQty: 1,
@@ -19,6 +22,7 @@ const initialState = {
       totalFare: 0,
     },
   },
+  bookedTicket: {},
 };
 
 const bookingReducer = (state = initialState, action) => {
@@ -72,6 +76,38 @@ const bookingReducer = (state = initialState, action) => {
         };
       }
 
+    case SET_INFANT_INFO:
+      const infants = [...state.tickets.infantInfo];
+      const infantFoundIndex = infants.findIndex(
+        (item) => item.infantId === action.payload.infantId
+      );
+      if (infantFoundIndex >= 0) {
+        infants[infantFoundIndex] = action.payload;
+        return {
+          ...state,
+          tickets: {
+            ...state.tickets,
+            infantInfo: infants,
+          },
+        };
+      } else {
+        infants.push(action.payload);
+        infants.sort((a, b) =>
+          parseInt(a.infantId) > parseInt(b.infantId)
+            ? 1
+            : parseInt(b.infantId) > parseInt(a.infantId)
+            ? -1
+            : 0
+        );
+        return {
+          ...state,
+          tickets: {
+            ...state.tickets,
+            infantInfo: infants,
+          },
+        };
+      }
+
     case SET_PASSENGER_CONTACT_INFO:
       return {
         ...state,
@@ -107,6 +143,13 @@ const bookingReducer = (state = initialState, action) => {
           passengerInfo: action.payload,
         },
       };
+
+    case SET_BOOKED_TICKET_INFO: {
+      return {
+        ...state,
+        bookedTicket: action.payload,
+      };
+    }
 
     default:
       return state;

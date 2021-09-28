@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import utils from "../../../utils/utils";
+import utils from "../../../../utils/utils";
 
-import { setFareInfo, updatePsgInfoOnQtyChange } from "../../../appStore";
+import { setFareInfo, updatePsgInfoOnQtyChange } from "../../../../appStore";
 
 const FareSummary = ({ onTicketsCountChange }) => {
   const dispatch = useDispatch();

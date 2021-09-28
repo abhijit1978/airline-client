@@ -218,6 +218,11 @@ table.print-table td,
 table.print-table th {
   padding: 10px !important;
   text-align: left;
+  vertical-align: top;
+}
+
+table.print-table p {
+  margin-bottom: 5px;
 }
 
 .tc {
@@ -228,4 +233,10 @@ table.print-table th {
   font-size: 11px;
   padding-left: 6px;
   margin-bottom: 3px;
+}
+
+.print-heading {
+  background: #66730b;
+  color: #fff;
+  border-spacing: 0px;
 }
