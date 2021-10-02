@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { airlinesURL, API_HEADER } from "../../configs/app.config";
 
 import { setAirlines } from "../../appStore";
 
@@ -20,10 +21,8 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
   });
 
   const create = () => {
-    const url = "http://localhost:5001/api/bfly/airlines/";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .post(url, formValues, { headers })
+      .post(airlinesURL, formValues, API_HEADER)
       .then((response) => {
         onTogglePopup(false);
         dispatch(setAirlines([...airlines, response.data]));
@@ -39,10 +38,8 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
 
   const update = () => {
     const finalData = Object.assign(data, formValues);
-    const url = "http://localhost:5001/api/bfly/airlines/";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .put(url, finalData, { headers })
+      .put(airlinesURL, finalData, API_HEADER)
       .then((response) => {
         onTogglePopup({ state: false, airlineData: {} });
         const updatedList = airlines.map((item) => {

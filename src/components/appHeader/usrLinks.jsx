@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import utils from "../../configs/app.config";
+import { logoutURL, API_HEADER } from "../../configs/app.config";
 
 import { setUser } from "./../../appStore";
 
@@ -12,9 +12,9 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
   const logoutUser = async () => {
     try {
       const response = await axios.put(
-        utils.logoutURL,
+        logoutURL,
         { id: user.id },
-        { headers: utils.API_HEADER }
+        { headers: API_HEADER }
       );
       toggleUserLinkList(false);
       dispatch(setUser({}));

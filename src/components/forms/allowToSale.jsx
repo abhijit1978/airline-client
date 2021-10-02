@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import moment from "moment";
+import { salableURL, API_HEADER } from "../../configs/app.config";
 
 const AllowToSale = ({ onTogglePopup, ticket }) => {
   const locations = useSelector((state) => state.common.locations);
@@ -20,10 +21,8 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
     );
     finalData.locationName = locName.locationName;
 
-    const url = "http://localhost:5001/api/bfly/tickets/salable";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .post(url, finalData, { headers })
+      .post(salableURL, finalData, API_HEADER)
       .then(() => {
         onTogglePopup(false);
       })

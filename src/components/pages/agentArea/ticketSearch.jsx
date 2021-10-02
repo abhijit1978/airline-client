@@ -7,6 +7,7 @@ import "react-datetime/css/react-datetime.css";
 import { useDispatch } from "react-redux";
 import LocationsList from "../../common/locationsList";
 import { setBookingTicket } from "./../../../appStore";
+import { API_HEADER, getSalableURL } from "../../../configs/app.config";
 
 const TicketSearch = ({ history }) => {
   const dispatch = useDispatch();
@@ -35,11 +36,9 @@ const TicketSearch = ({ history }) => {
       setErrorMsg("");
       try {
         const response = await axios.post(
-          "http://localhost:5001/api/bfly/tickets/getsalable",
+          getSalableURL,
           formValues,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
+          API_HEADER
         );
         const data = response.data.map((item) => {
           return { ...item, bookQty: 1 };

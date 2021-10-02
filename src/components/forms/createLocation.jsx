@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { locationsURL, API_HEADER } from "../../configs/app.config";
 
 import { setLocations } from "../../appStore";
 
@@ -19,10 +20,8 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
   });
 
   const create = () => {
-    const url = "http://localhost:5001/api/bfly/locations/";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .post(url, formValues, { headers })
+      .post(locationsURL, formValues, API_HEADER)
       .then((response) => {
         onTogglePopup(false);
         dispatch(setLocations([...locations, response.data]));
@@ -38,10 +37,8 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
 
   const update = () => {
     const finalData = Object.assign(data, formValues);
-    const url = "http://localhost:5001/api/bfly/locations/";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .put(url, finalData, { headers })
+      .put(locationsURL, finalData, API_HEADER)
       .then((response) => {
         onTogglePopup({ state: false, locationData: {} });
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import AppHeader from "./components/appHeader/appHeader";
 import Reoutes from "./components/common/routes";
+import { locationsURL, airlinesURL, API_HEADER } from "./configs/app.config";
 
 import "./App.css";
 
@@ -12,12 +13,7 @@ function App() {
   const dispatch = useDispatch();
   const getLocations = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5001/api/bfly/locations",
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await axios.get(locationsURL, API_HEADER);
       dispatch(setLocations(response.data));
     } catch (error) {
       console.log(error.message);
@@ -26,12 +22,7 @@ function App() {
 
   const getAirlines = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5001/api/bfly/airlines",
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await axios.get(airlinesURL, API_HEADER);
       dispatch(setAirlines(response.data));
     } catch (error) {
       console.log(error.message);

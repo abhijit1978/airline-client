@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_HEADER, roleURL } from "../../configs/app.config";
 
 const SetUserRole = ({ popup, onTogglePopup }) => {
   const [formValues, setFormValues] = useState({
@@ -15,10 +16,8 @@ const SetUserRole = ({ popup, onTogglePopup }) => {
     if (!formValues.type) {
       return;
     }
-    const url = "http://localhost:5001/api/bfly/users/role";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .put(url, formValues, { headers })
+      .put(roleURL, formValues, API_HEADER)
       .then(() => {
         onTogglePopup({
           ...popup,

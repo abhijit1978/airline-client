@@ -12,6 +12,7 @@ import landing from "../../../../assets/images/landing.png";
 
 import { resetAll, setBookedTicketInfo } from "../../../../appStore";
 import InfantInfo from "./infantInfo";
+import { API_HEADER, bookingURL } from "../../../../configs/app.config";
 
 const BookTicket = ({ history }) => {
   const dispatch = useDispatch();
@@ -77,13 +78,10 @@ const BookTicket = ({ history }) => {
           bookingDate: new Date(),
         },
       };
-      // console.log(bookingInfo);
-      // console.log(finalBookingObj);
-      const headers = { "Content-Type": "application/json" };
       const response = await axios.post(
-        "http://localhost:5001/api/bfly/ticketsBooking",
+        bookingURL,
         finalBookingObj,
-        { headers }
+        API_HEADER
       );
       if (response.error !== "undefined") {
         dispatch(setBookedTicketInfo(response.data));

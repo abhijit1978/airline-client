@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_HEADER, signUpURL } from "../../configs/app.config";
 
 const SignUpForm = () => {
   const [regSuccess, setRegSuccess] = useState(false);
@@ -24,16 +25,13 @@ const SignUpForm = () => {
   });
 
   const submitRegistration = () => {
-    const headers = { "Content-Type": "multipart/form-data" };
     const formData = new FormData();
     for (let key in formValues) {
       const value = formValues[key] ? formValues[key] : "n";
       formData.append(key, value);
     }
     axios
-      .post("http://localhost:5001/api/bfly/users", formData, {
-        headers,
-      })
+      .post(signUpURL, formData, API_HEADER)
       .then((response) => {
         setRegSuccess(true);
       })

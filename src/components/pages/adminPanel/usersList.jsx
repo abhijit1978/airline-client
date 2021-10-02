@@ -4,6 +4,7 @@ import moment from "moment";
 
 import Popup from "../../common/popup";
 import SetUserRole from "../../forms/setUserRole";
+import { API_HEADER, usersURL } from "../../../configs/app.config";
 
 const UsersList = () => {
   const [users, setUser] = useState([]);
@@ -14,9 +15,7 @@ const UsersList = () => {
   });
   const getUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/api/bfly/users", {
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await axios.get(usersURL, API_HEADER);
       setUser(response.data);
     } catch (error) {
       console.log(error.message);

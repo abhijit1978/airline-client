@@ -5,6 +5,7 @@ import LocationsList from "../../common/locationsList";
 import AirlinesList from "../../common/airlinesList";
 import AllowToSale from "../../forms/allowToSale";
 import Popup from "./../../common/popup";
+import { API_HEADER, ticketsURL } from "../../../configs/app.config";
 
 const TicketsList = () => {
   const [tickets, setTickets] = useState([]);
@@ -14,13 +15,9 @@ const TicketsList = () => {
   });
   const [searchParams, setSearchParams] = useState({ travelDate: "" });
   const getTickets = async () => {
-    const apiURL = "http://localhost:5001/api/bfly/tickets";
-    const headers = { "Content-Type": "application/json" };
     const payload = searchParams;
     try {
-      const response = await axios.post(apiURL, payload, {
-        headers,
-      });
+      const response = await axios.post(ticketsURL, payload, API_HEADER);
       setTickets(response.data);
     } catch (error) {
       console.log(error.message);

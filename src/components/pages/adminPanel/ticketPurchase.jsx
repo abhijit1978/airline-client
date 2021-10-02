@@ -11,6 +11,7 @@ import Popup from "../../common/popup";
 import CreateLocation from "../../forms/createLocation";
 
 import "react-datetime/css/react-datetime.css";
+import { API_HEADER, purchaseURL } from "../../../configs/app.config";
 
 const TicketPurchase = () => {
   const user = useSelector((state) => state.user.user);
@@ -54,14 +55,7 @@ const TicketPurchase = () => {
     }
     if (!validate) {
       try {
-        const response = await axios.post(
-          "http://localhost:5001/api/bfly/tickets/purchase",
-          formValues,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        console.log(response);
+        axios.post(purchaseURL, formValues, API_HEADER);
         toggleErrorMessage({
           ...message,
           success: true,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { loginURL, API_HEADER } from "../../configs/app.config";
 
 import { setUser } from "./../../appStore";
 
@@ -14,10 +15,8 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
   });
 
   const submitLogin = () => {
-    const url = "http://localhost:5001/api/bfly/users/login/";
-    const headers = { "Content-Type": "application/json" };
     axios
-      .put(url, formValues, { headers })
+      .put(loginURL, formValues, API_HEADER)
       .then((response) => {
         onTogglePopup(false);
         //Set user data in Redux Store
