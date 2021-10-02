@@ -30,8 +30,9 @@ const SignUpForm = () => {
       const value = formValues[key] ? formValues[key] : "n";
       formData.append(key, value);
     }
+    const headers = { "Content-Type": "multipart/form-data" };
     axios
-      .post(signUpURL, formData, API_HEADER)
+      .post(signUpURL, formData, headers)
       .then((response) => {
         setRegSuccess(true);
       })
