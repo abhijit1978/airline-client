@@ -65,9 +65,38 @@ const validateMobile = (mobNum) => {
   return mobNum.length === 10 ? true : false;
 };
 
+const validateRegistrationForm = (data) => {
+  let formData = new FormData();
+  let formError = false;
+  const optionalFields = ["alternateNo", "middleName"];
+  for (let key in data) {
+    if (!optionalFields.includes(key)) {
+      if (!data[key]) {
+        formError = true;
+        break;
+      } else {
+        formData.append(key, data[key]);
+      }
+    } else {
+      if (!data[key]) {
+        formData.append(key, -1);
+      } else {
+        formData.append(key, data[key]);
+      }
+    }
+  }
+
+  if (formError) {
+    return false;
+  } else {
+    return formData;
+  }
+};
+
 export default {
   getTotalFare,
   validateBookingInfo,
   validateEmail,
   validateMobile,
+  validateRegistrationForm,
 };

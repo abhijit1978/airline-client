@@ -1,4 +1,7 @@
 const API_HEADER = { headers: { "Content-Type": "application/json" } };
+const API_HEADER_FORMDATA = {
+  headers: { "Content-Type": "multipart/form-data", boundary: "MyBoundary" },
+};
 const baseURL = "http://localhost:5001";
 const pattern = "/api/bfly/";
 
@@ -17,6 +20,7 @@ const bookingURL = `${baseURL}${pattern}ticketsBooking`;
 
 export {
   API_HEADER,
+  API_HEADER_FORMDATA,
   signUpURL,
   usersURL,
   loginURL,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { API_HEADER, signUpURL } from "../../configs/app.config";
+import utils from "../../utils/utils";
+import { API_HEADER_FORMDATA, signUpURL } from "../../configs/app.config";
 
 const SignUpForm = () => {
   const [regSuccess, setRegSuccess] = useState(false);
@@ -18,37 +19,46 @@ const SignUpForm = () => {
     pin: "",
     state: "",
     aadharNo: "",
-    aadharImage: {},
+    aadharImage: "",
     pan: "",
+    panImage: "",
     password: "",
     confirmPassword: "",
   });
 
   const submitRegistration = () => {
-    const formData = new FormData();
-    for (let key in formValues) {
-      const value = formValues[key] ? formValues[key] : "n";
-      formData.append(key, value);
-    }
-    const headers = { "Content-Type": "multipart/form-data" };
-    axios
-      .post(signUpURL, formData, headers)
-      .then((response) => {
-        setRegSuccess(true);
-      })
-      .catch((err) => {
-        console.log(err.message);
+    const formData = utils.validateRegistrationForm(formValues);
+    if (!formData) {
+      setRegFailure({
+        state: true,
+        message: "All fields marked with * are mandetory",
       });
-  };
-
-  const handleFile = (e) => {
-    console.log(e.target.files[0]);
+    } else {
+      axios
+        .post(signUpURL, formData, API_HEADER_FORMDATA)
+        .then(() => {
+          setRegSuccess(true);
+          setRegFailure({
+            state: false,
+            message: "",
+          });
+        })
+        .catch(() => {
+          setRegFailure({
+            state: true,
+            message: "Sorry! Some technical issue. Please try after some time.",
+          });
+        });
+    }
   };
 
   return (
     <>
       <div className="form-wrapper registration-form">
         <div className="full-width form-row">
+          {regFailure.state && (
+            <p className="regisration-error">{regFailure.message}</p>
+          )}
           <div className="col3">
             <input
               autoComplete="false"

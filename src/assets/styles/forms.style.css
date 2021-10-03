@@ -219,3 +219,13 @@ button.primary.book-ticket {
   left: 15px;
   background: #fff;
 }
+
+.regisration-error {
+  position: absolute;
+  color: red;
+  font-size: 12px;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  font-weight: bold;
+}
