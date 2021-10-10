@@ -26,7 +26,6 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
       })
       .catch((err) => {
         toggleErrorMessage({
-          ...toggleErrorMessage,
           status: true,
           message: err.response.data,
         });

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { airlinesURL, API_HEADER } from "../../configs/app.config";
+import {
+  airlinesURL,
+  API_HEADER,
+  API_HEADER_FORMDATA,
+} from "../../configs/app.config";
 
 import { setAirlines } from "../../appStore";
 
@@ -13,6 +17,7 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
     airlineName: (data && data.airlineName) || "",
     airlineCode: (data && data.airlineCode) || "",
     alias: (data && data.alias) || "",
+    airlineLogo: "",
   });
 
   const [errorMessage, toggleErrorMessage] = useState({
@@ -21,8 +26,12 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
   });
 
   const create = () => {
+    const formData = new FormData();
+    for (let key in formValues) {
+      formData.append(key, formValues[key]);
+    }
     axios
-      .post(airlinesURL, formValues, API_HEADER)
+      .post(airlinesURL, formData, API_HEADER_FORMDATA)
       .then((response) => {
         onTogglePopup(false);
         dispatch(setAirlines([...airlines, response.data]));
@@ -37,9 +46,15 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
   };
 
   const update = () => {
-    const finalData = Object.assign(data, formValues);
+    const finalData = { ...data, ...formValues };
+    console.log(finalData);
+    const formData = new FormData();
+    for (let key in finalData) {
+      formData.append(key, finalData[key]);
+    }
+    console.log(formData);
     axios
-      .put(airlinesURL, finalData, API_HEADER)
+      .put(airlinesURL, formData, API_HEADER)
       .then((response) => {
         onTogglePopup({ state: false, airlineData: {} });
         const updatedList = airlines.map((item) => {
@@ -87,6 +102,7 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
               onChange={(e) =>
                 setFormValues({ ...formValues, airlineCode: e.target.value })
               }
+              disabled={action === "edit" ? true : false}
               placeholder="Airline Code"
             />
           </div>
@@ -100,6 +116,20 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
                 setFormValues({ ...formValues, alias: e.target.value })
               }
               placeholder="Alias"
+            />
+          </div>
+          <div className="full-width form-row">
+            <label>Airline Logo</label>
+            <input
+              type="file"
+              name="airlineLogo"
+              id="AirlineLogo"
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  airlineLogo: e.target.files[0],
+                })
+              }
             />
           </div>
 
