@@ -45,7 +45,9 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
         .catch((err) => {
           toggleErrorMessage({
             status: true,
-            message: err.response.data.message.name,
+            message: err.response.data.message.name
+              ? err.response.data.message.name
+              : err.response.data.message,
           });
         });
     }
@@ -104,6 +106,7 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
                 setFormValues({ ...formValues, locationCode: e.target.value })
               }
               placeholder="Location Code"
+              disabled={action === "edit" ? true : false}
             />
           </div>
 

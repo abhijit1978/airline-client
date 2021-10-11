@@ -22,16 +22,27 @@ const AirlinesTable = () => {
         <thead>
           <tr>
             <th>Sr</th>
-            <th>Airlines Name</th>
-            <th>Airlines Code</th>
+            <th colSpan="2">Airline</th>
+            <th>Airline Code</th>
             <th>Alias</th>
-            <th colSpan="2">Action</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {airlines.map((airline, index) => (
             <tr key={airline._id}>
               <td className="text-center">{index + 1}</td>
+              <td className="text-center">
+                <img
+                  src={`http://localhost:5001${airline.airlineLogo}`}
+                  alt={airline.airlineName}
+                  style={{
+                    height: "30px",
+                    display: "inline-block",
+                    verticalAlign: "middle",
+                  }}
+                />
+              </td>
               <td className="text-center">{airline.airlineName}</td>
               <td className="text-center">{airline.airlineCode}</td>
               <td className="text-center">{airline.alias}</td>
@@ -47,9 +58,6 @@ const AirlinesTable = () => {
                 }
               >
                 <strong>Edit</strong>
-              </td>
-              <td className="text-center fcLightGreen pointer">
-                <strong>Delete</strong>
               </td>
             </tr>
           ))}

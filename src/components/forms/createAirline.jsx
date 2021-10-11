@@ -54,7 +54,9 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
           toggleErrorMessage({
             ...toggleErrorMessage,
             status: true,
-            message: err.response.data.message.name,
+            message: err.response.data.message.name
+              ? err.response.data.message.name
+              : err.response.data.message,
           });
         });
     }

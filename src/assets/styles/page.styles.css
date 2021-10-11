@@ -236,7 +236,8 @@ table.print-table p {
 }
 
 .print-heading {
-  background: #66730b;
-  color: #fff;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  color: #000;
   border-spacing: 0px;
 }

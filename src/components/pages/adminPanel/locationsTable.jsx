@@ -25,7 +25,7 @@ const LocationsTable = () => {
             <th>Sr</th>
             <th>Location Name</th>
             <th>Location Code</th>
-            <th colSpan="2">Action</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -46,9 +46,6 @@ const LocationsTable = () => {
                 }
               >
                 <strong>Edit</strong>
-              </td>
-              <td className="text-center fcLightGreen pointer">
-                <strong>Delete</strong>
               </td>
             </tr>
           ))}

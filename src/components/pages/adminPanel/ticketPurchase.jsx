@@ -137,7 +137,7 @@ const TicketPurchase = () => {
             <div className="travel-date col3">
               <label htmlFor="">Travel Date</label>
               <Datetime
-                dateFormat="YYYY-MM-DD"
+                dateFormat="DD-MM-YYYY"
                 timeFormat={false}
                 onChange={(value) =>
                   setFormValues({
