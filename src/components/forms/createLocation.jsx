@@ -19,20 +19,36 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
     message: "",
   });
 
+  const validateForm = () => {
+    let isValid = true;
+    for (let key in formValues) {
+      if (!formValues[key]) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  };
+
   const create = () => {
-    axios
-      .post(locationsURL, formValues, API_HEADER)
-      .then((response) => {
-        onTogglePopup(false);
-        dispatch(setLocations([...locations, response.data]));
-      })
-      .catch((err) => {
-        toggleErrorMessage({
-          ...toggleErrorMessage,
-          status: true,
-          message: err.response.data,
-        });
+    if (!validateForm()) {
+      toggleErrorMessage({
+        status: true,
+        message: "All fields are mandetory.",
       });
+    } else {
+      axios
+        .post(locationsURL, formValues, API_HEADER)
+        .then((response) => {
+          onTogglePopup(false);
+          dispatch(setLocations([...locations, response.data]));
+        })
+        .catch((err) => {
+          toggleErrorMessage({
+            status: true,
+            message: err.response.data.message.name,
+          });
+        });
+    }
   };
 
   const update = () => {
@@ -91,7 +107,7 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
             />
           </div>
 
-          {errorMessage && (
+          {errorMessage.status && (
             <p className="login-error-message text-center">
               {errorMessage.message}
             </p>

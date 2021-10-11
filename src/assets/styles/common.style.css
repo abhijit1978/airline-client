@@ -324,6 +324,7 @@ a:hover {
   color: red;
   font-size: 13px;
   position: absolute;
+  width: calc(100% - 30px);
 }
 
 table {

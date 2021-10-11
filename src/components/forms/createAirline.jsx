@@ -12,7 +12,10 @@ import { setAirlines } from "../../appStore";
 const CreateAirline = ({ onTogglePopup, action, data }) => {
   const dispatch = useDispatch();
   const airlines = useSelector((state) => state.common.airlines);
-
+  const [errorMessage, toggleErrorMessage] = useState({
+    status: false,
+    message: "",
+  });
   const [formValues, setFormValues] = useState({
     airlineName: (data && data.airlineName) || "",
     airlineCode: (data && data.airlineCode) || "",
@@ -20,29 +23,41 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
     airlineLogo: "",
   });
 
-  const [errorMessage, toggleErrorMessage] = useState({
-    status: false,
-    message: "",
-  });
+  const validateForm = () => {
+    let isValid = true;
+    for (let key in formValues) {
+      if (!formValues[key]) {
+        isValid = false;
+      }
+    }
+    return isValid;
+  };
 
   const create = () => {
-    const formData = new FormData();
-    for (let key in formValues) {
-      formData.append(key, formValues[key]);
-    }
-    axios
-      .post(airlinesURL, formData, API_HEADER_FORMDATA)
-      .then((response) => {
-        onTogglePopup(false);
-        dispatch(setAirlines([...airlines, response.data]));
-      })
-      .catch((err) => {
-        toggleErrorMessage({
-          ...toggleErrorMessage,
-          status: true,
-          message: err.response.data,
-        });
+    if (!validateForm()) {
+      toggleErrorMessage({
+        status: true,
+        message: "All fields are mandetory.",
       });
+    } else {
+      const formData = new FormData();
+      for (let key in formValues) {
+        formData.append(key, formValues[key]);
+      }
+      axios
+        .post(airlinesURL, formData, API_HEADER_FORMDATA)
+        .then((response) => {
+          onTogglePopup(false);
+          dispatch(setAirlines([...airlines, response.data]));
+        })
+        .catch((err) => {
+          toggleErrorMessage({
+            ...toggleErrorMessage,
+            status: true,
+            message: err.response.data.message.name,
+          });
+        });
+    }
   };
 
   const update = () => {
@@ -133,7 +148,7 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
             />
           </div>
 
-          {errorMessage && (
+          {errorMessage.status && (
             <p className="login-error-message text-center">
               {errorMessage.message}
             </p>
