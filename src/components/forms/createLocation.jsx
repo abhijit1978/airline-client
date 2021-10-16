@@ -12,6 +12,8 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
   const [formValues, setFormValues] = useState({
     locationName: data && data.locationName ? data.locationName : "",
     locationCode: data && data.locationCode ? data.locationCode : "",
+    srcAirportName: data && data.srcAirlineName ? data.srcAirlineName : "",
+    destAirportName: data && data.destAirlineName ? data.destAirlineName : "",
   });
 
   const [errorMessage, toggleErrorMessage] = useState({
@@ -107,6 +109,33 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
               }
               placeholder="Location Code"
               disabled={action === "edit" ? true : false}
+            />
+          </div>
+          <div className="full-width form-row">
+            <label>Airport from</label>
+            <input
+              type="text"
+              name="srcAirportName"
+              value={formValues.srcAirportName}
+              onChange={(e) =>
+                setFormValues({ ...formValues, srcAirportName: e.target.value })
+              }
+              placeholder="Airport from"
+            />
+          </div>
+          <div className="full-width form-row">
+            <label>Airport to</label>
+            <input
+              type="text"
+              name="destAirportName"
+              value={formValues.destAirportName}
+              onChange={(e) =>
+                setFormValues({
+                  ...formValues,
+                  destAirportName: e.target.value,
+                })
+              }
+              placeholder="Airport to"
             />
           </div>
 

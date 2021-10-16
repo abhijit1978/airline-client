@@ -241,3 +241,8 @@ table.print-table p {
   color: #000;
   border-spacing: 0px;
 }
+
+.overflow-datatime .rdt.rdtOpen {
+  position: fixed;
+  z-index: 10;
+}

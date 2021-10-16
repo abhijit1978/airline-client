@@ -1,15 +1,31 @@
 import React, { PureComponent } from "react";
 import moment from "moment";
 
-class PrintContent extends React.PureComponent {
+class PrintContent extends PureComponent {
   getIcon = (name) => {
     const airline = this.props.airlines.find(
       (item) => item.airlineName === name
     );
-    return `../../../../logo-${airline.alias}.png`;
+    return `http://localhost:5001${airline.airlineLogo}`;
+  };
+  getSrcAirport = (code) => {
+    const location = this.props.locations.find(
+      (item) => item.locationCode === code
+    );
+    return location.srcAirportName;
+  };
+  getDestAirport = (code) => {
+    const location = this.props.locations.find(
+      (item) => item.locationCode === code
+    );
+    return location.destAirportName;
+  };
+  getLocation = (location) => {
+    return location.split("-");
   };
 
   render() {
+    console.log(this.props.airlines, this.props.locations);
     const { agent, fareDetails, passenger, travel, _id } = {
       ...this.props.data,
     };
@@ -90,8 +106,12 @@ class PrintContent extends React.PureComponent {
                         </p>
                       </td>
                       <td>
-                        <p>{travel.location.locationName}</p>
-                        <p>{travel.location.locationName}</p>
+                        <p>
+                          {this.getLocation(travel.location.locationName)[0]}
+                        </p>
+                        <p>
+                          {this.getSrcAirport(travel.location.locationCode)}
+                        </p>
                         <p>&nbsp;</p>
                         <p style={{ fontSize: "15px" }}>
                           {moment(new Date(travel.travelDate)).format(
@@ -101,8 +121,12 @@ class PrintContent extends React.PureComponent {
                         </p>
                       </td>
                       <td>
-                        <p>{travel.location.locationName}</p>
-                        <p>{travel.location.locationName}</p>
+                        <p>
+                          {this.getLocation(travel.location.locationName)[1]}
+                        </p>
+                        <p>
+                          {this.getDestAirport(travel.location.locationCode)}
+                        </p>
                         <p>&nbsp;</p>
                         <p style={{ fontSize: "15px" }}>
                           {moment(new Date(travel.travelDate)).format(

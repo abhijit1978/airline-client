@@ -100,9 +100,11 @@ const TicketsList = () => {
             <th>Flight# </th>
             <th>Dep Time</th>
             <th>Arr Time</th>
-            <th>Qty</th>
             <th>Pur Price</th>
             <th>Pur Date</th>
+            <th>Pur Qty</th>
+            <th>Booked Qty</th>
+            <th>Qty In Hand</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -118,11 +120,13 @@ const TicketsList = () => {
               <td className="text-center">{ticket.flightNumber}</td>
               <td className="text-center">{ticket.departureTime}</td>
               <td className="text-center">{ticket.arrivalTime}</td>
-              <td className="text-center">{ticket.ticketsQty}</td>
               <td className="text-center">{ticket.purchasePrice}</td>
               <td className="text-center">
                 {moment(ticket.datePurchased).format("DD MMM, YYYY")}
               </td>
+              <td className="text-center">{ticket.ticketsQty}</td>
+              <td className="text-center">{ticket.stock.booked}</td>
+              <td className="text-center">{ticket.stock.inHand}</td>
               <td>{allowToSale(ticket)}</td>
             </tr>
           ))}

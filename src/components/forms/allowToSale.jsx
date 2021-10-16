@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import Datetime from "react-datetime";
 import axios from "axios";
 import moment from "moment";
-import { salableURL, API_HEADER } from "../../configs/app.config";
+import { salableURL, API_HEADER, ticketsURL } from "../../configs/app.config";
+import "react-datetime/css/react-datetime.css";
 
 const AllowToSale = ({ onTogglePopup, ticket }) => {
   const locations = useSelector((state) => state.common.locations);
@@ -12,25 +14,44 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
     salePrice: "",
     qty: 1,
   });
+  const [error, setError] = useState({
+    status: false,
+    message: "",
+  });
 
-  const submitForm = () => {
-    const finalData = { ...ticket, ...formValues };
-    finalData.locationCode = finalData.location;
-    const locName = locations.find(
-      (loc) => loc.locationCode === ticket.location
-    );
-    finalData.locationName = locName.locationName;
-
-    axios
-      .post(salableURL, finalData, API_HEADER)
-      .then(() => {
-        onTogglePopup(false);
-      })
-      .catch((err) => {
-        console.log("Some error .....", err);
-      });
+  const validateForm = () => {
+    let isValid = true;
+    for (let key in formValues) {
+      if (!formValues[key]) {
+        isValid = false;
+      }
+    }
+    return isValid;
   };
 
+  const submitForm = () => {
+    if (!validateForm()) {
+      setError({ status: true, message: "All fields are mandetory." });
+    } else {
+      const finalData = { ...ticket, ...formValues };
+      finalData.locationCode = finalData.location;
+      const locName = locations.find(
+        (loc) => loc.locationCode === ticket.location
+      );
+      finalData.locationName = locName.locationName;
+
+      axios
+        .post(salableURL, finalData, API_HEADER)
+        .then(() => {
+          setError({ status: false, message: "" });
+          onTogglePopup(false);
+        })
+        .catch((err) => {
+          console.log("Some error .....", err);
+        });
+    }
+  };
+  console.log(ticket);
   return (
     <div className="allow-to-sale">
       <p className="fsize13 full-width">
@@ -49,45 +70,46 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
         <span className="col3 mb10">
           Travel Date:
           <i className="pl5 fcLightGreen">
-            {moment(ticket.travelDate).format("DD MMM, YYYY")}
+            {moment(ticket.travelDate).format("DD-MM-YYYY")}
           </i>
         </span>
         <span className="col3 mb10">
           Pur Price:
           <i className="pl5 fcLightGreen">{ticket.purchasePrice}</i>
         </span>
+        <span className="col3 mb10"></span>
       </p>
       <hr />
       <div className="full-width form-row mt15">
-        <div className="col6 relaive pr5">
-          <label className="inline">From</label>
-          <input
-            className="inline"
-            type="date"
-            name="fromDate"
-            id="FromDate"
-            onChange={(e) =>
-              setFormValues({ ...formValues, startDate: e.target.value })
+        <div className="col6 relaive pr5 overflow-datatime">
+          <label className="inline" style={{ verticalAlign: "top" }}>
+            From
+          </label>
+          <Datetime
+            dateFormat="DD-MM-YYYY"
+            timeFormat={false}
+            onChange={(value) =>
+              setFormValues({
+                ...formValues,
+                startDate: moment(value).format("YYYY-MM-DD"),
+              })
             }
           />
-          <button className="resetDate">
-            <i className="bi bi-x-square"></i>
-          </button>
         </div>
-        <div className="col6 relaive pl5">
-          <label className="inline">To</label>
-          <input
-            className="inline"
-            type="date"
-            name="toDate"
-            id="ToDate"
-            onChange={(e) =>
-              setFormValues({ ...formValues, endDate: e.target.value })
+        <div className="col6 relaive pl5 overflow-datatime">
+          <label className="inline" style={{ verticalAlign: "top" }}>
+            To
+          </label>
+          <Datetime
+            dateFormat="DD-MM-YYYY"
+            timeFormat={false}
+            onChange={(value) =>
+              setFormValues({
+                ...formValues,
+                endDate: moment(value).format("YYYY-MM-DD"),
+              })
             }
           />
-          <button className="resetDate">
-            <i className="bi bi-x-square"></i>
-          </button>
         </div>
       </div>
       <div className="full-width form-row">
@@ -117,6 +139,9 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
           />
         </div>
       </div>
+      {error.status && (
+        <p className="login-error-message text-center">{error.message}</p>
+      )}
       <div className="full-width text-center mt30">
         <button className="primary hvr-bounce-to-bottom" onClick={submitForm}>
           Submit

@@ -6,6 +6,7 @@ import PrintContent from "./printContent";
 const TicketPrint = () => {
   const data = useSelector((state) => state.booking.bookedTicket.data);
   const airlines = useSelector((state) => state.common.airlines);
+  const locations = useSelector((state) => state.common.locations);
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -13,7 +14,12 @@ const TicketPrint = () => {
   });
   return (
     <div className="page-wrapper full-width">
-      <PrintContent ref={componentRef} data={data} airlines={airlines} />
+      <PrintContent
+        ref={componentRef}
+        data={data}
+        airlines={airlines}
+        locations={locations}
+      />
       <button className="button primary" onClick={handlePrint}>
         Print this out!
       </button>
