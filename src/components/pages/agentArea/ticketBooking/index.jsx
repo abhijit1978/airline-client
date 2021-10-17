@@ -21,6 +21,7 @@ const BookTicket = ({ history }) => {
   const bookingInfo = useSelector((state) => state.booking.tickets);
 
   const [passengers, setPassenters] = useState(bookingInfo.bookQty);
+  const [infants, setInfants] = useState(0);
   const [bookingError, setBookingError] = useState([]);
 
   const getSource = () => {
@@ -46,6 +47,16 @@ const BookTicket = ({ history }) => {
       passengersList.push(<PassengerInfo key={p} passId={p} />);
     }
     return passengersList;
+  };
+
+  const getInfantsInfo = () => {
+    const infantList = [];
+    if (infants > 0) {
+      for (let p = 1; p <= infants; p++) {
+        infantList.push(<InfantInfo key={p} infantId={p} />);
+      }
+    }
+    return infantList;
   };
 
   const handleBookTicket = async () => {
@@ -115,6 +126,10 @@ const BookTicket = ({ history }) => {
   const handleTicketsCountChange = (count) => {
     setPassenters(count);
   };
+  const handleInfantChargesChange = (chrg) => {
+    const infants = chrg % 1500 === 0 ? chrg / 1500 : 0;
+    setInfants(infants);
+  };
 
   return (
     <div className="page-wrapper full-width">
@@ -171,14 +186,15 @@ const BookTicket = ({ history }) => {
             Information
           </p>
           <div className="passenget-details">{getPassengerInfo()}</div>
-
-          <p className="fsize15 fcLightGreen mt15">
-            <i className="bi bi-people-fill fsize22 mr5"></i> Infant Information
-          </p>
-          <div className="passenget-details">
-            <InfantInfo infantId={1} />
-          </div>
-
+          {infants > 0 && (
+            <>
+              <p className="fsize15 fcLightGreen mt15">
+                <i className="bi bi-people-fill fsize22 mr5"></i> Infant
+                Information
+              </p>
+              <div className="passenget-details">{getInfantsInfo()}</div>
+            </>
+          )}
           <p className="fsize15 fcLightGreen mt15">
             <i className="bi bi-envelope-fill fsize22 mr5"></i> Contact
             Information
@@ -192,7 +208,10 @@ const BookTicket = ({ history }) => {
           <p className="fsize15 fcLightGreen">
             <i className="bi bi-wallet-fill fsize22 mr5"></i> Fare Summary
           </p>
-          <FareSummary onTicketsCountChange={handleTicketsCountChange} />
+          <FareSummary
+            onTicketsCountChange={handleTicketsCountChange}
+            onHanhleInfChrgChange={handleInfantChargesChange}
+          />
           <button
             className="primary book-ticket hvr-bounce-to-bottom"
             onClick={handleBookTicket}

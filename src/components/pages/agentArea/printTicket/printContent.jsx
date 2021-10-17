@@ -167,7 +167,7 @@ class PrintContent extends PureComponent {
                           <td>{inf.name}</td>
                           <td>
                             Infant, {inf.sex}, <strong>DOB: </strong>
-                            {inf.dob}
+                            {moment(new Date(inf.dob)).format("DD MMMM, YYYY")}
                           </td>
                         </tr>
                       ))}

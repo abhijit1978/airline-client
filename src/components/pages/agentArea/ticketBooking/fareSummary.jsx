@@ -4,7 +4,7 @@ import utils from "../../../../utils/utils";
 
 import { setFareInfo, updatePsgInfoOnQtyChange } from "../../../../appStore";
 
-const FareSummary = ({ onTicketsCountChange }) => {
+const FareSummary = ({ onTicketsCountChange, onHanhleInfChrgChange }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.booking.tickets);
   const passengerInfo = data.passengerInfo;
@@ -24,6 +24,7 @@ const FareSummary = ({ onTicketsCountChange }) => {
     }
     if (type === "ic") {
       dispatch(setFareInfo({ infantCharges: value }));
+      onHanhleInfChrgChange(value);
     }
   };
 
@@ -61,7 +62,7 @@ const FareSummary = ({ onTicketsCountChange }) => {
         />
       </div>
       <div className="fare-row full-width">
-        <label className="fsize15">Infant Charges</label>
+        <label className="fsize15">Infants Charges</label>
         <input
           className="fare-input"
           type="number"
