@@ -25,6 +25,9 @@ const AdminDashboard = ({ history }) => {
             <NavLink to="/admin-panel/tickets-list">Purchased Tickets</NavLink>
           </li>
           <li>
+            <NavLink to="/admin-panel/booked-tickets">Booked Tickets</NavLink>
+          </li>
+          <li>
             <NavLink to="/admin-panel/users-list">Users</NavLink>
           </li>
           <li>

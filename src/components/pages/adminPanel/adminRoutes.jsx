@@ -6,6 +6,7 @@ import UsersList from "./usersList";
 import TicketsList from "./ticketsList";
 import LocationsTable from "./locationsTable";
 import AirlinesTable from "./airlinesTable";
+import BookedTicketsList from "./bookedTicketsList";
 
 const AdminRoutes = (props) => {
   return (
@@ -21,6 +22,10 @@ const AdminRoutes = (props) => {
       <Route
         path="/admin-panel/tickets-list"
         render={(props) => <TicketsList {...props} />}
+      />
+      <Route
+        path="/admin-panel/booked-tickets"
+        render={(props) => <BookedTicketsList {...props} />}
       />
       <Route
         path="/admin-panel/locations"
