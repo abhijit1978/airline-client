@@ -64,12 +64,10 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
 
   const update = () => {
     const finalData = { ...data, ...formValues };
-    console.log(finalData);
     const formData = new FormData();
     for (let key in finalData) {
       formData.append(key, finalData[key]);
     }
-    console.log(formData);
     axios
       .put(airlinesURL, formData, API_HEADER)
       .then((response) => {

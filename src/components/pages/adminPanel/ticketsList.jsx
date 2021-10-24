@@ -41,7 +41,7 @@ const TicketsList = () => {
     const travelDt = new Date(ticket.travelDate);
     const today = new Date();
 
-    if (today < travelDt) {
+    if (today < travelDt && parseInt(ticket.stock.inHand)) {
       return (
         <span
           className="pointer fcLightGreen"
@@ -126,7 +126,9 @@ const TicketsList = () => {
               </td>
               <td className="text-center">{ticket.ticketsQty}</td>
               <td className="text-center">{ticket.stock.booked}</td>
-              <td className="text-center">{ticket.stock.inHand}</td>
+              <td className="text-center">
+                {ticket.stock.inHand || "All Sold Out"}
+              </td>
               <td>{allowToSale(ticket)}</td>
             </tr>
           ))}

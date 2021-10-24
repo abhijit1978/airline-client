@@ -31,8 +31,7 @@ class PrintContent extends PureComponent {
     return (
       <div className="print-container">
         <p style={{ marginBottom: "10px", textAlign: "right" }}>
-          Original - {moment().format("dddd, MMMM Do YYYY")}
-          <a href="https://www.google.co.in/">just check</a>
+          {this.props.copyType} - {moment().format("dddd, MMMM Do YYYY")}
         </p>
         <table
           width="100%"

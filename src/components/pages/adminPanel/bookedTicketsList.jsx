@@ -6,7 +6,7 @@ import ConfirmSaleForm from "../../forms/confirmSaleForm";
 
 import { API_HEADER, bookedTicketsURL } from "../../../configs/app.config";
 
-const BookedTicketsList = () => {
+const BookedTicketsList = ({ history }) => {
   const [tickets, setTickets] = useState([]);
   const [showPopup, togglePopup] = useState({ status: false, data: {} });
 
@@ -23,7 +23,6 @@ const BookedTicketsList = () => {
   }, []);
 
   useEffect(() => {
-    console.log("showPopup", showPopup);
     if ((showPopup.status === false) & (showPopup.data === "Sale confirmed.")) {
       async function fetchBookedTickets() {
         await fetchData();
@@ -41,6 +40,14 @@ const BookedTicketsList = () => {
 
   const confirmSale = (ticket) => {
     togglePopup({ status: true, data: ticket });
+  };
+
+  const showTicketDetails = (ticket) => {
+    history.push({
+      pathname: "/ticket-print",
+      copyType: "Duplicate",
+      data: ticket,
+    });
   };
 
   return (
@@ -107,7 +114,10 @@ const BookedTicketsList = () => {
                 </td>
 
                 <td className="text-center">
-                  <i className="bi bi-arrows-fullscreen"></i>
+                  <i
+                    className="bi bi-arrows-fullscreen pointer"
+                    onClick={() => showTicketDetails(ticket)}
+                  ></i>
                 </td>
               </tr>
             ))}

@@ -15,7 +15,6 @@ const ConfirmSaleForm = ({ data, onTogglePopup }) => {
   });
 
   const isValidData = () => {
-    console.log(data);
     if (!formData.saleReff || !formData.id) {
       return false;
     } else {
@@ -33,7 +32,6 @@ const ConfirmSaleForm = ({ data, onTogglePopup }) => {
       axios
         .post(confirmSaleUrl, formData, API_HEADER)
         .then((response) => {
-          console.log(response);
           onTogglePopup({ status: false, data: response.data.message });
           setValidationError({
             isValid: true,
@@ -41,7 +39,6 @@ const ConfirmSaleForm = ({ data, onTogglePopup }) => {
           });
         })
         .catch((err) => {
-          console.log(err);
           setValidationError({
             isValid: false,
             message: "Technical Error.",

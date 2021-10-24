@@ -98,6 +98,7 @@ const BookTicket = ({ history }) => {
         dispatch(setBookedTicketInfo(response.data));
         history.replace({
           pathname: "/ticket-print",
+          copyType: "Original",
         });
       } else {
         console.log("Error");

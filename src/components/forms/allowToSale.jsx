@@ -51,7 +51,7 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
         });
     }
   };
-  console.log(ticket);
+
   return (
     <div className="allow-to-sale">
       <p className="fsize13 full-width">
