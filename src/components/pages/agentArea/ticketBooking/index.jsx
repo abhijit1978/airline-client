@@ -110,6 +110,7 @@ const BookTicket = ({ history }) => {
       dispatch(
         resetAll({
           passengerInfo: [],
+          infantInfo: [],
           passengerContactInfo: {},
           fareSummary: {
             bookQty: 1,

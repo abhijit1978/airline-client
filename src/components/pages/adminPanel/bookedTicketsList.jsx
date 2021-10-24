@@ -1,25 +1,46 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import Popup from "../../common/popup";
+import ConfirmSaleForm from "../../forms/confirmSaleForm";
+
 import { API_HEADER, bookedTicketsURL } from "../../../configs/app.config";
 
 const BookedTicketsList = () => {
   const [tickets, setTickets] = useState([]);
+  const [showPopup, togglePopup] = useState({ status: false, data: {} });
+
+  const fetchData = async () => {
+    const response = await axios.post(bookedTicketsURL, API_HEADER);
+    setTickets(response.data);
+  };
+
   useEffect(() => {
-    const payload = {};
-    let response = [];
     async function fetchBookedTickets() {
-      response = await axios.post(bookedTicketsURL, API_HEADER);
-      setTickets(response.data);
+      await fetchData();
     }
     fetchBookedTickets();
   }, []);
+
+  useEffect(() => {
+    console.log("showPopup", showPopup);
+    if ((showPopup.status === false) & (showPopup.data === "Sale confirmed.")) {
+      async function fetchBookedTickets() {
+        await fetchData();
+      }
+      fetchBookedTickets();
+    }
+  }, [showPopup.data]);
 
   const getTotal = (data) => {
     return (
       data.fareDetails.bookQty * data.fareDetails.rate +
       data.fareDetails.infantCharges
     );
+  };
+
+  const confirmSale = (ticket) => {
+    togglePopup({ status: true, data: ticket });
   };
 
   return (
@@ -31,7 +52,7 @@ const BookedTicketsList = () => {
             <th colSpan="6">Travel Info</th>
             <th colSpan="4">Booking Info</th>
             <th colSpan="4">Agent Info</th>
-            <th colSpan="3">Actions</th>
+            <th colSpan="2">Actions</th>
           </tr>
           <tr>
             <th>PNR</th>
@@ -49,7 +70,6 @@ const BookedTicketsList = () => {
             <th>Agent Name</th>
             <th>Agent ID</th>
             <th>Sale</th>
-            <th>Due</th>
             <th>Details</th>
           </tr>
         </thead>
@@ -73,8 +93,19 @@ const BookedTicketsList = () => {
                 <td>{moment(ticket.agent.bookingDate).format("DD-MM-YYYY")}</td>
                 <td>{ticket.agent.agentName.firstName}</td>
                 <td>{ticket.agent.agentID}</td>
-                <td>No</td>
-                <td>Due</td>
+                <td>
+                  {ticket.action.saleReff === "na" ? (
+                    <span
+                      className="pointer fcRed"
+                      onClick={() => confirmSale(ticket)}
+                    >
+                      No
+                    </span>
+                  ) : (
+                    "Done"
+                  )}
+                </td>
+
                 <td className="text-center">
                   <i className="bi bi-arrows-fullscreen"></i>
                 </td>
@@ -82,6 +113,11 @@ const BookedTicketsList = () => {
             ))}
         </tbody>
       </table>
+      {showPopup.status && (
+        <Popup heading="Confirm Sale" onTogglePopup={togglePopup}>
+          <ConfirmSaleForm data={showPopup.data} onTogglePopup={togglePopup} />
+        </Popup>
+      )}
     </>
   );
 };

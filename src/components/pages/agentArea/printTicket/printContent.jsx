@@ -25,7 +25,6 @@ class PrintContent extends PureComponent {
   };
 
   render() {
-    console.log(this.props.airlines, this.props.locations);
     const { agent, fareDetails, passenger, travel, _id } = {
       ...this.props.data,
     };
@@ -161,11 +160,33 @@ class PrintContent extends PureComponent {
                       </tr>
                     ))}
                     {passenger.infants &&
-                      passenger.infants.map((inf) => (
-                        <tr>
-                          <td>{inf.infId}</td>
-                          <td>{inf.name}</td>
-                          <td>
+                      passenger.infants.map((inf, index) => (
+                        <tr key={`i${inf.infantId}`}>
+                          <td
+                            style={
+                              index === 0
+                                ? { borderTop: "1px dashed #c3c3c3" }
+                                : {}
+                            }
+                          >
+                            {inf.infantId}
+                          </td>
+                          <td
+                            style={
+                              index === 0
+                                ? { borderTop: "1px dashed #c3c3c3" }
+                                : {}
+                            }
+                          >
+                            {inf.name}
+                          </td>
+                          <td
+                            style={
+                              index === 0
+                                ? { borderTop: "1px dashed #c3c3c3" }
+                                : {}
+                            }
+                          >
                             Infant, {inf.sex}, <strong>DOB: </strong>
                             {moment(new Date(inf.dob)).format("DD MMMM, YYYY")}
                           </td>

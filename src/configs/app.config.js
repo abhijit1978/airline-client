@@ -18,6 +18,7 @@ const getSalableURL = `${baseURL}${pattern}tickets/getsalable`;
 const purchaseURL = `${baseURL}${pattern}tickets/purchase`;
 const bookingURL = `${baseURL}${pattern}ticketsBooking`;
 const bookedTicketsURL = `${baseURL}${pattern}ticketsBooking/getBookedTickets`;
+const confirmSaleUrl = `${baseURL}${pattern}ticketsBooking/confirmSale`;
 
 export {
   API_HEADER,
@@ -36,4 +37,5 @@ export {
   getSalableURL,
   bookingURL,
   bookedTicketsURL,
+  confirmSaleUrl,
 };
