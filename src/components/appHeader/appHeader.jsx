@@ -17,13 +17,26 @@ const AppHeader = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const limit = 100000;
 
   return (
     <header className="app-header">
       <div className="logo-wrapper inline pointer">
-        <Link to="/">Barkat Fly</Link>
+        <Link to="/">
+          Barkat{" "}
+          <span className="logo-part inline">
+            <span className="tour">Tours &</span>
+            <span className="travel">Travels</span>
+          </span>
+        </Link>
       </div>
       <Navigations />
+      {
+        <div className="agent-limit inline fsize13">
+          Available Limit:
+          <span className="fsize18"> {limit.toLocaleString("en-IN")}</span>
+        </div>
+      }
       <UserArea />
     </header>
   );

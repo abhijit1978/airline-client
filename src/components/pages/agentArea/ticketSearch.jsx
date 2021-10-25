@@ -52,7 +52,7 @@ const TicketSearch = ({ history }) => {
 
   const getIcon = (name) => {
     const airline = airlines.find((item) => item.airlineName === name);
-    return `../../../logo-${airline.alias}.png`;
+    return `http://localhost:5001${airline.airlineLogo}`;
   };
 
   const handleBookQtyChange = (qty, index) => {

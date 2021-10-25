@@ -106,10 +106,10 @@ const BookedTicketsList = ({ history }) => {
                       className="pointer fcRed"
                       onClick={() => confirmSale(ticket)}
                     >
-                      No
+                      Pending
                     </span>
                   ) : (
-                    "Done"
+                    ticket.action.saleReff
                   )}
                 </td>
 
