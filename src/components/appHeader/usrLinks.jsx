@@ -33,6 +33,13 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
           </Link>
         </li>
       )}
+      {user.isLoggedIn && user.userType === "Agent" && (
+        <li onClick={() => toggleUserLinkList(false)}>
+          <Link to="/my-tickets">
+            <i className="bi bi-clipboard-check"></i> My Tickets
+          </Link>
+        </li>
+      )}
       {user.isLoggedIn && user.userType === "Super Admin" && (
         <li onClick={() => toggleUserLinkList(false)}>
           <Link to="/admin-panel">
