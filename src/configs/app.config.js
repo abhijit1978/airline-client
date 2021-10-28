@@ -9,6 +9,7 @@ const signUpURL = `${baseURL}${pattern}users`;
 const usersURL = `${baseURL}${pattern}users`;
 const loginURL = `${baseURL}${pattern}users/login`;
 const roleURL = `${baseURL}${pattern}users/role`;
+const setLimitURL = `${baseURL}${pattern}users/setLimit`;
 const logoutURL = `${baseURL}${pattern}users/logout`;
 const locationsURL = `${baseURL}${pattern}locations`;
 const airlinesURL = `${baseURL}${pattern}airlines`;
@@ -27,6 +28,7 @@ export {
   usersURL,
   loginURL,
   roleURL,
+  setLimitURL,
   logoutURL,
   baseURL,
   locationsURL,

@@ -13,10 +13,15 @@ const UsersList = () => {
     userId: "",
     roleUpdate: false,
   });
+
   const getUsers = async () => {
     try {
       const response = await axios.get(usersURL, API_HEADER);
       setUser(response.data);
+      togglePopup({
+        ...showPopup,
+        roleUpdate: false,
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -29,7 +34,10 @@ const UsersList = () => {
 
   useEffect(() => {
     if (showPopup.roleUpdate) {
-      getUsers();
+      async function fetch() {
+        await getUsers();
+      }
+      fetch();
     }
   }, [showPopup.roleUpdate]);
 
@@ -52,6 +60,10 @@ const UsersList = () => {
     );
   };
 
+  const handleSetLimit = (user) => {
+    console.log(user);
+  };
+
   return (
     <>
       <table className="colored">
@@ -63,7 +75,9 @@ const UsersList = () => {
             <th>City</th>
             <th>Pin</th>
             <th>Role</th>
+            <th>Available Limit</th>
             <th>Is Approved</th>
+            <th>Allow Limit</th>
           </tr>
         </thead>
         <tbody>
@@ -75,7 +89,20 @@ const UsersList = () => {
               <td>{user.address.cityTownVillage}</td>
               <td>{user.address.pin}</td>
               <td>{user.userType}</td>
+              <td>{user.limit}</td>
               <td>{getIsActiveValue(user)}</td>
+              <td>
+                {user.userType === "Unknown" ? (
+                  <span className="">NA</span>
+                ) : (
+                  <strong
+                    className="fcLightGreen pointer"
+                    onClick={() => handleSetLimit(user)}
+                  >
+                    Set Limit
+                  </strong>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

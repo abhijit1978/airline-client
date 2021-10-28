@@ -54,6 +54,10 @@ select {
   width: 70px;
 }
 
+.role-change-form label {
+  width: 100px;
+}
+
 .login-form-right-content {
   float: right;
   width: 165px;

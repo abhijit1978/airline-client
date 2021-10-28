@@ -46,7 +46,7 @@ const SignUpForm = () => {
         .catch(() => {
           setRegFailure({
             state: true,
-            message: "Sorry! Some technical issue. Please try after some time.",
+            message: "Form submission failed due to invalid data.",
           });
         });
     }
