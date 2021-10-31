@@ -270,6 +270,7 @@ table.print-table p {
   border-radius: 4px;
   padding: 15px;
   font-size: 13px;
+  position: relative;
 }
 
 .change-password label {

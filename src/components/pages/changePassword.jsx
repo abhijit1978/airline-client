@@ -28,8 +28,10 @@ const ChangePassword = () => {
   const handleChangePassword = () => {
     const isValid = validateData();
     if (!isValid) {
+      setSuccss("");
       setError("All fields are mandetory!");
     } else if (formData.password !== formData.confirmPassword) {
+      setSuccss("");
       setError("Passwor and Confirm Password did not match!");
     } else {
       const payload = {
@@ -45,6 +47,7 @@ const ChangePassword = () => {
           setSuccss("Password updated successfully.");
         })
         .catch((err) => {
+          setSuccss("");
           setError(err.response.data);
         });
     }
@@ -67,13 +70,13 @@ const ChangePassword = () => {
             />
           </div>
           <div className="full-width form-row">
-            <label>Password</label>
+            <label>New Password</label>
             <input
               type="password"
               id="Password"
               name="password"
               value={formData.password}
-              placeholder="Password"
+              placeholder="New Password"
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
@@ -93,8 +96,17 @@ const ChangePassword = () => {
             />
           </div>
 
-          {error && <p className="login-error-message text-center">{error}</p>}
-          {success && <p className="success-message text-center">{success}</p>}
+          {error && (
+            <p className="login-error-message text-center">
+              <i class="bi bi-x-octagon-fill fsize22 mr10"></i>
+              {error}
+            </p>
+          )}
+          {success && (
+            <p className="success-message text-center fcLightGreen">
+              <i className="bi bi-check2-square fsize22 mr10"></i> {success}
+            </p>
+          )}
           <div className="full-width text-center mt30">
             <button
               className="primary hvr-bounce-to-bottom"

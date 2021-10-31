@@ -90,7 +90,7 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
           <div className="full-width mt30">
             <p className="text-center">Forgot password?</p>
             <p className="fcLightGreen pointer mt5 text-center">
-              Generae new password
+              <i classNames="bi bi-key-fill"></i> Generae new password
             </p>
           </div>
         </div>
