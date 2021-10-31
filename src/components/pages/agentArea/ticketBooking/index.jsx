@@ -67,15 +67,16 @@ const BookTicket = ({ history }) => {
     await axios
       .post(activeUserURL, { id: agentInfo.id }, API_HEADER)
       .then((response) => {
-        console.log(response.data);
         dispatch(setUser(response.data.user));
         sessionStorage.setItem("user", JSON.stringify(response.data.user));
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleBookTicket = async () => {
-    const error = utils.validateBookingInfo(bookingInfo);
+    const error = utils.validateBookingInfo(bookingInfo, agentInfo);
     setBookingError(error);
     if (!error.length) {
       const fareInfo = { ...bookingInfo.fareSummary };

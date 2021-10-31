@@ -12,8 +12,8 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
   const [formValues, setFormValues] = useState({
     locationName: data && data.locationName ? data.locationName : "",
     locationCode: data && data.locationCode ? data.locationCode : "",
-    srcAirportName: data && data.srcAirlineName ? data.srcAirlineName : "",
-    destAirportName: data && data.destAirlineName ? data.destAirlineName : "",
+    srcAirportName: data && data.srcAirportName ? data.srcAirportName : "",
+    destAirportName: data && data.destAirportName ? data.destAirportName : "",
   });
 
   const [errorMessage, toggleErrorMessage] = useState({

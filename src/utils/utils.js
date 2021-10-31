@@ -33,7 +33,7 @@ const validatePassengerInfo = (data) => {
   return error;
 };
 
-const validateBookingInfo = (data) => {
+const validateBookingInfo = (data, user) => {
   const error = [];
 
   if (validatePassengerInfo(data)) error.push("Passenger information missing.");
@@ -49,6 +49,12 @@ const validateBookingInfo = (data) => {
 
   if (data.fareSummary.infantCharges && data.fareSummary.infantCharges % 1500) {
     error.push("Infant changes must be multiple of 1500");
+  }
+
+  if (data.fareSummary.bookQty * data.fareSummary.rate > user.limit) {
+    error.push(
+      "You don't have sufficient limit. Please contact Barkat Tours and Traves"
+    );
   }
 
   return error;

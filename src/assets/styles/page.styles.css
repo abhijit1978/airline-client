@@ -246,3 +246,19 @@ table.print-table p {
   position: fixed;
   z-index: 10;
 }
+
+.user-profile {
+  width: auto;
+  margin: 0 auto;
+  border: 1px solid #97ad16;
+  padding: 5px 10px;
+}
+
+.user-profile tr:nth-child(odd) td {
+  background: rgb(170 170 170 / 11%);
+}
+
+.user-profile td {
+  font-size: 15px;
+  padding: 10px !important;
+}
