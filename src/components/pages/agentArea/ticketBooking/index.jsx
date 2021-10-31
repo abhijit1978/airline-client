@@ -10,9 +10,13 @@ import utils from "../../../../utils/utils";
 import takeoff from "../../../../assets/images/takeoff.png";
 import landing from "../../../../assets/images/landing.png";
 
-import { resetAll, setBookedTicketInfo } from "../../../../appStore";
+import { resetAll, setBookedTicketInfo, setUser } from "../../../../appStore";
 import InfantInfo from "./infantInfo";
-import { API_HEADER, bookingURL } from "../../../../configs/app.config";
+import {
+  API_HEADER,
+  bookingURL,
+  activeUserURL,
+} from "../../../../configs/app.config";
 
 const BookTicket = ({ history }) => {
   const dispatch = useDispatch();
@@ -59,6 +63,17 @@ const BookTicket = ({ history }) => {
     return infantList;
   };
 
+  const getAndUpdateUser = async () => {
+    await axios
+      .post(activeUserURL, { id: agentInfo.id }, API_HEADER)
+      .then((response) => {
+        console.log(response.data);
+        dispatch(setUser(response.data.user));
+        sessionStorage.setItem("user", JSON.stringify(response.data.user));
+      })
+      .catch((err) => {});
+  };
+
   const handleBookTicket = async () => {
     const error = utils.validateBookingInfo(bookingInfo);
     setBookingError(error);
@@ -89,20 +104,19 @@ const BookTicket = ({ history }) => {
           bookingDate: new Date(),
         },
       };
-      const response = await axios.post(
-        bookingURL,
-        finalBookingObj,
-        API_HEADER
-      );
-      if (response.error !== "undefined") {
-        dispatch(setBookedTicketInfo(response.data));
-        history.replace({
-          pathname: "/ticket-print",
-          copyType: "Original",
+      await axios
+        .post(bookingURL, finalBookingObj, API_HEADER)
+        .then(async (response) => {
+          await getAndUpdateUser();
+          dispatch(setBookedTicketInfo(response.data));
+          history.replace({
+            pathname: "/ticket-print",
+            copyType: "Original",
+          });
+        })
+        .catch((err) => {
+          setBookingError([err.response.data.error]);
         });
-      } else {
-        console.log("Error");
-      }
     }
   };
 
@@ -173,7 +187,9 @@ const BookTicket = ({ history }) => {
           </div>
           {bookingError.length ? (
             <div className="booking-error">
-              <p className="text-center fcRed fsize13">Validation Error</p>
+              <p className="text-center fcRed fsize13 mb5">
+                <i className="bi bi-x-circle-fill"></i> Validation Error
+              </p>
               <ol>
                 {bookingError.map((item, index) => (
                   <li className="fsize13 mb5" key={index}>

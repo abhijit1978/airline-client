@@ -4,6 +4,7 @@ import moment from "moment";
 
 import Popup from "../../common/popup";
 import SetUserRole from "../../forms/setUserRole";
+import SetLimit from "../../forms/setLimit";
 import { API_HEADER, usersURL } from "../../../configs/app.config";
 
 const UsersList = () => {
@@ -12,6 +13,7 @@ const UsersList = () => {
     status: false,
     userId: "",
     roleUpdate: false,
+    setLimit: false,
   });
 
   const getUsers = async () => {
@@ -21,6 +23,7 @@ const UsersList = () => {
       togglePopup({
         ...showPopup,
         roleUpdate: false,
+        setLimit: false,
       });
     } catch (error) {
       console.log(error.message);
@@ -33,13 +36,16 @@ const UsersList = () => {
   }, []);
 
   useEffect(() => {
-    if (showPopup.roleUpdate) {
+    if (
+      (!showPopup.status && showPopup.roleUpdate) ||
+      (!showPopup.status && showPopup.setLimit)
+    ) {
       async function fetch() {
         await getUsers();
       }
       fetch();
     }
-  }, [showPopup.roleUpdate]);
+  }, [showPopup]);
 
   const getIsActiveValue = (user) => {
     return user.isApproved ? (
@@ -50,8 +56,9 @@ const UsersList = () => {
         onClick={() =>
           togglePopup({
             ...showPopup,
-            status: !showPopup.status,
+            status: true,
             userId: user._id,
+            roleUpdate: true,
           })
         }
       >
@@ -61,7 +68,12 @@ const UsersList = () => {
   };
 
   const handleSetLimit = (user) => {
-    console.log(user);
+    togglePopup({
+      ...showPopup,
+      status: true,
+      userId: user._id,
+      setLimit: true,
+    });
   };
 
   return (
@@ -85,11 +97,18 @@ const UsersList = () => {
             <tr key={user._id}>
               <td>{user.userID}</td>
               <td>{`${user.name.firstName} ${user.name.lastName}`}</td>
-              <td>{moment(user.dateAppied).format("DD MMM, YYYY")}</td>
+              <td className="text-right">
+                {moment(user.dateAppied).format("DD MMM, YYYY")}
+              </td>
               <td>{user.address.cityTownVillage}</td>
-              <td>{user.address.pin}</td>
+              <td className="text-right">{user.address.pin}</td>
               <td>{user.userType}</td>
-              <td>{user.limit}</td>
+              <td className="text-right">
+                {user.limit.toLocaleString("en-IN", {
+                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 2,
+                })}
+              </td>
               <td>{getIsActiveValue(user)}</td>
               <td>
                 {user.userType === "Unknown" ? (
@@ -109,7 +128,12 @@ const UsersList = () => {
       </table>
       {showPopup.status && (
         <Popup heading="User Approval" onTogglePopup={togglePopup}>
-          <SetUserRole popup={showPopup} onTogglePopup={togglePopup} />
+          {showPopup.roleUpdate && (
+            <SetUserRole popup={showPopup} onTogglePopup={togglePopup} />
+          )}
+          {showPopup.setLimit && (
+            <SetLimit popup={showPopup} onTogglePopup={togglePopup} />
+          )}
         </Popup>
       )}
     </>

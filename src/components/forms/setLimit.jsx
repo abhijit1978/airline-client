@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { API_HEADER, setLimitURL } from "../../configs/app.config";
 
-const SetUserRole = ({ popup, onTogglePopup }) => {
+const SetLimit = ({ popup, onTogglePopup }) => {
   const [formValues, setFormValues] = useState({
     limit: 0,
     id: popup.userId,
@@ -22,7 +22,7 @@ const SetUserRole = ({ popup, onTogglePopup }) => {
         onTogglePopup({
           ...popup,
           status: false,
-          roleUpdate: true,
+          setLimit: true,
         });
       })
       .catch((err) => {
@@ -60,7 +60,7 @@ const SetUserRole = ({ popup, onTogglePopup }) => {
             className="primary hvr-bounce-to-bottom"
             onClick={handleSetLimit}
           >
-            Change Role
+            Submit
           </button>
         </div>
       </div>
@@ -68,4 +68,4 @@ const SetUserRole = ({ popup, onTogglePopup }) => {
   );
 };
 
-export default SetUserRole;
+export default SetLimit;

@@ -21,7 +21,6 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
         onTogglePopup(false);
         //Set user data in Redux Store
         dispatch(setUser(response.data.user));
-        //Set user data in Sesstion Storage
         sessionStorage.setItem("user", JSON.stringify(response.data.user));
       })
       .catch((err) => {

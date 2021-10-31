@@ -7,6 +7,7 @@ const pattern = "/api/bfly/";
 
 const signUpURL = `${baseURL}${pattern}users`;
 const usersURL = `${baseURL}${pattern}users`;
+const activeUserURL = `${baseURL}${pattern}users/oneUser`;
 const loginURL = `${baseURL}${pattern}users/login`;
 const roleURL = `${baseURL}${pattern}users/role`;
 const setLimitURL = `${baseURL}${pattern}users/setLimit`;
@@ -26,6 +27,7 @@ export {
   API_HEADER_FORMDATA,
   signUpURL,
   usersURL,
+  activeUserURL,
   loginURL,
   roleURL,
   setLimitURL,
