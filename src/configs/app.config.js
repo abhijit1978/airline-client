@@ -10,6 +10,7 @@ const usersURL = `${baseURL}${pattern}users`;
 const activeUserURL = `${baseURL}${pattern}users/oneUser`;
 const loginURL = `${baseURL}${pattern}users/login`;
 const changePassUrl = `${baseURL}${pattern}users/changePassword`;
+const forgotPassUrl = `${baseURL}${pattern}users/forgotPassword`;
 const roleURL = `${baseURL}${pattern}users/role`;
 const setLimitURL = `${baseURL}${pattern}users/setLimit`;
 const logoutURL = `${baseURL}${pattern}users/logout`;
@@ -30,6 +31,7 @@ export {
   usersURL,
   activeUserURL,
   changePassUrl,
+  forgotPassUrl,
   loginURL,
   roleURL,
   setLimitURL,

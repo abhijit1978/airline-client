@@ -5,7 +5,7 @@ import { loginURL, API_HEADER } from "../../configs/app.config";
 
 import { setUser } from "./../../appStore";
 
-const LoginForm = ({ onTogglePopup, openSignup }) => {
+const LoginForm = ({ onTogglePopup, openSignup, openForgotPsw }) => {
   const dispatch = useDispatch();
 
   const [formValues, setFormValues] = useState({ email: "", password: "" });
@@ -89,8 +89,11 @@ const LoginForm = ({ onTogglePopup, openSignup }) => {
           </div>
           <div className="full-width mt30">
             <p className="text-center">Forgot password?</p>
-            <p className="fcLightGreen pointer mt5 text-center">
-              <i classNames="bi bi-key-fill"></i> Generae new password
+            <p
+              className="fcLightGreen pointer mt5 text-center"
+              onClick={openForgotPsw}
+            >
+              Generae new password
             </p>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Popup from "../common/popup";
 import SignUpForm from "../forms/signUpForm";
 import LoginForm from "./../forms/loginForm";
+import ForgotPassword from "../forms/forgotPassword";
 import UserLinks from "./usrLinks";
 
 const UserArea = () => {
@@ -18,16 +19,27 @@ const UserArea = () => {
   const [showUserLinksList, toggleUserLinkList] = useState(false);
   const [loginForm, showLoginForm] = useState(false);
   const [signUpForm, showSignUpForm] = useState(false);
+  const [forgotPsw, showForgotPsw] = useState(false);
 
   const handleLoginClick = () => {
     showLoginForm(true);
     togglePopup(true);
     showSignUpForm(false);
+    showForgotPsw(false);
+  };
+
+  const handleForgotPsw = () => {
+    showLoginForm(false);
+    togglePopup(true);
+    showSignUpForm(false);
+    showForgotPsw(true);
   };
 
   const handleSignUpClick = () => {
     showLoginForm(false);
     showSignUpForm(true);
+    togglePopup(true);
+    showForgotPsw(false);
   };
 
   return (
@@ -62,16 +74,24 @@ const UserArea = () => {
       </div>
       {showPopup && (
         <Popup
-          heading={loginForm ? "User Login" : "User Registration"}
+          heading={
+            loginForm
+              ? "User Login"
+              : signUpForm
+              ? "User Registration"
+              : "Forgot Password"
+          }
           onTogglePopup={togglePopup}
         >
           {loginForm && (
             <LoginForm
               onTogglePopup={togglePopup}
               openSignup={handleSignUpClick}
+              openForgotPsw={handleForgotPsw}
             />
           )}
           {signUpForm && <SignUpForm onTogglePopup={togglePopup} />}
+          {forgotPsw && <ForgotPassword onTogglePopup={togglePopup} />}
         </Popup>
       )}
     </>

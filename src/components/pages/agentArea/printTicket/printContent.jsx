@@ -46,7 +46,7 @@ class PrintContent extends PureComponent {
                 <table width="100%" cellSpacing="0" cellPadding="0">
                   <thead>
                     <tr>
-                      <th className="print-heading">Airline PNR Number</th>
+                      <th className="print-heading">PNR Number</th>
                       <th className="print-heading">Booked on</th>
                       <th className="print-heading">Status</th>
                       <th className="print-heading">Booking ID</th>

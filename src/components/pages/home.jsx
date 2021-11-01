@@ -27,7 +27,7 @@ const HomePage = () => {
               <i className="bi bi-people-fill"></i>
             </div>
             <div className="inline">
-              <p className="bigger-text fcBlue">HR Outsourcing </p>
+              <p className="bigger-text fcBlue">VISA Assistance</p>
               <p className="smaller-text">Small descriptions will come.</p>
             </div>
           </div>
@@ -45,7 +45,8 @@ const HomePage = () => {
 
       <div className="container mt30">
         <h1 className="fsize22 fcDeepGreen">
-          Welcome to <span className="fsize30 fcLightGreen">Barkat Fly</span>
+          Welcome to{" "}
+          <span className="fsize30 fcLightGreen">Barkat Tours and Travels</span>
         </h1>
         <p>
           <br />
