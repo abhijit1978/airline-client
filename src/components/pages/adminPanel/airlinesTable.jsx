@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-
+import { baseURL } from "../../../configs/app.config";
 import Popup from "../../common/popup";
 import CreateAirline from "../../forms/createAirline";
 
@@ -34,7 +34,7 @@ const AirlinesTable = () => {
               <td className="text-center">{index + 1}</td>
               <td className="text-center">
                 <img
-                  src={`http://localhost:5001${airline.airlineLogo}`}
+                  src={`${baseURL}${airline.airlineLogo}`}
                   alt={airline.airlineName}
                   style={{
                     height: "30px",

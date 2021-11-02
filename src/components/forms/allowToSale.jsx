@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Datetime from "react-datetime";
 import axios from "axios";
 import moment from "moment";
-import { salableURL, API_HEADER, ticketsURL } from "../../configs/app.config";
+import { salableURL, API_HEADER } from "../../configs/app.config";
 import "react-datetime/css/react-datetime.css";
 
 const AllowToSale = ({ onTogglePopup, ticket }) => {

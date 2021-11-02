@@ -16,6 +16,7 @@ import {
   API_HEADER,
   bookingURL,
   activeUserURL,
+  baseURL,
 } from "../../../../configs/app.config";
 
 const BookTicket = ({ history }) => {
@@ -42,7 +43,7 @@ const BookTicket = ({ history }) => {
 
   const getIcon = (name) => {
     const airline = airlines.find((item) => item.airlineName === name);
-    return `http://localhost:5001${airline.airlineLogo}`;
+    return `${baseURL}${airline.airlineLogo}`;
   };
 
   const getPassengerInfo = () => {

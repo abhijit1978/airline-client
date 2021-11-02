@@ -9,7 +9,7 @@ import "./App.css";
 
 import { setLocations, setAirlines } from "./appStore";
 
-function App() {
+function App(props) {
   const dispatch = useDispatch();
   const getLocations = async () => {
     try {
@@ -34,6 +34,7 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log("props at appjs ========== ", props);
   return (
     <div className="App">
       <AppHeader />

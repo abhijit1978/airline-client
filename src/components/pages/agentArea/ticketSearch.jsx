@@ -7,7 +7,11 @@ import "react-datetime/css/react-datetime.css";
 import { useDispatch } from "react-redux";
 import LocationsList from "../../common/locationsList";
 import { setBookingTicket } from "./../../../appStore";
-import { API_HEADER, getSalableURL } from "../../../configs/app.config";
+import {
+  API_HEADER,
+  getSalableURL,
+  baseURL,
+} from "../../../configs/app.config";
 
 const TicketSearch = ({ history }) => {
   const dispatch = useDispatch();
@@ -52,7 +56,7 @@ const TicketSearch = ({ history }) => {
 
   const getIcon = (name) => {
     const airline = airlines.find((item) => item.airlineName === name);
-    return `http://localhost:5001${airline.airlineLogo}`;
+    return `${baseURL}${airline.airlineLogo}`;
   };
 
   const handleBookQtyChange = (qty, index) => {

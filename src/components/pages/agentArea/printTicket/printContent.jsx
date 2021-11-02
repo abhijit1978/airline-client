@@ -1,12 +1,13 @@
 import React, { PureComponent } from "react";
 import moment from "moment";
+import { baseURL } from "../../../../configs/app.config";
 
 class PrintContent extends PureComponent {
   getIcon = (name) => {
     const airline = this.props.airlines.find(
       (item) => item.airlineName === name
     );
-    return `http://localhost:5001${airline.airlineLogo}`;
+    return `${baseURL}${airline.airlineLogo}`;
   };
   getSrcAirport = (code) => {
     const location = this.props.locations.find(
@@ -25,7 +26,7 @@ class PrintContent extends PureComponent {
   };
 
   render() {
-    const { agent, fareDetails, passenger, travel, _id } = {
+    const { agent, passenger, travel, _id } = {
       ...this.props.data,
     };
     return (

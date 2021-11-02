@@ -25,6 +25,7 @@ const bookedTicketsURL = `${baseURL}${pattern}ticketsBooking/getBookedTickets`;
 const confirmSaleUrl = `${baseURL}${pattern}ticketsBooking/confirmSale`;
 
 export {
+  baseURL,
   API_HEADER,
   API_HEADER_FORMDATA,
   signUpURL,
@@ -36,7 +37,6 @@ export {
   roleURL,
   setLimitURL,
   logoutURL,
-  baseURL,
   locationsURL,
   airlinesURL,
   ticketsURL,

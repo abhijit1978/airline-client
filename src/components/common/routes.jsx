@@ -12,6 +12,7 @@ import ChangePassword from "../pages/changePassword";
 import BookTicket from "../pages/agentArea/ticketBooking";
 import TicketPrint from "../pages/agentArea/printTicket";
 import MyTickets from "../pages/agentArea/myAccount/myTickets";
+import BankDetails from "../pages/bankDetails";
 
 const Routes = (props) => {
   return (
@@ -24,6 +25,10 @@ const Routes = (props) => {
         <Route
           path="/search-ticket"
           render={(props) => <TicketSearch {...props} />}
+        />
+        <Route
+          path="/bank-details"
+          render={(props) => <BankDetails {...props} />}
         />
         <Route
           path="/book-ticket"

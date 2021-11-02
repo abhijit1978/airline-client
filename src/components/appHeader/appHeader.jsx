@@ -18,8 +18,7 @@ const AppHeader = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const limit = 100000;
-  console.log(user.user);
+
   return (
     <header className="app-header">
       <div className="logo-wrapper inline pointer">
