@@ -34,7 +34,6 @@ function App(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log("props at appjs ========== ", props);
   return (
     <div className="App">
       <AppHeader />

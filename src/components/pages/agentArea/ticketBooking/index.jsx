@@ -31,14 +31,14 @@ const BookTicket = ({ history }) => {
 
   const getSource = () => {
     const loc = bookingInfo.location.locationName;
-    const sepaIndex = loc.indexOf("-");
-    return loc.substr(0, sepaIndex);
+    const locArr = loc.split("-");
+    return locArr[0].trim();
   };
 
   const getDestination = () => {
     const loc = bookingInfo.location.locationName;
-    const sepaIndex = loc.indexOf("-");
-    return loc.substr(sepaIndex + 2);
+    const locArr = loc.split("-");
+    return locArr[1].trim();
   };
 
   const getIcon = (name) => {

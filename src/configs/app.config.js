@@ -2,7 +2,8 @@ const API_HEADER = { headers: { "Content-Type": "application/json" } };
 const API_HEADER_FORMDATA = {
   headers: { "Content-Type": "multipart/form-data", boundary: "MyBoundary" },
 };
-const baseURL = "http://localhost:5001";
+// const baseURL = "http://localhost:5001";
+const baseURL = window.location.origin;
 const pattern = "/api/bfly/";
 
 const signUpURL = `${baseURL}${pattern}users`;
