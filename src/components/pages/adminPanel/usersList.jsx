@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import moment from "moment";
 
 import Popup from "../../common/popup";
 import SetUserRole from "../../forms/setUserRole";
 import SetLimit from "../../forms/setLimit";
-import { API_HEADER, baseURL, usersURL } from "../../../configs/app.config";
+import {
+  API_HEADER,
+  baseURL,
+  usersURL,
+  roleURL,
+} from "../../../configs/app.config";
 
 const UsersList = () => {
   const [users, setUser] = useState([]);
@@ -47,10 +51,24 @@ const UsersList = () => {
     }
   }, [showPopup]);
 
+  const rejectUser = (userData) => {
+    const payload = {
+      type: "Unknown",
+      id: userData._id,
+    };
+    axios
+      .put(roleURL, payload, API_HEADER)
+      .then(async () => {
+        const response = await axios.get(usersURL, API_HEADER);
+        setUser(response.data);
+      })
+      .catch((err) => {
+        console.log("reject user fail", err);
+      });
+  };
+
   const getIsActiveValue = (user) => {
-    return user.isApproved ? (
-      `Approved`
-    ) : (
+    return !user.isApproved || user.userType === "Unknown" ? (
       <strong
         className="fcLightGreen pointer"
         onClick={() =>
@@ -64,6 +82,10 @@ const UsersList = () => {
       >
         Approve User
       </strong>
+    ) : (
+      <span className="pointer" onClick={() => rejectUser(user)}>
+        Reject
+      </span>
     );
   };
 

@@ -50,6 +50,13 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
           </Link>
         </li>
       )}
+      {user.isLoggedIn && (
+        <li onClick={() => toggleUserLinkList(false)}>
+          <Link to="/make-payment">
+            <i className="bi bi-file-earmark-text"></i> Make Payment
+          </Link>
+        </li>
+      )}
       <li onClick={() => toggleUserLinkList(false)}>
         <Link to="/user-profile">
           <i className="bi bi-person-lines-fill"></i> Profile

@@ -3,6 +3,9 @@ import React from "react";
 const BankDetails = () => {
   return (
     <div className="page-wrapper full-width">
+      <h3 className="text-center mb10 fcLightGreen">
+        <i className="bi bi-safe-fill"></i> Bank Details
+      </h3>
       <table className="user-profile">
         <tbody>
           <tr>
