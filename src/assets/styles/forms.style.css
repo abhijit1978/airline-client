@@ -25,6 +25,7 @@ select {
   min-width: 190px;
   max-width: 100%;
   padding: 6px !important;
+  width: 190px;
 }
 
 .login-form {

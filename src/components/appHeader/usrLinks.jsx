@@ -43,17 +43,24 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
           </Link>
         </li>
       )}
+      {user.isLoggedIn && user.userType === "Super Admin" && (
+        <li onClick={() => toggleUserLinkList(false)}>
+          <Link to="/statement">
+            <i className="bi bi-card-list"></i> Account Statement
+          </Link>
+        </li>
+      )}
       {user.isLoggedIn && (
         <li onClick={() => toggleUserLinkList(false)}>
           <Link to="/bank-details">
-            <i className="bi bi-file-earmark-text"></i> Bank Details
+            <i className="bi bi-safe"></i> Bank Details
           </Link>
         </li>
       )}
       {user.isLoggedIn && (
         <li onClick={() => toggleUserLinkList(false)}>
           <Link to="/make-payment">
-            <i className="bi bi-file-earmark-text"></i> Make Payment
+            <i className="bi bi-wallet2"></i> Make Payment
           </Link>
         </li>
       )}

@@ -96,7 +96,7 @@ const BookedTicketsList = ({ history }) => {
                 <td>{ticket.fareDetails.rate}</td>
                 <td>{ticket.fareDetails.infantCharges}</td>
                 <td>{getTotal(ticket)}</td>
-                <td>{ticket._id}</td>
+                <td>{ticket.ticketID}</td>
                 <td>{moment(ticket.agent.bookingDate).format("DD-MM-YYYY")}</td>
                 <td>{ticket.agent.agentName.firstName}</td>
                 <td>{ticket.agent.agentID}</td>

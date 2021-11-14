@@ -26,7 +26,7 @@ class PrintContent extends PureComponent {
   };
 
   render() {
-    const { agent, passenger, travel, _id } = {
+    const { agent, passenger, travel, _id, ticketID } = {
       ...this.props.data,
     };
     return (
@@ -62,7 +62,7 @@ class PrintContent extends PureComponent {
                         )}
                       </td>
                       <td>Confirm</td>
-                      <td>{_id}</td>
+                      <td>{ticketID}</td>
                     </tr>
                   </tbody>
                 </table>
