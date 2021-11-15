@@ -48,17 +48,35 @@ button.primary.disabled:hover {
   box-shadow: 0 0 3px #000;
 }
 
+button.cancel {
+  background: #cabeaf;
+  padding: 8px 16px;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 0 2px #1c2000;
+  cursor: pointer;
+  transition: box-shadow 1s;
+  margin-top: 8px;
+  font-weight: normal;
+}
+
 .popup-center {
-  width: 500px;
-  max-height: 400px;
+  width: 550px;
+  max-height: 500px;
   border: 1px solid #9eb61a;
   border-radius: 8px;
   background: #fff;
   position: fixed;
-  top: 150px;
+  top: 70px;
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+
+.popup-center.confirm {
+  width: 300px;
+  top: 200px;
 }
 
 .popup-center > header {

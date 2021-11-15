@@ -6,6 +6,7 @@ import {
   API_HEADER,
   usersURL,
   statementUrl,
+  updateBalanceUrl,
 } from "../../../configs/app.config";
 
 const AccountStatement = () => {
@@ -15,6 +16,7 @@ const AccountStatement = () => {
   const [activeUser, setActiveUser] = useState("");
   const [month, setMonth] = useState(today.format("M"));
   const [year, setYear] = useState(today.format("YYYY"));
+  const [pop, setPop] = useState("");
 
   const getUsers = async () => {
     try {
@@ -55,6 +57,8 @@ const AccountStatement = () => {
     }
   }, [activeUser]);
 
+  useEffect(() => {}, [pop]);
+
   const getTransDetails = (tran) => {
     if (tran.transType === "debit") {
       return `Ticket ID: ${tran.ticket.ticketID}, PNR: ${tran.ticket.pnr}, Travel Dt. ${tran.ticket.travelDate}`;
@@ -62,6 +66,22 @@ const AccountStatement = () => {
       return `${tran.payment.bankName}, ${tran.payment.branchName} vide Transaction ID: ${tran.payment.transID}`;
     }
   };
+
+  const handleConfirmReceipt = async () => {
+    const payload = {
+      userID: pop.userID,
+      amount: pop.payment.amount,
+    };
+    await axios
+      .post(updateBalanceUrl, payload, API_HEADER)
+      .then(async () => {
+        await getUserTransactions();
+      })
+      .catch((err) => console.log(err));
+
+    setPop("");
+  };
+
   return (
     <div className="page-wrapper full-width">
       <div className="container">
@@ -137,12 +157,42 @@ const AccountStatement = () => {
                     {tran.transType === "credit" ? tran.payment.amount : ""}
                   </td>
                   <td>
-                    {!tran.payment.confirmReceipt ? "Pending" : "Recdived"}
+                    {tran.transType === "credit" ? (
+                      !tran.payment.confirmReceipt ? (
+                        <span
+                          className="fcLightGreen pointer"
+                          onClick={() => setPop(tran)}
+                        >
+                          Pending
+                        </span>
+                      ) : (
+                        "Recdived"
+                      )
+                    ) : (
+                      ""
+                    )}
                   </td>
                 </tr>
               ))}
           </tbody>
         </table>
+
+        {pop && (
+          <div className="popup-center confirm">
+            <header>Receipt Confirmation</header>
+            <div className="content-area">
+              <p className="text-center">Are you sure?</p>
+              <div className="text-center mt15 full-width">
+                <button className="primary mr10" onClick={handleConfirmReceipt}>
+                  Confirm
+                </button>
+                <button className="cancel" onClick={() => setPop("")}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

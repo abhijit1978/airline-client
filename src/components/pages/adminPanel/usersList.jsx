@@ -13,6 +13,7 @@ import {
 
 const UsersList = () => {
   const [users, setUser] = useState([]);
+  const [confPop, setConfPop] = useState("");
   const [showPopup, togglePopup] = useState({
     status: false,
     userId: "",
@@ -51,19 +52,21 @@ const UsersList = () => {
     }
   }, [showPopup]);
 
-  const rejectUser = (userData) => {
+  const rejectUser = () => {
     const payload = {
       type: "Unknown",
-      id: userData._id,
+      id: confPop._id,
     };
     axios
       .put(roleURL, payload, API_HEADER)
       .then(async () => {
         const response = await axios.get(usersURL, API_HEADER);
         setUser(response.data);
+        setConfPop("");
       })
       .catch((err) => {
         console.log("reject user fail", err);
+        setConfPop("");
       });
   };
 
@@ -83,7 +86,7 @@ const UsersList = () => {
         Approve User
       </strong>
     ) : (
-      <span className="pointer" onClick={() => rejectUser(user)}>
+      <span className="pointer" onClick={() => setConfPop(user)}>
         Reject
       </span>
     );
@@ -173,6 +176,22 @@ const UsersList = () => {
             <SetLimit popup={showPopup} onTogglePopup={togglePopup} />
           )}
         </Popup>
+      )}
+      {confPop && (
+        <div className="popup-center confirm">
+          <header>Reject Confirmation</header>
+          <div className="content-area">
+            <p className="text-center">Are you sure?</p>
+            <div className="text-center mt15 full-width">
+              <button className="primary mr10" onClick={rejectUser}>
+                Confirm
+              </button>
+              <button className="cancel" onClick={() => setConfPop("")}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

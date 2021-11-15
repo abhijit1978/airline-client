@@ -26,6 +26,7 @@ const bookedTicketsURL = `${baseURL}${pattern}ticketsBooking/getBookedTickets`;
 const confirmSaleUrl = `${baseURL}${pattern}ticketsBooking/confirmSale`;
 const paymentUrl = `${baseURL}${pattern}accounts/payment`;
 const statementUrl = `${baseURL}${pattern}accounts/statement`;
+const updateBalanceUrl = `${baseURL}${pattern}accounts/updateBalance`;
 
 export {
   baseURL,
@@ -51,4 +52,5 @@ export {
   confirmSaleUrl,
   paymentUrl,
   statementUrl,
+  updateBalanceUrl,
 };
