@@ -61,7 +61,14 @@ const AccountStatement = () => {
 
   const getTransDetails = (tran) => {
     if (tran.transType === "debit") {
-      return `Ticket ID: ${tran.ticket.ticketID}, PNR: ${tran.ticket.pnr}, Travel Dt. ${tran.ticket.travelDate}`;
+      return (
+        <span>
+          <span className="fcLightGreen">Ticket ID:</span> $
+          {tran.ticket.ticketID}, <span className="fcLightGreen">PNR:</span> $
+          {tran.ticket.pnr}, <span className="fcLightGreen">Travel Date:</span>{" "}
+          ${moment(new Date(tran.ticket.travelDate)).format("DD-MMM-YYYY")}
+        </span>
+      );
     } else {
       return `${tran.payment.bankName}, ${tran.payment.branchName} vide Transaction ID: ${tran.payment.transID}`;
     }
@@ -71,6 +78,7 @@ const AccountStatement = () => {
     const payload = {
       userID: pop.userID,
       amount: pop.payment.amount,
+      _id: pop._id,
     };
     await axios
       .post(updateBalanceUrl, payload, API_HEADER)
@@ -150,11 +158,21 @@ const AccountStatement = () => {
                 <tr>
                   <td>{moment(tran.transDate).format("DD-MM-YYYY")}</td>
                   <td>{getTransDetails(tran)}</td>
-                  <td>
-                    {tran.transType === "debit" ? tran.ticket.totalFare : ""}
+                  <td className="text-right">
+                    {tran.transType === "debit"
+                      ? tran.ticket.totalFare.toLocaleString("en-IN", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        })
+                      : ""}
                   </td>
-                  <td>
-                    {tran.transType === "credit" ? tran.payment.amount : ""}
+                  <td className="text-right">
+                    {tran.transType === "credit"
+                      ? tran.payment.amount.toLocaleString("en-IN", {
+                          maximumFractionDigits: 2,
+                          minimumFractionDigits: 2,
+                        })
+                      : ""}
                   </td>
                   <td>
                     {tran.transType === "credit" ? (

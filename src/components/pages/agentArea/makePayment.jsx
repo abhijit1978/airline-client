@@ -35,8 +35,8 @@ const MakePayment = () => {
         .then((response) => {
           setMsg({
             type: "success",
-            message:
-              "Thanks for your payment information. We will varify and confirm you soon.",
+            message: `Thanks for your payment information.\n
+              We will varify and confirm you soon.`,
           });
         })
         .catch((err) => {
@@ -111,8 +111,8 @@ const MakePayment = () => {
               <p
                 className={
                   msg.type === "error"
-                    ? "fcRed text-center mt15"
-                    : "fcLightGreen  text-center mt15"
+                    ? "fcRed text-center mt15 mr30"
+                    : "fcLightGreen text-center mt15 mr30"
                 }
               >
                 {msg.message}
