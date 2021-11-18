@@ -57,7 +57,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
           </Link>
         </li>
       )}
-      {user.isLoggedIn && (
+      {user.isLoggedIn && user.userType !== "Super Admin" && (
         <li onClick={() => toggleUserLinkList(false)}>
           <Link to="/make-payment">
             <i className="bi bi-wallet2"></i> Make Payment

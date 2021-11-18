@@ -154,14 +154,14 @@
 }
 
 .agent-limit {
-  margin: 0 0 0 35px;
+  margin: 4px 0 0 35px;
   padding: 8px;
   border-radius: 5px;
   box-shadow: inset 0 0 8px #9eb62875;
 }
 
 .logo-part {
-  width: 65px;
+  width: 75px;
 }
 
 .tour,
@@ -170,6 +170,7 @@
   float: left;
   font-size: 18px;
   font-style: normal;
+  text-align: center;
 }
 
 .travel {

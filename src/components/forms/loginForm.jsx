@@ -19,7 +19,6 @@ const LoginForm = ({ onTogglePopup, openSignup, openForgotPsw }) => {
       .put(loginURL, formValues, API_HEADER)
       .then((response) => {
         onTogglePopup(false);
-        //Set user data in Redux Store
         dispatch(setUser(response.data.user));
         sessionStorage.setItem("user", JSON.stringify(response.data.user));
       })

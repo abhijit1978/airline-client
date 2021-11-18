@@ -18,7 +18,7 @@ const AppHeader = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  console.log(user);
   return (
     <header className="app-header">
       <div className="logo-wrapper inline pointer">
@@ -33,8 +33,21 @@ const AppHeader = () => {
       <Navigations />
       {user && user.userType === "Agent" && (
         <div className="agent-limit inline fsize13">
-          Available Limit:
-          <span className="fsize18"> {user.limit.toLocaleString("en-IN")}</span>
+          Cr Limit:
+          <strong className="fsize15 mr10 fcDeepGreen">
+            {" "}
+            {user.limit.toLocaleString("en-IN")}
+          </strong>
+          Due:
+          <strong className="fsize15 mr10 fcDeepGreen">
+            {" "}
+            {user.balance ? user.balance.due.toLocaleString("en-IN") : 0}
+          </strong>
+          Balance:
+          <strong className="fsize15 fcDeepGreen">
+            {" "}
+            {user.baance ? user.baance.balance.toLocaleString("en-IN") : 0}
+          </strong>
         </div>
       )}
       <UserArea />
