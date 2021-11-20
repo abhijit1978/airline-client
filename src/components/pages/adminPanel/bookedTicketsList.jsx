@@ -31,7 +31,7 @@ const BookedTicketsList = ({ history }) => {
     }
   }, [showPopup.data]);
 
-  const getTotal = (data) => {
+  const getTotalPtice = (data) => {
     return (
       data.fareDetails.bookQty * data.fareDetails.rate +
       data.fareDetails.infantCharges
@@ -95,7 +95,7 @@ const BookedTicketsList = ({ history }) => {
                 <td>{ticket.fareDetails.bookQty}</td>
                 <td>{ticket.fareDetails.rate}</td>
                 <td>{ticket.fareDetails.infantCharges}</td>
-                <td>{getTotal(ticket)}</td>
+                <td>{getTotalPtice(ticket)}</td>
                 <td>{ticket.ticketID}</td>
                 <td>{moment(ticket.agent.bookingDate).format("DD-MM-YYYY")}</td>
                 <td>{ticket.agent.agentName.firstName}</td>
