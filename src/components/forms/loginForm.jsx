@@ -20,7 +20,7 @@ const LoginForm = ({ onTogglePopup, openSignup, openForgotPsw }) => {
       .then((response) => {
         onTogglePopup(false);
         dispatch(setUser(response.data.user));
-        sessionStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       })
       .catch((err) => {
         toggleErrorMessage({

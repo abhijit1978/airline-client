@@ -84,7 +84,6 @@ const TicketSearch = ({ history }) => {
   return (
     <div className="page-wrapper full-width">
       <section className="full-width booking-container">
-        <p>Book Tickets</p>
         <div className="ticket-search tool-bar full-width text-center relaive">
           <div className="inline mr15">
             <LocationsList getLocation={getLocation} />

@@ -12,7 +12,7 @@ const AppHeader = () => {
   const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
-    const userData = sessionStorage.getItem("user");
+    const userData = localStorage.getItem("user");
     if (userData) {
       dispatch(setUser(JSON.parse(userData)));
     }

@@ -58,25 +58,25 @@ const BookedTicketsList = ({ history }) => {
           <tr>
             <th colSpan="6">Travel Info</th>
             <th colSpan="4">Booking Info</th>
-            <th colSpan="4">Agent Info</th>
-            <th colSpan="2">Actions</th>
+            <th colSpan="3">Agent Info</th>
+            <th colSpan="3">Actions</th>
           </tr>
           <tr>
             <th>PNR</th>
             <th>Location</th>
-            <th>Date</th>
-            <th>Time</th>
+            <th>Tr. Date</th>
+            <th>Tr. Time</th>
             <th>Airine</th>
             <th>Flight</th>
-            <th>Tickets</th>
+            <th>Adult</th>
             <th>Rate</th>
             <th>Infant</th>
             <th>Total</th>
             <th>Ticket ID</th>
             <th>Booked On</th>
-            <th>Agent Name</th>
-            <th>Agent ID</th>
+            <th>Agent</th>
             <th>Sale</th>
+            <th>Cancel</th>
             <th>Details</th>
           </tr>
         </thead>
@@ -98,12 +98,13 @@ const BookedTicketsList = ({ history }) => {
                 <td>{getTotalPtice(ticket)}</td>
                 <td>{ticket.ticketID}</td>
                 <td>{moment(ticket.agent.bookingDate).format("DD-MM-YYYY")}</td>
-                <td>{ticket.agent.agentName.firstName}</td>
-                <td>{ticket.agent.agentID}</td>
+                <td>
+                  {ticket.agent.agentName.firstName} [{ticket.agent.agentID}]
+                </td>
                 <td>
                   {ticket.action.saleReff === "na" ? (
                     <span
-                      className="pointer fcRed"
+                      className="pointer fcSafron"
                       onClick={() => confirmSale(ticket)}
                     >
                       Pending
@@ -112,7 +113,9 @@ const BookedTicketsList = ({ history }) => {
                     ticket.action.saleReff
                   )}
                 </td>
-
+                <td className="text-center">
+                  <i className="bi bi-dash-circle-fill pointer fcRed"></i>
+                </td>
                 <td className="text-center">
                   <i
                     className="bi bi-arrows-fullscreen pointer"

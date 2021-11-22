@@ -23,7 +23,7 @@ const UsersList = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get(usersURL, API_HEADER);
+      const response = await axios.post(usersURL, API_HEADER);
       setUser(response.data);
       togglePopup({
         ...showPopup,
@@ -60,7 +60,7 @@ const UsersList = () => {
     axios
       .put(roleURL, payload, API_HEADER)
       .then(async () => {
-        const response = await axios.get(usersURL, API_HEADER);
+        const response = await axios.post(usersURL, API_HEADER);
         setUser(response.data);
         setConfPop("");
       })

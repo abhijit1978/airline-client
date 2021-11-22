@@ -20,7 +20,7 @@ const AccountStatement = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get(usersURL, API_HEADER);
+      const response = await axios.post(usersURL, API_HEADER);
       setUsers(response.data);
     } catch (error) {
       console.log("som error");

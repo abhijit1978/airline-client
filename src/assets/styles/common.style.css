@@ -154,6 +154,10 @@ a:hover {
   float: right;
 }
 
+.float-left {
+  float: left;
+}
+
 .text-right {
   text-align: right;
 }
@@ -200,6 +204,10 @@ a:hover {
 
 .pl15 {
   padding-left: 15px;
+}
+
+.pl30 {
+  padding-left: 30px;
 }
 
 .pr15 {

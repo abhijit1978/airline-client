@@ -75,9 +75,9 @@ const HomePage = () => {
           Customized Holidays Travel Insurance etc. We have dedicated account
           managers who are always committed and thrive for excellence with their
           expertise in the Travel and Tourism sector more than 15 years. With
-          the high-quality <span className="fcLightGreen">24×7 customer</span>{" "}
-          services can have comprehensive choice with an affordable price from
-          us.
+          the high-quality{" "}
+          <span className="fcLightGreen">24×7 Customer Services</span> can have
+          comprehensive choice with an affordable price from us.
         </p>
       </div>
 

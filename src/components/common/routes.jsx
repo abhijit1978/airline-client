@@ -15,6 +15,7 @@ import MyTickets from "../pages/agentArea/myAccount/myTickets";
 import BankDetails from "../pages/bankDetails";
 import MakePayment from "../pages/agentArea/makePayment";
 import AccountStatement from "../pages/adminPanel/accounts";
+import Accounts from "../pages/agentArea/accounts";
 
 const Routes = (props) => {
   return (
@@ -40,6 +41,7 @@ const Routes = (props) => {
           path="/statement"
           render={(props) => <AccountStatement {...props} />}
         />
+        <Route path="/accounts" render={(props) => <Accounts {...props} />} />
         <Route
           path="/book-ticket"
           render={(props) => <BookTicket {...props} />}

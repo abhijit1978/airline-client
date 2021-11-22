@@ -32,12 +32,12 @@ const AboutUsPage = () => {
               </p>
               <p className="mb15 fsize18 lhight150">
                 Services offered by us are, Airline ticketing, Visa assistance,
-                Hotel Bookings, Domestic and International packages, Passport
-                assistant, Customized Holidays Travel Insurance etc. We have
-                dedicated account managers who are always committed and thrive
-                for excellence with their expertise in the Travel and Tourism
-                sector more than 15 years. With the high-quality{" "}
-                <span className="fcLightGreen">24×7 customer</span> services can
+                Hotel Bookings, Domestic and International Tour packages,
+                Passport assistant, Customized Holidays Travel Insurance etc. We
+                have dedicated account managers who are always committed and
+                thrive for excellence with their expertise in the Travel and
+                Tourism sector more than 15 years. With the high-quality{" "}
+                <span className="fcLightGreen">24×7 Customer Services</span> can
                 have comprehensive choice with an affordable price from us.
               </p>
             </div>

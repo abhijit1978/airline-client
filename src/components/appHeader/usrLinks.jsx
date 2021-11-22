@@ -14,7 +14,7 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
       await axios.put(logoutURL, { id: user.id }, { headers: API_HEADER });
       toggleUserLinkList(false);
       dispatch(setUser({}));
-      sessionStorage.removeItem("user");
+      localStorage.removeItem("user");
     } catch (error) {
       console.log(error.message);
     }
@@ -47,6 +47,13 @@ const UserLinks = ({ toggleUserLinkList, user }) => {
         <li onClick={() => toggleUserLinkList(false)}>
           <Link to="/statement">
             <i className="bi bi-card-list"></i> Account Statement
+          </Link>
+        </li>
+      )}
+      {user.isLoggedIn && user.userType !== "Super Admin" && (
+        <li onClick={() => toggleUserLinkList(false)}>
+          <Link to="/accounts">
+            <i className="bi bi-safe"></i> Accounts
           </Link>
         </li>
       )}

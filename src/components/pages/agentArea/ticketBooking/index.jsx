@@ -69,7 +69,7 @@ const BookTicket = ({ history }) => {
       .post(activeUserURL, { id: agentInfo.id }, API_HEADER)
       .then((response) => {
         dispatch(setUser(response.data.user));
-        sessionStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("user", JSON.stringify(response.data.user));
       })
       .catch((err) => {
         console.log(err);
