@@ -206,7 +206,7 @@
 .print-container {
   width: 1024px;
   margin: 15px auto;
-  padding: 15px;
+  padding: 40px 80px 0;
 }
 
 .print-container * {
@@ -294,4 +294,62 @@ table.print-table p {
 .payment-wrapper label {
   width: 170px;
   display: inline-block;
+}
+
+.about-content {
+  position: relative;
+  width: 100%;
+  height: 700px;
+  background-image: linear-gradient(
+    to right,
+    #f8fff8,
+    #f8fff8,
+    #f8fff8,
+    #f8fff8,
+    rgb(253 253 253 / 17%),
+    rgb(253 253 253 / 17%)
+  );
+}
+.about-content::after {
+  content: "";
+  width: 100%;
+  height: 700px;
+  background: url(../images/about.jpg) no-repeat right;
+  background-size: auto 100%;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
+
+.iata {
+  width: 160px;
+  border-radius: 100%;
+  float: right;
+  margin-left: 15px;
+}
+
+.circle-icon {
+  width: 45px;
+  height: 45px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.27);
+  float: left;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 45px;
+  font-size: 22px;
+  color: #97ad16;
+  margin-top: 8px;
+}
+
+.contact-content {
+  float: left;
+  width: calc(100% - 65px);
+}
+
+.contact-wrapper {
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid #97ad16;
+  border-radius: 8px;
 }

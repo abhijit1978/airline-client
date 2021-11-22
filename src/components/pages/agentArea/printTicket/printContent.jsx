@@ -44,6 +44,40 @@ class PrintContent extends PureComponent {
           <tbody>
             <tr>
               <td>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <p className="fsize15">
+                          {this.props.user.name.firstName}{" "}
+                          {this.props.user.name.middleName}{" "}
+                          {this.props.user.name.lastName}
+                        </p>
+                        <p>
+                          {this.props.user.address.houseNoStreeetName},{" "}
+                          {this.props.user.address.cityTownVillage},<br />
+                          {this.props.user.address.postOffice}, Pin:{" "}
+                          {this.props.user.address.pin},{" "}
+                          {this.props.user.address.state},
+                        </p>
+                      </td>
+                      <td>
+                        <p className="text-right">
+                          <i className="bi bi-phone mr10"></i>{" "}
+                          {this.props.user.contactNo}
+                        </p>
+                        <p className="text-right">
+                          <i className="bi bi-envelope mr10"></i>{" "}
+                          {this.props.user.email}
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <table width="100%" cellSpacing="0" cellPadding="0">
                   <thead>
                     <tr>
@@ -209,27 +243,34 @@ class PrintContent extends PureComponent {
                       <td>
                         <ol className="tc">
                           <li>
-                            This group ticket is 100% Non Refundable, Non
-                            Changeable & Non Cancellable.
+                            This Ticket is 100%
+                            Non-Refundable-Non-Changeable-Non-Cancellable.
                           </li>
                           <li>
-                            Charged fare is totally agreed between "BUYER &
-                            SELLER", any issues related to fares thereafter will
-                            not be entertained.
+                            The charged fare is totally mutually agreed between
+                            Seller and buyer, hence any type of issue related
+                            fares or ticket will not be entertained or
+                            considered.
+                          </li>
+                          <li>
+                            As per Govt. rules and policies Web Check In is
+                            mandatory for all passenger prior to scheduled
+                            departure. Hence buyer need to confirm the web check
+                            prior departure.
+                          </li>
+                          <li>
+                            Any update regarding flight cancellation/ change of
+                            flight timings, buyer had to check directly with the
+                            respective airline’s prior departure. Seller is not
+                            at all responsible for any update from respective
+                            airlines.
                           </li>
                           <li>
                             Check flight & passenger(s) details directly by
                             logging / calling to the respective airlines, any
-                            dispute with in 24 hours prior to departure will not
-                            be entertained.
+                            dispute within 48 hours prior to departure will not
+                            be entertained at any circumstances.
                           </li>
-                          <li>
-                            No updates will be shared from our end in respect to
-                            flight cancellation / changes in timings, "BUYER"
-                            had to check directly with the respective airlines
-                            before departure.
-                          </li>
-                          <li>Web checkin not allowed in this ticket.</li>
                         </ol>
                       </td>
                     </tr>

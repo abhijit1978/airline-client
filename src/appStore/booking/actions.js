@@ -59,7 +59,6 @@ export const resetAll = (data) => {
 };
 
 export const setBookedTicketInfo = (data) => {
-  console.log(data);
   return {
     type: SET_BOOKED_TICKET_INFO,
     payload: data,

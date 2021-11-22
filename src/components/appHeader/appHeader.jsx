@@ -18,12 +18,6 @@ const AppHeader = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log("user from header ======> ", user.balance);
-  console.log(
-    "user from header ======> ",
-    user.balance && user.balance.balance
-  );
-  console.log("user from header ======> ", user.address);
   return (
     <header className="app-header">
       <div className="logo-wrapper inline pointer">

@@ -16,7 +16,6 @@ const LocationsTable = () => {
   const getPopupHeading = () => {
     return showPopup.action === "create" ? "Create Location" : "Edit Location";
   };
-  console.log(locations);
   return (
     <>
       <table className="colored col4_5">

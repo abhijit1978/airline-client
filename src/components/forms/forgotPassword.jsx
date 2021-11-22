@@ -32,7 +32,6 @@ const ForgotPassword = () => {
       setNewPsw(false);
       setErrorMessage("All fields are mandetory.");
     }
-    console.log(formValues);
   };
 
   return (

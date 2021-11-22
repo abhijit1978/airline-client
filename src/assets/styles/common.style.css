@@ -226,8 +226,16 @@ a:hover {
   margin-bottom: 10px;
 }
 
+.mb15 {
+  margin-bottom: 15px;
+}
+
 .mb30 {
   margin-bottom: 30px;
+}
+
+.mb50 {
+  margin-bottom: 50px;
 }
 
 .mb5 {
@@ -384,4 +392,8 @@ table.colored {
   cursor: pointer;
   background: #fff url(../images/calendar.jpg) no-repeat 107px;
   background-size: 18px;
+}
+
+.lhight150 {
+  line-height: 150%;
 }
