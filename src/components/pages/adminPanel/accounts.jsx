@@ -70,7 +70,11 @@ const AccountStatement = () => {
         </span>
       );
     } else {
-      return `${tran.payment.bankName}, ${tran.payment.branchName} vide Transaction ID: ${tran.payment.transID}`;
+      return `${tran.payment.bankName}, ${
+        tran.payment.branchName
+      } vide Transaction ID: ${tran.payment.transID} dated ${moment(
+        trans.transDate
+      ).format("DD-MM-YYYY")}`;
     }
   };
 
@@ -184,7 +188,7 @@ const AccountStatement = () => {
                           Pending
                         </span>
                       ) : (
-                        "Recdived"
+                        "Received"
                       )
                     ) : (
                       ""

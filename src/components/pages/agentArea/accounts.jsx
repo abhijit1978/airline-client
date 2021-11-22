@@ -12,8 +12,10 @@ const Accounts = () => {
     async function fetch() {
       await getUserTransactions();
     }
-    fetch();
-  }, []);
+    if (Object.keys(user).length) {
+      fetch();
+    }
+  }, [user]);
 
   const getTransDetails = (tran) => {
     if (tran.transType === "debit") {
@@ -26,7 +28,11 @@ const Accounts = () => {
         </span>
       );
     } else {
-      return `${tran.payment.bankName}, ${tran.payment.branchName} vide Transaction ID: ${tran.payment.transID}`;
+      return `${tran.payment.bankName}, ${
+        tran.payment.branchName
+      } vide Transaction ID: ${tran.payment.transID} dated ${moment(
+        trans.transDate
+      ).format("DD-MM-YYYY")}`;
     }
   };
 
@@ -57,9 +63,9 @@ const Accounts = () => {
             </tr>
           </thead>
           <tbody>
-            {trans.length &&
+            {trans.length ? (
               trans.map((tran) => (
-                <tr>
+                <tr key={tran._id}>
                   <td>{moment(trans.transDate).format("DD-MM-YYYY")}</td>
                   <td>{getTransDetails(tran)}</td>
                   <td className="text-right">
@@ -83,14 +89,19 @@ const Accounts = () => {
                       !tran.payment.confirmReceipt ? (
                         <span className="fcLightGreen">Pending</span>
                       ) : (
-                        "Recdived"
+                        "Received"
                       )
                     ) : (
                       ""
                     )}
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5">Loading ....</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

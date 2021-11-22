@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { paymentUrl, API_HEADER } from "../../../configs/app.config";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import moment from "moment";
+import axios from "axios";
+import Datetime from "react-datetime";
+
+import "react-datetime/css/react-datetime.css";
+
+import { paymentUrl, API_HEADER } from "../../../configs/app.config";
 
 const MakePayment = () => {
   const user = useSelector((state) => state.user.user);
@@ -11,6 +16,7 @@ const MakePayment = () => {
     bankBranchName: "",
     transactionID: "",
     userID: user.id,
+    paymentDate: "",
   });
 
   const [msg, setMsg] = useState({ type: "", message: "" });
@@ -76,7 +82,7 @@ const MakePayment = () => {
           />
         </div>
         <div className="row">
-          <label>Bank Brabch Name</label>
+          <label>Branch Name</label>
           <input
             type="text"
             name="bankBranchName"
@@ -97,6 +103,19 @@ const MakePayment = () => {
             onChange={(e) => {
               setFormData({ ...formData, transactionID: e.target.value });
             }}
+          />
+        </div>
+        <div className="row">
+          <label>Payment Date</label>
+          <Datetime
+            dateFormat="DD-MM-YYYY"
+            timeFormat={false}
+            onChange={(value) =>
+              setFormData({
+                ...formData,
+                paymentDate: moment(value).format("YYYY-MM-DD"),
+              })
+            }
           />
         </div>
         <div className="row text-center">

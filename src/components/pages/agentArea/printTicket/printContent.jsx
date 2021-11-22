@@ -95,7 +95,7 @@ class PrintContent extends PureComponent {
                           "dddd, MMMM Do YYYY"
                         )}
                       </td>
-                      <td>Confirm</td>
+                      <td>Confirmed</td>
                       <td>{ticketID}</td>
                     </tr>
                   </tbody>

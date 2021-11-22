@@ -149,99 +149,110 @@ const BookTicket = ({ history }) => {
     setInfants(infants);
   };
 
-  return (
-    <div className="page-wrapper full-width">
-      <div className="container">
-        <div className="col3_4 pr15">
-          <div className="travel-details mb15 full-width relaive">
-            <div className="col6 text-center">
-              <div className="img-wrapper">
+  if (
+    !Object.keys(agentInfo).length ||
+    !airlines.length ||
+    Object.keys(bookingInfo).length < 5
+  ) {
+    history.push("/search-ticket");
+    return <></>;
+  } else {
+    return (
+      <div className="page-wrapper full-width">
+        <div className="container">
+          <div className="col3_4 pr15">
+            <div className="travel-details mb15 full-width relaive">
+              <div className="col6 text-center">
+                <div className="img-wrapper">
+                  <img
+                    src={takeoff}
+                    style={{ marginTop: "16px" }}
+                    alt="takeoff"
+                  />
+                </div>
+
+                <p className="text-center pb15">
+                  <span className="fsize26 fcLightGreen">{getSource()}</span> at{" "}
+                  {bookingInfo.departureTime}
+                </p>
+              </div>
+              <div className="col6 text-center">
+                <div className="img-wrapper">
+                  <img src={landing} alt="landing" />
+                </div>
+                <p className="text-center pb15">
+                  <span className="fsize26 fcLightGreen">
+                    {getDestination()}
+                  </span>{" "}
+                  at {bookingInfo.arrivalTime}
+                </p>
+              </div>
+              <div className="flight-name">
                 <img
-                  src={takeoff}
-                  style={{ marginTop: "16px" }}
-                  alt="takeoff"
+                  src={getIcon(bookingInfo.airlineName)}
+                  alt=""
+                  style={{ opacity: "1" }}
                 />
+                <strong>{bookingInfo.airlineName}</strong> :{" "}
+                <span className="fsize13">{bookingInfo.flightNumber}</span>
               </div>
-
-              <p className="text-center pb15">
-                <span className="fsize26 fcLightGreen">{getSource()}</span> at{" "}
-                {bookingInfo.departureTime}
-              </p>
             </div>
-            <div className="col6 text-center">
-              <div className="img-wrapper">
-                <img src={landing} alt="landing" />
+            {bookingError.length ? (
+              <div className="booking-error">
+                <p className="text-center fcRed fsize13 mb5">
+                  <i className="bi bi-x-circle-fill"></i> Validation Error
+                </p>
+                <ol>
+                  {bookingError.map((item, index) => (
+                    <li className="fsize13 mb5" key={index}>
+                      {item}
+                    </li>
+                  ))}
+                </ol>
               </div>
-              <p className="text-center pb15">
-                <span className="fsize26 fcLightGreen">{getDestination()}</span>{" "}
-                at {bookingInfo.arrivalTime}
-              </p>
-            </div>
-            <div className="flight-name">
-              <img
-                src={getIcon(bookingInfo.airlineName)}
-                alt=""
-                style={{ opacity: "1" }}
-              />
-              <strong>{bookingInfo.airlineName}</strong> :{" "}
-              <span className="fsize13">{bookingInfo.flightNumber}</span>
+            ) : null}
+            <p className="fsize15 fcLightGreen mt15">
+              <i className="bi bi-people-fill fsize22 mr5"></i> Passenger
+              Information
+            </p>
+            <div className="passenget-details">{getPassengerInfo()}</div>
+            {infants > 0 && (
+              <>
+                <p className="fsize15 fcLightGreen mt15">
+                  <i className="bi bi-people-fill fsize22 mr5"></i> Infant
+                  Information
+                </p>
+                <div className="passenget-details">{getInfantsInfo()}</div>
+              </>
+            )}
+            <p className="fsize15 fcLightGreen mt15">
+              <i className="bi bi-envelope-fill fsize22 mr5"></i> Contact
+              Information
+            </p>
+            <div className="passenget-details">
+              <PassengerContactInfo />
             </div>
           </div>
-          {bookingError.length ? (
-            <div className="booking-error">
-              <p className="text-center fcRed fsize13 mb5">
-                <i className="bi bi-x-circle-fill"></i> Validation Error
-              </p>
-              <ol>
-                {bookingError.map((item, index) => (
-                  <li className="fsize13 mb5" key={index}>
-                    {item}
-                  </li>
-                ))}
-              </ol>
-            </div>
-          ) : null}
-          <p className="fsize15 fcLightGreen mt15">
-            <i className="bi bi-people-fill fsize22 mr5"></i> Passenger
-            Information
-          </p>
-          <div className="passenget-details">{getPassengerInfo()}</div>
-          {infants > 0 && (
-            <>
-              <p className="fsize15 fcLightGreen mt15">
-                <i className="bi bi-people-fill fsize22 mr5"></i> Infant
-                Information
-              </p>
-              <div className="passenget-details">{getInfantsInfo()}</div>
-            </>
-          )}
-          <p className="fsize15 fcLightGreen mt15">
-            <i className="bi bi-envelope-fill fsize22 mr5"></i> Contact
-            Information
-          </p>
-          <div className="passenget-details">
-            <PassengerContactInfo />
-          </div>
-        </div>
 
-        <div className="col4 pl15">
-          <p className="fsize15 fcLightGreen">
-            <i className="bi bi-wallet-fill fsize22 mr5"></i> Fare Summary
-          </p>
-          <FareSummary
-            onTicketsCountChange={handleTicketsCountChange}
-            onHanhleInfChrgChange={handleInfantChargesChange}
-          />
-          <button
-            className="primary book-ticket hvr-bounce-to-bottom"
-            onClick={handleBookTicket}
-          >
-            Book Ticket
-          </button>
+          <div className="col4 pl15">
+            <p className="fsize15 fcLightGreen">
+              <i className="bi bi-wallet-fill fsize22 mr5"></i> Fare Summary
+            </p>
+            <FareSummary
+              onTicketsCountChange={handleTicketsCountChange}
+              onHanhleInfChrgChange={handleInfantChargesChange}
+            />
+            <button
+              className="primary book-ticket hvr-bounce-to-bottom"
+              onClick={handleBookTicket}
+            >
+              Book Ticket
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default BookTicket;

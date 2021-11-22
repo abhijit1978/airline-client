@@ -20,7 +20,6 @@ function App() {
     : "";
   const dispatch = useDispatch();
 
-  console.log(user);
   const getAndUpdateUser = async () => {
     await axios
       .post(activeUserURL, { id: user.id }, API_HEADER)
