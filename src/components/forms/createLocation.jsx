@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { locationsURL, API_HEADER } from "../../configs/app.config";
+import {
+  newLocationsURL,
+  locationsURL,
+  API_HEADER,
+} from "../../configs/app.config";
 
 import { setLocations } from "../../appStore";
 
@@ -39,7 +43,7 @@ const CreateLocation = ({ onTogglePopup, action, data }) => {
       });
     } else {
       axios
-        .post(locationsURL, formValues, API_HEADER)
+        .post(newLocationsURL, formValues, API_HEADER)
         .then((response) => {
           onTogglePopup(false);
           dispatch(setLocations([...locations, response.data]));

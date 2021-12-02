@@ -116,6 +116,7 @@ const TicketSearch = ({ history }) => {
               <tr>
                 <th>Airline</th>
                 <th>Travel Date</th>
+                <th>Location</th>
                 <th>Flight Number</th>
                 <th>Departure</th>
                 <th>Arrival</th>
@@ -144,6 +145,9 @@ const TicketSearch = ({ history }) => {
                       <span className="fsize15">
                         {moment(ticket.travelDate).format("MMM' YYYY")}
                       </span>
+                    </td>
+                    <td className="text-center">
+                      {ticket.location.locationCode}
                     </td>
                     <td className="text-center">{ticket.flightNumber}</td>
                     <td className="text-center fsize15">

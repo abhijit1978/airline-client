@@ -139,6 +139,8 @@ a:hover {
   padding-right: 15px;
   display: inline-block;
   text-align: left;
+  position: relative;
+  z-index: 5;
 }
 
 .full-width {
@@ -200,6 +202,14 @@ a:hover {
 
 .pl8 {
   padding-left: 8px;
+}
+
+.pr8 {
+  padding-left: 8px;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .pl15 {

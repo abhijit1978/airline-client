@@ -2,11 +2,11 @@ const API_HEADER = { headers: { "Content-Type": "application/json" } };
 const API_HEADER_FORMDATA = {
   headers: { "Content-Type": "multipart/form-data", boundary: "MyBoundary" },
 };
-// const baseURL = "http://localhost:5001";
-const baseURL = window.location.origin;
+const baseURL = "http://localhost:5001";
+// const baseURL = window.location.origin;
 const pattern = "/api/bfly/";
 
-const signUpURL = `${baseURL}${pattern}users`;
+const signUpURL = `${baseURL}${pattern}users/new`;
 const usersURL = `${baseURL}${pattern}users`;
 const activeUserURL = `${baseURL}${pattern}users/oneUser`;
 const loginURL = `${baseURL}${pattern}users/login`;
@@ -16,7 +16,9 @@ const roleURL = `${baseURL}${pattern}users/role`;
 const setLimitURL = `${baseURL}${pattern}users/setLimit`;
 const logoutURL = `${baseURL}${pattern}users/logout`;
 const locationsURL = `${baseURL}${pattern}locations`;
+const newLocationsURL = `${baseURL}${pattern}locations/new`;
 const airlinesURL = `${baseURL}${pattern}airlines`;
+const newAirlinesURL = `${baseURL}${pattern}airlines/new`;
 const ticketsURL = `${baseURL}${pattern}tickets`;
 const salableURL = `${baseURL}${pattern}tickets/salable`;
 const getSalableURL = `${baseURL}${pattern}tickets/getsalable`;
@@ -42,7 +44,9 @@ export {
   setLimitURL,
   logoutURL,
   locationsURL,
+  newLocationsURL,
   airlinesURL,
+  newAirlinesURL,
   ticketsURL,
   purchaseURL,
   salableURL,

@@ -5,6 +5,7 @@ import {
   airlinesURL,
   API_HEADER,
   API_HEADER_FORMDATA,
+  newAirlinesURL,
 } from "../../configs/app.config";
 
 import { setAirlines } from "../../appStore";
@@ -45,7 +46,7 @@ const CreateAirline = ({ onTogglePopup, action, data }) => {
         formData.append(key, formValues[key]);
       }
       axios
-        .post(airlinesURL, formData, API_HEADER_FORMDATA)
+        .post(newAirlinesURL, formData, API_HEADER_FORMDATA)
         .then((response) => {
           onTogglePopup(false);
           dispatch(setAirlines([...airlines, response.data]));
