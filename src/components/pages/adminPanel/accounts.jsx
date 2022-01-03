@@ -15,7 +15,7 @@ const AccountStatement = () => {
   const [trans, setTrans] = useState([]);
   const [activeUser, setActiveUser] = useState("");
   const [month, setMonth] = useState(today.format("M"));
-  const [year, setYear] = useState(today.format("YYYY"));
+  const [period, setPeriod] = useState(today.format("YYYY"));
   const [pop, setPop] = useState("");
 
   const getUsers = async () => {
@@ -98,13 +98,13 @@ const AccountStatement = () => {
     <div className="page-wrapper full-width">
       <div className="container">
         <div className="full-width mb10 text-right">
-          <label className="mr10">Select User</label>
+          <label className="mr10">User</label>
           <select
             value={activeUser}
             onChange={(e) => setActiveUser(e.target.value)}
             className="mr15"
           >
-            <option value="">Select user</option>
+            <option value="">User</option>
             {users.length &&
               users.map((user) => (
                 <option value={user._id} key={user._id}>
@@ -112,36 +112,11 @@ const AccountStatement = () => {
                 </option>
               ))}
           </select>
-          <label className="mr10">Select Period</label>
-          <select
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-            style={{ width: "100px", minWidth: "auto" }}
-            className="mr5"
-          >
-            <option value="">Select Month</option>
-            <option value="01">Jan</option>
-            <option value="02">Feb</option>
-            <option value="03">Mar</option>
-            <option value="04">Apr</option>
-            <option value="05">May</option>
-            <option value="05">Jun</option>
-            <option value="07">Jul</option>
-            <option value="08">Aug</option>
-            <option value="09">Sep</option>
-            <option value="10">Oct</option>
-            <option value="11">Nov</option>
-            <option value="12">Dec</option>
-          </select>
+          <label className="mr10">Period</label>
           <input
-            type="number"
-            value={year}
+            type="month"
             className="mr15"
-            style={{ width: "100px" }}
-            placeholder="YYYY"
-            onChange={(e) => setYear(e.target.value)}
-            minLength="4"
-            maxLength="4"
+            onChange={(e) => setPeriod(e.target.value)}
           />
           <button className="primary">Get Statement</button>
         </div>

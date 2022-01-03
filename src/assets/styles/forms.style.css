@@ -108,13 +108,12 @@ select {
 .allow-to-sale label {
   font-size: 14px;
   line-height: 30px;
-  margin-right: 3%;
+  margin-right: 8px;
   vertical-align: middle;
-  width: 25%;
+  width: calc(28% - 8px);
 }
 
 .allow-to-sale input {
-  float: right;
   width: 69%;
 }
 

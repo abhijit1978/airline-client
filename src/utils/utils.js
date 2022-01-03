@@ -68,7 +68,7 @@ const validateEmail = (email) => {
 
 const validateMobile = (mobNum) => {
   if (!mobNum) return false;
-  return mobNum.length === 10 ? true : false;
+  return mobNum.toString().length === 10 ? true : false;
 };
 
 const validateRegistrationForm = (data) => {

@@ -54,32 +54,42 @@ const AllowToSale = ({ onTogglePopup, ticket }) => {
 
   return (
     <div className="allow-to-sale">
-      <p className="fsize13 full-width">
-        <span className="col3 mb10">
-          Locaion: <i className="pl5 fcLightGreen">{ticket.location}</i>
-        </span>
-        <span className="col3 mb10">
-          Airline: <i className="pl5 fcLightGreen">{ticket.airlineName}</i>
-        </span>
-        <span className="col3 mb10">
-          PNR: <i className="pl5 fcLightGreen">{ticket.pnr}</i>
-        </span>
-        <span className="col3 mb10">
-          Flight#: <i className="pl5 fcLightGreen">{ticket.flightNumber}</i>
-        </span>
-        <span className="col3 mb10">
-          Travel Date:
-          <i className="pl5 fcLightGreen">
-            {moment(ticket.travelDate).format("DD-MM-YYYY")}
-          </i>
-        </span>
-        <span className="col3 mb10">
-          Pur Price:
-          <i className="pl5 fcLightGreen">{ticket.purchasePrice}</i>
-        </span>
-        <span className="col3 mb10"></span>
-      </p>
-      <hr />
+      <div className="fsize13 full-width" style={{ marginBottom: "15px" }}>
+        <div className="col3 mb10">
+          <div className="info-inner">
+            Locaion: <i className="pl5 fcLightGreen">{ticket.location}</i>
+          </div>
+        </div>
+        <div className="col3 mb10">
+          <div className="info-inner">
+            Airline: <i className="pl5 fcLightGreen">{ticket.airlineName}</i>
+          </div>
+        </div>
+        <div className="col3 mb10">
+          <div className="info-inner">
+            PNR: <i className="pl5 fcLightGreen">{ticket.pnr}</i>
+          </div>
+        </div>
+        <div className="col3 mb10">
+          <div className="info-inner">
+            Flight#: <i className="pl5 fcLightGreen">{ticket.flightNumber}</i>
+          </div>
+        </div>
+        <div className="col3 mb10">
+          <div className="info-inner">
+            Travel Date:
+            <i className="pl5 fcLightGreen">
+              {moment(ticket.travelDate).format("DD MMM, YY")}
+            </i>
+          </div>
+        </div>
+        <div className="col3 mb10">
+          <div className="info-inner">
+            Pur Price:
+            <i className="pl5 fcLightGreen">{ticket.purchasePrice}</i>
+          </div>
+        </div>
+      </div>
       <div className="full-width form-row mt15">
         <div className="col6 relaive pr5 overflow-datatime">
           <label className="inline" style={{ verticalAlign: "top" }}>

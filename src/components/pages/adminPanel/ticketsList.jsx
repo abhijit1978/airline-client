@@ -6,11 +6,14 @@ import AirlinesList from "../../common/airlinesList";
 import AllowToSale from "../../forms/allowToSale";
 import Popup from "./../../common/popup";
 import { API_HEADER, ticketsURL } from "../../../configs/app.config";
+import EditTicket from "../../forms/editTicket";
 
 const TicketsList = () => {
   const [tickets, setTickets] = useState([]);
+  const [updateMsg, setUpdateMsg] = useState(false);
   const [showPopup, togglePopup] = useState({
     state: false,
+    type: "",
     selectedTicket: {},
   });
   const [searchParams, setSearchParams] = useState({ travelDate: "" });
@@ -37,6 +40,21 @@ const TicketsList = () => {
     setSearchParams({ ...searchParams, airlineName });
   };
 
+  const updateTicket = (status) => {
+    if (status) {
+      togglePopup({ state: false, type: "", selectedTicket: {} });
+      getTickets();
+      setUpdateMsg(true);
+      closeSuccussMsg();
+    }
+  };
+
+  const closeSuccussMsg = () => {
+    setTimeout(() => {
+      setUpdateMsg(false);
+    }, 3000);
+  };
+
   const allowToSale = (ticket) => {
     const travelDt = new Date(ticket.travelDate);
     const today = new Date();
@@ -49,6 +67,7 @@ const TicketsList = () => {
             togglePopup({
               ...showPopup,
               state: true,
+              type: "allowSale",
               selectedTicket: ticket,
             })
           }
@@ -61,9 +80,43 @@ const TicketsList = () => {
     }
   };
 
+  const allowEdit = (ticket) => {
+    const travelDt = new Date(ticket.travelDate);
+    const today = new Date();
+
+    if (today < travelDt) {
+      return (
+        <span
+          className="pointer fcLightGreen"
+          onClick={() =>
+            togglePopup({
+              ...showPopup,
+              state: true,
+              type: "editTicket",
+              selectedTicket: ticket,
+            })
+          }
+        >
+          <i className="bi bi-pencil-square"></i>
+        </span>
+      );
+    } else {
+      return (
+        <span style={{ cursor: "not-allowed" }}>
+          <i className="bi bi-pencil-square"></i>
+        </span>
+      );
+    }
+  };
+
   return (
     <>
-      <div className="full-widthtool-wrapper ticket-list-headig">
+      <div className="full-widthtool-wrapper ticket-list-headig relaive">
+        {updateMsg && (
+          <div className="ticket-update-message">
+            Ticket updated successfully.
+          </div>
+        )}
         <div className="inline relaive">
           <label>Travel Date</label>
           <input
@@ -98,14 +151,13 @@ const TicketsList = () => {
             <th>Airline</th>
             <th>PNR</th>
             <th>Flight# </th>
-            <th>Dep Time</th>
-            <th>Arr Time</th>
+            <th>Time</th>
             <th>Pur Price</th>
             <th>Pur Date</th>
             <th>Pur Qty</th>
             <th>Booked Qty</th>
             <th>Qty In Hand</th>
-            <th>Action</th>
+            <th colSpan="2">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -118,8 +170,9 @@ const TicketsList = () => {
               <td className="text-center">{ticket.airlineName}</td>
               <td className="text-center">{ticket.pnr}</td>
               <td className="text-center">{ticket.flightNumber}</td>
-              <td className="text-center">{ticket.departureTime}</td>
-              <td className="text-center">{ticket.arrivalTime}</td>
+              <td className="text-center">
+                {ticket.departureTime} - {ticket.arrivalTime}
+              </td>
               <td className="text-center">{ticket.purchasePrice}</td>
               <td className="text-center">
                 {moment(ticket.datePurchased).format("DD MMM, YYYY")}
@@ -129,17 +182,31 @@ const TicketsList = () => {
               <td className="text-center">
                 {ticket.stock.inHand || "All Sold Out"}
               </td>
-              <td>{allowToSale(ticket)}</td>
+              <td className="text-center">{allowToSale(ticket)}</td>
+              <td className="text-center">{allowEdit(ticket)}</td>
             </tr>
           ))}
         </tbody>
       </table>
       {showPopup.state && (
-        <Popup heading="Allow to sale" onTogglePopup={togglePopup}>
-          <AllowToSale
-            onTogglePopup={togglePopup}
-            ticket={showPopup.selectedTicket}
-          />
+        <Popup
+          heading={
+            showPopup.type === "allowSale" ? "Allow to sale" : "Edit Ticket"
+          }
+          onTogglePopup={togglePopup}
+        >
+          {showPopup.type === "allowSale" && (
+            <AllowToSale
+              onTogglePopup={togglePopup}
+              ticket={showPopup.selectedTicket}
+            />
+          )}
+          {showPopup.type === "editTicket" && (
+            <EditTicket
+              onUpdateTicket={updateTicket}
+              ticket={showPopup.selectedTicket}
+            />
+          )}
         </Popup>
       )}
     </>

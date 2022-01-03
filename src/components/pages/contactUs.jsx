@@ -5,7 +5,7 @@ const ContactUsPage = () => {
     <div className="page-wrapper full-width">
       <div className="container">
         <div className="col6">
-          <h1 className="mb30 fcLightGreen">Contact Us</h1>
+          <h1 className="mb30 fcLightGreen heading-font">Contact Us</h1>
           <div className="full-width mb50">
             <div className="circle-icon mr15">
               <i className="bi bi-geo-alt-fill"></i>

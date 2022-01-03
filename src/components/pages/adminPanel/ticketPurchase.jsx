@@ -24,6 +24,7 @@ const TicketPurchase = () => {
   const [formValues, setFormValues] = useState({
     userId: user.id,
     airlineName: "",
+    airlineID: "",
     flightNumber: "",
     location: "",
     travelDate: "",
@@ -42,8 +43,8 @@ const TicketPurchase = () => {
     setFormValues({ ...formValues, location });
   };
 
-  const getAirline = (airlineName) => {
-    setFormValues({ ...formValues, airlineName });
+  const getAirline = (airlineName, airlineID) => {
+    setFormValues({ ...formValues, airlineName, airlineID });
   };
 
   const submitPurchase = async () => {

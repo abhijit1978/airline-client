@@ -10,6 +10,9 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 .root,
@@ -63,15 +66,16 @@ button.cancel {
 
 .popup-center {
   width: 550px;
-  max-height: 500px;
+  max-height: 600px;
   border: 1px solid #9eb61a;
   border-radius: 8px;
   background: #fff;
   position: fixed;
-  top: 70px;
+  top: 56px;
   left: 0;
   right: 0;
   margin: 0 auto;
+  box-shadow: 0 0 4px #404040;
 }
 
 .popup-center.confirm {
@@ -334,6 +338,14 @@ a:hover {
   float: left;
 }
 
+.col3:nth-of-type(3n + 1) {
+  clear: left;
+}
+
+.col4:nth-of-type(4n + 1) {
+  clear: left;
+}
+
 .col2 {
   width: calc(100% / 6);
   float: left;
@@ -342,7 +354,7 @@ a:hover {
 .circle-60 {
   width: 62px;
   height: 60px;
-  border-radius: 100%;
+  border-radius: 8px;
   text-align: center;
   vertical-align: middle;
   line-height: 60px;
@@ -351,17 +363,17 @@ a:hover {
 
 .circle-saffron {
   border: 1px solid #f4c430;
-  background-image: radial-gradient(rgb(255, 250, 221), rgb(250, 229, 110));
+  color: #f4c430;
 }
 
 .circle-blue {
-  border: 1px solid blue;
-  background-image: radial-gradient(rgb(205, 202, 252), rgb(175, 190, 253));
+  border: 1px solid #6161ff;
+  color: #6161ff;
 }
 
 .circle-green {
   border: 1px solid #97ad16;
-  background-image: radial-gradient(rgb(239, 255, 221), rgb(171, 255, 185));
+  color: #97ad16;
 }
 
 .pointer {
@@ -414,4 +426,8 @@ table.colored {
 
 .lhight150 {
   line-height: 150%;
+}
+
+.heading-font {
+  font-family: "Open Sans", sans-serif;
 }

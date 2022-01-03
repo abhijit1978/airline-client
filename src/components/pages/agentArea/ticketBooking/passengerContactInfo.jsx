@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setPassengerContactInfo } from "../../../../appStore";
 import utils from "../../../../utils/utils";
 
 const PassengerContactInfo = () => {
   const dispatch = useDispatch();
+  const agent = useSelector((state) => state.user.user);
   const [psgContactInfo, setPsgContactInfo] = useState({
-    contactNumber: "",
-    emailID: "",
+    contactNumber: agent.contactNo,
+    emailID: agent.email,
   });
 
   const [error, setError] = useState({

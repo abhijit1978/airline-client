@@ -152,6 +152,7 @@
   cursor: pointer;
   transition: background 1s ease-out;
   background-size: 1px 200px;
+  z-index: 150;
 }
 
 .contact-us-floating:hover {
@@ -351,14 +352,17 @@ table.print-table p {
   display: inline-block;
   border: 1px solid #97ad16;
   border-radius: 8px;
+  margin-top: 9px;
 }
 
 .service-image {
-  border: solid 1px #97ad16;
+  /* border: solid 1px #97ad16;
   padding: 5px;
-  background-clip: content-box; /* support: IE9+ */
+  background-clip: content-box; 
   border-radius: 5px;
-  margin-top: 5px;
+  margin-top: 5px; */
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 .service-banner {
@@ -381,4 +385,51 @@ table.print-table p {
 
 .service-page-heading {
   margin-top: 300px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+.service-content {
+  padding: 15px;
+}
+
+.service-content .inner {
+  display: inline-block;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 3px rgb(221, 221, 221);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.service-name {
+  font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+}
+
+.info-inner {
+  margin: 0 3px;
+  padding: 5px 3px 8px 3px;
+  border-radius: 0 0 8px;
+  background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    148deg,
+    rgba(255, 255, 255, 0.7315301120448179) 0%,
+    rgba(247, 249, 240, 1) 86%,
+    rgba(226, 255, 70, 1) 96%,
+    rgba(215, 255, 0, 1) 100%
+  );
+  box-shadow: 1px 1px 1px rgba(215, 255, 0, 1);
+}
+
+.ticket-update-message {
+  position: absolute;
+  top: 0px;
+  padding: 6px 30px;
+  border: 1px solid #97ad16;
+  color: #97ad16;
+  font-size: 13px;
+  border-radius: 6px;
 }

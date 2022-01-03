@@ -21,90 +21,105 @@ const ServicesPage = () => {
           <h1 className="fcLightGreen mb30 service-page-heading">
             We are happy server you as...
           </h1>
-          <div className="service-content col6 mb30 pr15">
-            <p className="fcLightGreen mb10 fsize18">
-              <i className="bi bi-file-earmark-text-fill mr5 fsize30"></i>{" "}
-              Airline Ticket Booking
-            </p>
-            <img
-              src={imgTicket}
-              alt="Airline Ticket Booking"
-              className="float-left mr15 service-image"
-            />
-            <p className="fsize15 lhight150 text-justify">
-              Some description about the service. Some description about the
-              service. Some description about the service. Some description
-              about the service. Some description about the service. Some
-              description about the service. Some description about the service.
-            </p>
-          </div>
-          <div className="service-content col6 mb30 pl15">
-            <p className="fcLightGreen mb10 fsize18">
-              <i className="bi bi-file-image-fill fsize30"></i> Domestic and
-              International Tour Packages
-            </p>
-            <img
-              src={imgTravel}
-              alt="Domestic and
-              International Tour Packages"
-              className="float-left mr15 service-image"
-            />
-            <p className="fsize15 lhight150 pl30">
-              Some description about the service. Some description about the
-              service. Some description about the service. Some description
-              about the service. Some description about the service. Some
-              description about the service. Some description about the service.
-            </p>
-          </div>
-          <div className="service-content col6 mb30 pr15">
-            <p className="fcLightGreen mb10 fsize18">
-              <i className="bi bi-file-person-fill fsize30"></i> Visa Assistance
-            </p>
-            <img
-              src={imgVisa}
-              alt="Visa Assistance"
-              className="float-left mr15 service-image"
-            />
-            <p className="fsize15 lhight150 pl30 text-justify">
-              Some description about the service. Some description about the
-              service. Some description about the service. Some description
-              about the service. Some description about the service. Some
-              description about the service. Some description about the service.
-            </p>
-          </div>
-          <div className="service-content col6 mb30 pl15">
-            <p className="fcLightGreen mb10 fsize18">
-              <i className="bi bi-building fsize30"></i> Hotel Bookings
-            </p>
-            <img
-              src={imgHotel}
-              alt="Hotel Bookings"
-              className="float-left mr15 service-image"
-            />
-            <p className="fsize15 lhight150 pl30 text-justify">
-              Some description about the service. Some description about the
-              service. Some description about the service. Some description
-              about the service. Some description about the service. Some
-              description about the service. Some description about the service.
-            </p>
-          </div>
-          <div className="service-content col6 mb30 pr15">
-            <p className="fcLightGreen mb10 fsize18">
-              <i className="bi bi-shield-fill-check fsize30"></i> Customized
-              Holidays Travel Insurance
-            </p>
-            <img
-              src={imgInsurance}
-              alt="Customized
-              Holidays Travel Insurance"
-              className="float-left mr15 service-image"
-            />
-            <p className="fsize15 lhight150 pl30 text-justify">
-              Some description about the service. Some description about the
-              service. Some description about the service. Some description
-              about the service. Some description about the service. Some
-              description about the service. Some description about the service.
-            </p>
+          <div
+            className="row"
+            style={{ marginLeft: "-15px", marginRight: "-15px" }}
+          >
+            <div className="service-content col4">
+              <div className="inner">
+                <img
+                  src={imgTicket}
+                  alt="Airline Ticket Booking"
+                  className="float-left mr15 service-image"
+                />
+                <p className="fcLightGreen mb10 fsize16 service-name">
+                  Airline Ticket Booking
+                </p>
+                <p className="fsize15 lhight150 text-justify">
+                  Some description about the service. Some description about the
+                  service. Some description about the service. Some description
+                  about the service. Some description about the service. Some
+                  description about the service. Some description about the
+                  service.
+                </p>
+              </div>
+            </div>
+            <div className="service-content col4">
+              <div className="inner">
+                <img
+                  src={imgTravel}
+                  alt="Domestic and International Tour Packages"
+                  className="float-left mr15 service-image"
+                />
+                <p className="fcLightGreen mb10 fsize16 service-name">
+                  Domestic & International Tour Packages
+                </p>
+                <p className="fsize15 lhight150">
+                  Some description about the service. Some description about the
+                  service. Some description about the service. Some description
+                  about the service. Some description about the service. Some
+                  description about the service. Some description about the
+                  service.
+                </p>
+              </div>
+            </div>
+            <div className="service-content col4">
+              <div className="inner">
+                <img
+                  src={imgVisa}
+                  alt="Visa Assistance"
+                  className="float-left mr15 service-image"
+                />
+                <p className="fcLightGreen mb10 fsize16 service-name">
+                  Visa Assistance
+                </p>
+                <p className="fsize15 lhight150  text-justify">
+                  Some description about the service. Some description about the
+                  service. Some description about the service. Some description
+                  about the service. Some description about the service. Some
+                  description about the service. Some description about the
+                  service.
+                </p>
+              </div>
+            </div>
+            <div className="service-content col4">
+              <div className="inner">
+                <img
+                  src={imgHotel}
+                  alt="Hotel Bookings"
+                  className="float-left mr15 service-image"
+                />
+                <p className="fcLightGreen mb10 fsize16 service-name">
+                  Hotel Bookings
+                </p>
+                <p className="fsize15 lhight150 text-justify">
+                  Some description about the service. Some description about the
+                  service. Some description about the service. Some description
+                  about the service. Some description about the service. Some
+                  description about the service. Some description about the
+                  service.
+                </p>
+              </div>
+            </div>
+            <div className="service-content col4">
+              <div className="inner">
+                <img
+                  src={imgInsurance}
+                  alt="Customized Holidays Travel Insurance"
+                  className="float-left mr15 service-image"
+                />
+                <p className="fcLightGreen mb10 fsize16 service-name">
+                  Customized Holidays Travel Insurance
+                </p>
+                <p className="fsize15 lhight150 text-justify">
+                  Some description about the service. Some description about the
+                  service. Some description about the service. Some description
+                  about the service. Some description about the service. Some
+                  description about the service. Some description about the
+                  service.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

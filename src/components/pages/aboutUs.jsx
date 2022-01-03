@@ -8,7 +8,7 @@ const AboutUsPage = () => {
         <div className="page-wrapper full-width">
           <div className="container">
             <div className="col3_4">
-              <h1 className="mb30 fcLightGreen">Who We Are...</h1>
+              <h1 className="mb30 fcLightGreen heading-font">Who we are...</h1>
               <p className="mb15 fsize18 lhight150">
                 <span className="fcLightGreen">Barkat Tours and Travels</span>{" "}
                 has emerged as one of the leading travel agencies since its

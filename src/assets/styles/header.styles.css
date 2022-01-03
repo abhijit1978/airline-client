@@ -162,12 +162,13 @@
 
 .logo-part {
   width: 75px;
+  font-size: initial;
 }
 
 .tour,
 .travel {
   width: 100%;
-  float: left;
+  display: inline-block;
   font-size: 18px;
   font-style: normal;
   text-align: center;

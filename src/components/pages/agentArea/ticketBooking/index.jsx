@@ -77,8 +77,9 @@ const BookTicket = ({ history }) => {
   };
 
   const handleBookTicket = async () => {
+    console.log(bookingInfo, agentInfo);
     const error = utils.validateBookingInfo(bookingInfo, agentInfo);
-    setBookingError(error);
+    console.log(error);
     if (!error.length) {
       const fareInfo = { ...bookingInfo.fareSummary };
       fareInfo.totalFare = utils.getTotalFare(bookingInfo);
@@ -119,6 +120,8 @@ const BookTicket = ({ history }) => {
         .catch((err) => {
           setBookingError([err.response.data.error]);
         });
+    } else {
+      setBookingError(error);
     }
   };
 

@@ -17,9 +17,11 @@ const HomePage = () => {
               <i className="bi bi-file-earmark-text-fill"></i>
             </div>
             <div className="inline">
-              <p className="bigger-text fcSafron">Ticket Booking</p>
+              <p className="bigger-text fcSafron heading-font">
+                Ticket Booking
+              </p>
               <p className="smaller-text">
-                Book Filght tickes all over the globe.
+                Book filght tickes all over the globe.
               </p>
             </div>
           </div>
@@ -28,7 +30,7 @@ const HomePage = () => {
               <i className="bi bi-people-fill"></i>
             </div>
             <div className="inline">
-              <p className="bigger-text fcBlue">VISA Assistance</p>
+              <p className="bigger-text fcBlue heading-font">VISA Assistance</p>
               <p className="smaller-text">Small descriptions will come.</p>
             </div>
           </div>
@@ -37,8 +39,12 @@ const HomePage = () => {
               <i className="bi bi-file-image-fill"></i>
             </div>
             <div className="inline">
-              <p className="bigger-text fcLightGreen">Tours & Travel</p>
-              <p className="smaller-text">Travel with us all over India.</p>
+              <p className="bigger-text fcLightGreen heading-font">
+                Tours & Travel
+              </p>
+              <p className="smaller-text">
+                Travel with us all over India & abroad.
+              </p>
             </div>
           </div>
         </div>
@@ -47,7 +53,9 @@ const HomePage = () => {
       <div className="container mt30">
         <h1 className="fsize22 fcDeepGreen mb30">
           Welcome to{" "}
-          <span className="fsize30 fcLightGreen">Barkat Tours and Travels</span>
+          <span className="fsize30 fcLightGreen heading-font">
+            Barkat Tours and Travels
+          </span>
         </h1>
         <p className="mb15 fsize18 lhight150">
           <span className="fcLightGreen">Barkat Tours and Travels</span> has
