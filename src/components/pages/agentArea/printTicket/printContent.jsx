@@ -25,6 +25,24 @@ class PrintContent extends PureComponent {
     return location.split("-");
   };
 
+  getArrivalTime = (trv) => {
+    if (trv.arrivalTime < trv.departureTime) {
+      return moment(new Date(trv.travelDate))
+        .add(1, "days")
+        .format("dddd, MMMM Do YYYY");
+    }
+    return moment(new Date(trv.travelDate)).format("dddd, MMMM Do YYYY");
+  };
+
+  getAgencyName = () => {
+    const { name, agencyName } = this.props.user;
+    return agencyName
+      ? agencyName
+      : `${name.firstName} ${name.middleName != -1 ? name.middleName : ""} ${
+          name.lastName
+        }`;
+  };
+
   render() {
     const { agent, passenger, travel, _id, ticketID } = {
       ...this.props.data,
@@ -48,11 +66,7 @@ class PrintContent extends PureComponent {
                   <tbody>
                     <tr>
                       <td>
-                        <p className="fsize15">
-                          {this.props.user.name.firstName}{" "}
-                          {this.props.user.name.middleName}{" "}
-                          {this.props.user.name.lastName}
-                        </p>
+                        <p className="agencyName">{this.getAgencyName()}</p>
                         <p>
                           {this.props.user.address.houseNoStreeetName},{" "}
                           {this.props.user.address.cityTownVillage},<br />
@@ -66,6 +80,7 @@ class PrintContent extends PureComponent {
                           <i className="bi bi-phone mr10"></i>{" "}
                           {this.props.user.contactNo}
                         </p>
+                        <br />
                         <p className="text-right">
                           <i className="bi bi-envelope mr10"></i>{" "}
                           {this.props.user.email}
@@ -162,10 +177,7 @@ class PrintContent extends PureComponent {
                         </p>
                         <p>&nbsp;</p>
                         <p style={{ fontSize: "15px" }}>
-                          {moment(new Date(travel.travelDate)).format(
-                            "dddd, MMMM Do YYYY"
-                          )}{" "}
-                          at {travel.arrivalTime}
+                          {this.getArrivalTime(travel)} at {travel.arrivalTime}
                         </p>
                       </td>
                     </tr>

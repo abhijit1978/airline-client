@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
 import axios from "axios";
 
 import FareSummary from "./fareSummary";
@@ -76,10 +77,17 @@ const BookTicket = ({ history }) => {
       });
   };
 
+  const getArrivalTime = (trv) => {
+    if (trv.arrivalTime < trv.departureTime) {
+      return moment(new Date(trv.travelDate))
+        .add(1, "days")
+        .format("DD/MM/YYYY");
+    }
+    return moment(new Date(trv.travelDate)).format("DD/MM/YYYY");
+  };
+
   const handleBookTicket = async () => {
-    console.log(bookingInfo, agentInfo);
     const error = utils.validateBookingInfo(bookingInfo, agentInfo);
-    console.log(error);
     if (!error.length) {
       const fareInfo = { ...bookingInfo.fareSummary };
       fareInfo.totalFare = utils.getTotalFare(bookingInfo);
@@ -176,7 +184,10 @@ const BookTicket = ({ history }) => {
 
                 <p className="text-center pb15">
                   <span className="fsize26 fcLightGreen">{getSource()}</span> at{" "}
-                  {bookingInfo.departureTime}
+                  {bookingInfo.departureTime} on{" "}
+                  {moment(new Date(bookingInfo.travelDate)).format(
+                    "DD/MM/YYYY"
+                  )}
                 </p>
               </div>
               <div className="col6 text-center">
@@ -187,7 +198,7 @@ const BookTicket = ({ history }) => {
                   <span className="fsize26 fcLightGreen">
                     {getDestination()}
                   </span>{" "}
-                  at {bookingInfo.arrivalTime}
+                  at {bookingInfo.arrivalTime} on {getArrivalTime(bookingInfo)}
                 </p>
               </div>
               <div className="flight-name">

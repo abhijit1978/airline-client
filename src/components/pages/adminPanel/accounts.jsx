@@ -7,6 +7,8 @@ import {
   usersURL,
   statementUrl,
   updateBalanceUrl,
+  pendingPaymentRequestUrl,
+  paymentRejectUrl,
 } from "../../../configs/app.config";
 
 const AccountStatement = () => {
@@ -27,6 +29,14 @@ const AccountStatement = () => {
     }
   };
 
+  const getPendingRecipts = async () => {
+    const pendingReceipts = await axios.post(
+      pendingPaymentRequestUrl,
+      API_HEADER
+    );
+    setTrans(pendingReceipts.data);
+  };
+
   const getUserTransactions = async () => {
     try {
       const response = await axios.post(
@@ -43,6 +53,7 @@ const AccountStatement = () => {
   useEffect(() => {
     async function fetchUsers() {
       await getUsers();
+      await getPendingRecipts();
     }
     fetchUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,6 +63,11 @@ const AccountStatement = () => {
     if (activeUser) {
       async function fetchTrans() {
         getUserTransactions();
+      }
+      fetchTrans();
+    } else {
+      async function fetchTrans() {
+        await getPendingRecipts();
       }
       fetchTrans();
     }
@@ -70,24 +86,51 @@ const AccountStatement = () => {
         </span>
       );
     } else {
+      let userName = "";
+      if (!activeUser) {
+        const user = users.filter((user) => user._id === tran.userID);
+        const { firstName, middleName, lastName } = { ...user[0]["name"] };
+        userName = `${firstName} ${
+          middleName != -1 ? middleName : ""
+        } ${lastName}`;
+      }
+
       return `${tran.payment.bankName}, ${
         tran.payment.branchName
       } vide Transaction ID: ${tran.payment.transID} dated ${moment(
         trans.transDate
-      ).format("DD-MM-YYYY")}`;
+      ).format("DD-MM-YYYY")} ${userName}`;
     }
   };
 
-  const handleConfirmReceipt = async () => {
+  const handleConfirm = () => {
+    pop.type === "accept" ? handleAccept() : handleReject();
+  };
+
+  const handleAccept = async () => {
     const payload = {
-      userID: pop.userID,
-      amount: pop.payment.amount,
-      _id: pop._id,
+      userID: pop.tran.userID,
+      amount: pop.tran.payment.amount,
+      _id: pop.tran._id,
     };
     await axios
       .post(updateBalanceUrl, payload, API_HEADER)
       .then(async () => {
-        await getUserTransactions();
+        activeUser ? await getUserTransactions() : await getPendingRecipts();
+      })
+      .catch((err) => console.log(err));
+
+    setPop("");
+  };
+
+  const handleReject = async () => {
+    const payload = {
+      _id: pop.tran._id,
+    };
+    await axios
+      .post(paymentRejectUrl, payload, API_HEADER)
+      .then(async () => {
+        activeUser ? await getUserTransactions() : await getPendingRecipts();
       })
       .catch((err) => console.log(err));
 
@@ -132,9 +175,16 @@ const AccountStatement = () => {
             </tr>
           </thead>
           <tbody>
-            {trans.length &&
+            {users.length && trans.length ? (
               trans.map((tran) => (
-                <tr>
+                <tr
+                  key={tran._id}
+                  style={
+                    tran.transType === "credit" && !tran.payment.confirmReceipt
+                      ? { background: "rgb(158 182 26 / 30%)" }
+                      : {}
+                  }
+                >
                   <td>{moment(tran.transDate).format("DD-MM-YYYY")}</td>
                   <td>{getTransDetails(tran)}</td>
                   <td className="text-right">
@@ -153,15 +203,24 @@ const AccountStatement = () => {
                         })
                       : ""}
                   </td>
-                  <td>
+                  <td style={{ textAlign: "center" }}>
                     {tran.transType === "credit" ? (
                       !tran.payment.confirmReceipt ? (
-                        <span
-                          className="fcLightGreen pointer"
-                          onClick={() => setPop(tran)}
-                        >
-                          Pending
-                        </span>
+                        <>
+                          <span
+                            className="fcDeepGreen pointer"
+                            onClick={() => setPop({ type: "accept", tran })}
+                          >
+                            Accept
+                          </span>{" "}
+                          /{" "}
+                          <span
+                            className="fcRed pointer"
+                            onClick={() => setPop({ type: "reject", tran })}
+                          >
+                            Reject
+                          </span>
+                        </>
                       ) : (
                         "Received"
                       )
@@ -170,21 +229,32 @@ const AccountStatement = () => {
                     )}
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5} className="text-center">
+                  <strong>No transactions found for this user.</strong>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
 
         {pop && (
           <div className="popup-center confirm">
-            <header>Receipt Confirmation</header>
+            <header>
+              {pop.type === "accept"
+                ? "Confirm accept payment"
+                : "Confirm reject & delete"}
+            </header>
             <div className="content-area">
               <p className="text-center">Are you sure?</p>
               <div className="text-center mt15 full-width">
-                <button className="primary mr10" onClick={handleConfirmReceipt}>
-                  Confirm
+                <button className="primary mr10" onClick={handleConfirm}>
+                  <i className="bi bi-check2-circle mr5"></i> Confirm
                 </button>
                 <button className="cancel" onClick={() => setPop("")}>
-                  Cancel
+                  <i className="bi bi-x-circle mr5"></i> Cancel
                 </button>
               </div>
             </div>

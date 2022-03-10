@@ -33,12 +33,12 @@ const AppHeader = () => {
       {user && user.userType === "Agent" && (
         <div className="agent-limit inline fsize13">
           Cr Limit:
-          <strong className="fsize15 mr10 fcDeepGreen">
+          <strong className="fsize15 mr10 fcSafron">
             {" "}
             {user.limit.toLocaleString("en-IN")}
           </strong>
           Due:
-          <strong className="fsize15 mr10 fcDeepGreen">
+          <strong className="fsize15 mr10 fcRed">
             {" "}
             {user.balance ? user.balance.due.toLocaleString("en-IN") : 0}
           </strong>

@@ -11,6 +11,7 @@ const usersURL = `${baseURL}${pattern}users`;
 const activeUserURL = `${baseURL}${pattern}users/oneUser`;
 const loginURL = `${baseURL}${pattern}users/login`;
 const changePassUrl = `${baseURL}${pattern}users/changePassword`;
+const changeAgencyNameUrl = `${baseURL}${pattern}users/updateAgencyName`;
 const forgotPassUrl = `${baseURL}${pattern}users/forgotPassword`;
 const roleURL = `${baseURL}${pattern}users/role`;
 const setLimitURL = `${baseURL}${pattern}users/setLimit`;
@@ -28,6 +29,8 @@ const bookingURL = `${baseURL}${pattern}ticketsBooking`;
 const bookedTicketsURL = `${baseURL}${pattern}ticketsBooking/getBookedTickets`;
 const confirmSaleUrl = `${baseURL}${pattern}ticketsBooking/confirmSale`;
 const paymentUrl = `${baseURL}${pattern}accounts/payment`;
+const paymentRejectUrl = `${baseURL}${pattern}accounts/delete_payment_request`;
+const pendingPaymentRequestUrl = `${baseURL}${pattern}accounts/pending_payment_requests`;
 const statementUrl = `${baseURL}${pattern}accounts/statement`;
 const updateBalanceUrl = `${baseURL}${pattern}accounts/updateBalance`;
 
@@ -59,4 +62,7 @@ export {
   statementUrl,
   updateBalanceUrl,
   ticketEditURL,
+  pendingPaymentRequestUrl,
+  paymentRejectUrl,
+  changeAgencyNameUrl,
 };

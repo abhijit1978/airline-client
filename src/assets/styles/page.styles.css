@@ -355,6 +355,10 @@ table.print-table p {
   margin-top: 9px;
 }
 
+.print-container .agencyName {
+  font-size: 18px;
+}
+
 .service-image {
   /* border: solid 1px #97ad16;
   padding: 5px;
@@ -368,7 +372,7 @@ table.print-table p {
 .service-banner {
   position: absolute;
   width: 100%;
-  height: 700px;
+  height: 710px;
   background-image: linear-gradient(
     to bottom,
     rgb(253 253 253 / 17%),

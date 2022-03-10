@@ -46,7 +46,13 @@ const MakePayment = () => {
           });
         })
         .catch((err) => {
-          setMsg({ type: "error", message: err.response.message });
+          err.response?.data?.errorType === "Duplicate ID"
+            ? setMsg({
+                type: "error",
+                message:
+                  "Transaction ID already exist. Please enter correct ID.",
+              })
+            : setMsg({ type: "error", message: err.response.message });
         });
     }
   };

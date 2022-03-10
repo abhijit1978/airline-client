@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { logoutURL, API_HEADER } from "../../configs/app.config";
@@ -8,10 +8,12 @@ import { setUser } from "./../../appStore";
 
 const UserLinks = ({ toggleUserLinkList, user }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const logoutUser = async () => {
     try {
       await axios.put(logoutURL, { id: user.id }, { headers: API_HEADER });
+      history.replace("/");
       toggleUserLinkList(false);
       dispatch(setUser({}));
       localStorage.removeItem("user");

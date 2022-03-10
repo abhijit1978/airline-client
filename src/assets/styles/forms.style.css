@@ -228,7 +228,7 @@ button.primary.book-ticket {
   position: absolute;
   color: red;
   font-size: 12px;
-  width: 100%;
+  width: calc(100% - 30px);
   text-align: center;
   top: 0;
   font-weight: bold;

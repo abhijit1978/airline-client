@@ -48,7 +48,8 @@ const ContactUsPage = () => {
                 <strong>Phone</strong>
               </p>
               <p className="lhight150 fsize15">
-                +91-9732555815 , +91-9476455772 <br />
+                +91-9732555815 , <br />
+                +91-9476455772, <br />
                 03482-255199
               </p>
             </div>
