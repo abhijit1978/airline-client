@@ -44,7 +44,7 @@ class PrintContent extends PureComponent {
   };
 
   render() {
-    const { agent, passenger, travel, _id, ticketID } = {
+    const { agent, passenger, travel, ticketID } = {
       ...this.props.data,
     };
     return (

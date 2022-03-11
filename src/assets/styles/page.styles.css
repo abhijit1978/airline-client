@@ -437,3 +437,15 @@ table.print-table p {
   font-size: 13px;
   border-radius: 6px;
 }
+
+.bal-summary {
+  margin-top: 5px;
+  box-shadow: 0 0 8px #aaa;
+  border-radius: 4px;
+  padding: 8px 8px 8px 0;
+}
+.bal-summary label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 8px;
+}

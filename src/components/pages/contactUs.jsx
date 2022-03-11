@@ -63,6 +63,7 @@ const ContactUsPage = () => {
             allowfullscreen=""
             loading="lazy"
             style={{ border: 0 }}
+            title="barkat tours and travels"
           ></iframe>
         </div>
       </div>

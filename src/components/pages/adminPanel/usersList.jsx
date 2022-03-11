@@ -134,12 +134,20 @@ const UsersList = () => {
               <td>{user.address.cityTownVillage}</td>
               <td className="text-right">{user.address.pin}</td>
               <td>
-                <a target="_blank" href={`${baseURL}${user.aadharImgUrl}`}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`${baseURL}${user.aadharImgUrl}`}
+                >
                   {user.aadharNo}
                 </a>
               </td>
               <td>
-                <a target="_blank" href={`${baseURL}${user.panImgUrl}`}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`${baseURL}${user.panImgUrl}`}
+                >
                   {user.pan}
                 </a>
               </td>

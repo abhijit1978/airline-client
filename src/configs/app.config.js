@@ -2,13 +2,14 @@ const API_HEADER = { headers: { "Content-Type": "application/json" } };
 const API_HEADER_FORMDATA = {
   headers: { "Content-Type": "multipart/form-data", boundary: "MyBoundary" },
 };
-// const baseURL = "http://localhost:5001";
-const baseURL = window.location.origin;
+const baseURL = "http://localhost:5001";
+// const baseURL = window.location.origin;
 const pattern = "/api/bfly/";
 
 const signUpURL = `${baseURL}${pattern}users/new`;
 const usersURL = `${baseURL}${pattern}users`;
 const activeUserURL = `${baseURL}${pattern}users/oneUser`;
+const userBalance = `${baseURL}${pattern}users/getUserBalance`;
 const loginURL = `${baseURL}${pattern}users/login`;
 const changePassUrl = `${baseURL}${pattern}users/changePassword`;
 const changeAgencyNameUrl = `${baseURL}${pattern}users/updateAgencyName`;
@@ -65,4 +66,5 @@ export {
   pendingPaymentRequestUrl,
   paymentRejectUrl,
   changeAgencyNameUrl,
+  userBalance,
 };

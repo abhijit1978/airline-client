@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
+import utils from "../../../utils/utils";
 
 import {
   API_HEADER,
@@ -9,16 +10,18 @@ import {
   updateBalanceUrl,
   pendingPaymentRequestUrl,
   paymentRejectUrl,
+  activeUserURL,
 } from "../../../configs/app.config";
 
 const AccountStatement = () => {
-  const today = moment();
+  // const today = moment();
   const [users, setUsers] = useState([]);
   const [trans, setTrans] = useState([]);
   const [activeUser, setActiveUser] = useState("");
-  const [month, setMonth] = useState(today.format("M"));
-  const [period, setPeriod] = useState(today.format("YYYY"));
+  // const [month, setMonth] = useState(today.format("M"));
+  // const [period, setPeriod] = useState(today.format("YYYY"));
   const [pop, setPop] = useState("");
+  const [activeUserData, setActiveUserData] = useState("");
 
   const getUsers = async () => {
     try {
@@ -26,6 +29,19 @@ const AccountStatement = () => {
       setUsers(response.data);
     } catch (error) {
       console.log("som error");
+    }
+  };
+
+  const getActiveUserData = async () => {
+    try {
+      const response = await axios.post(
+        activeUserURL,
+        { id: activeUser },
+        API_HEADER
+      );
+      setActiveUserData(response.data || {});
+    } catch (error) {
+      console.log("get user balance error");
     }
   };
 
@@ -63,6 +79,7 @@ const AccountStatement = () => {
     if (activeUser) {
       async function fetchTrans() {
         getUserTransactions();
+        getActiveUserData();
       }
       fetchTrans();
     } else {
@@ -116,7 +133,12 @@ const AccountStatement = () => {
     await axios
       .post(updateBalanceUrl, payload, API_HEADER)
       .then(async () => {
-        activeUser ? await getUserTransactions() : await getPendingRecipts();
+        if (activeUser) {
+          await getUserTransactions();
+          await getActiveUserData();
+        } else {
+          await getPendingRecipts();
+        }
       })
       .catch((err) => console.log(err));
 
@@ -140,28 +162,46 @@ const AccountStatement = () => {
   return (
     <div className="page-wrapper full-width">
       <div className="container">
-        <div className="full-width mb10 text-right">
-          <label className="mr10">User</label>
-          <select
-            value={activeUser}
-            onChange={(e) => setActiveUser(e.target.value)}
-            className="mr15"
-          >
-            <option value="">User</option>
-            {users.length &&
-              users.map((user) => (
-                <option value={user._id} key={user._id}>
-                  {user.name.firstName} {user.name.lastName}
-                </option>
-              ))}
-          </select>
-          <label className="mr10">Period</label>
-          <input
-            type="month"
-            className="mr15"
-            onChange={(e) => setPeriod(e.target.value)}
-          />
-          <button className="primary">Get Statement</button>
+        <div className="full-width mb10 text-right inline">
+          {activeUser && (
+            <div className="float-left bal-summary">
+              <div className="inline mr5">
+                <label>Limit:</label>{" "}
+                {utils.formatNum(activeUserData?.user?.limit || 0)}
+              </div>
+              <div className="inline mr5">
+                <label>Due:</label>{" "}
+                {utils.formatNum(activeUserData?.user?.balance.due || 0)}
+              </div>
+              <div className="inline">
+                <label>Balance:</label>{" "}
+                {utils.formatNum(activeUserData?.user?.balance.balance || 0)}
+              </div>
+            </div>
+          )}
+          <div className="float-right">
+            <label className="mr10">User</label>
+            <select
+              value={activeUser}
+              onChange={(e) => setActiveUser(e.target.value)}
+              className="mr15"
+            >
+              <option value="">User</option>
+              {users.length &&
+                users.map((user) => (
+                  <option value={user._id} key={user._id}>
+                    {user.name.firstName} {user.name.lastName}
+                  </option>
+                ))}
+            </select>
+            <label className="mr10">Period</label>
+            <input
+              type="month"
+              className="mr15"
+              // onChange={(e) => setPeriod(e.target.value)}
+            />
+            <button className="primary">Get Statement</button>
+          </div>
         </div>
 
         <table className="booked-tickets-list colored" width="100%">

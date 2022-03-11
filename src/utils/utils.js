@@ -99,10 +99,18 @@ const validateRegistrationForm = (data) => {
   }
 };
 
+const formatNum = (num) => {
+  return num.toLocaleString("en-IN", {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  });
+};
+
 export default {
   getTotalFare,
   validateBookingInfo,
   validateEmail,
   validateMobile,
   validateRegistrationForm,
+  formatNum,
 };
